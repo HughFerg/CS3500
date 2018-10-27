@@ -3,4 +3,10 @@
  */
 public interface AnimatorModel {
 
+
+  /**
+   * Adds the given shape, with the given dimensions, to the animator model.
+   */
+  public void addShape();
+
 }
