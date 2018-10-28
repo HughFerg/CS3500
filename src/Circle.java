@@ -10,7 +10,7 @@ public class Circle extends AbstractShape {
     if (radius > 0) {
       this.radius = radius;
     } else {
-      throw new IllegalArgumentException("Radius cannot be less than 1");
+      throw new IllegalArgumentException("Radius must be greater than 0.");
     }
   }
 }

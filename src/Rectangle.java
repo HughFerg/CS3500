@@ -15,7 +15,7 @@ public class Rectangle extends AbstractShape {
       this.width = width;
       this.height = height;
     } else {
-      throw new IllegalArgumentException("Cannot have width or height less than 1.");
+      throw new IllegalArgumentException("Width or height must be greater than 0.");
     }
   }
 }

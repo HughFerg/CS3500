@@ -12,7 +12,7 @@ public class Oval extends AbstractShape {
       this.xRadius = xRadius;
       this.yRadius = yRadius;
     } else {
-      throw new IllegalArgumentException("X and Y radius must be greater than 1.");
+      throw new IllegalArgumentException("X and Y radius must be greater than 0.");
     }
   }
 }

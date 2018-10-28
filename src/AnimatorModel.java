@@ -9,4 +9,8 @@ public interface AnimatorModel {
    */
   public void addShape();
 
+  /**
+   * Returns the String output rendering of the current model state.
+   */
+  public String render();
 }
