@@ -10,8 +10,9 @@ public class Command {
   private AbstractShape destination;
 
   public Command(int start, int end, AbstractShape current, AbstractShape destination) {
-    if (start < 0 || end < 0) {
-      throw new IllegalArgumentException("Start and end times must be greater than or equal to 0.");
+    if (start < 0 || end < 0 || start > end) {
+      throw new IllegalArgumentException("Start and end times must be greater than or equal to 0," +
+              " and start cannot be after end.");
     } else {
       this.start = start;
       this.end = end;

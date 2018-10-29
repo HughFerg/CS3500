@@ -9,6 +9,8 @@ import static java.util.Arrays.asList;
  */
 public class AnimatorModelImpl implements AnimatorModel {
 
+  private int width;
+  private int height;
   private ArrayList<Command> commands;
   private int tick = 0;
 
@@ -24,7 +26,21 @@ public class AnimatorModelImpl implements AnimatorModel {
 
   @Override
   public void addCommand(Command cmd) {
-    this.commands.add(cmd);
+    if (validCommand(cmd)) {
+      this.commands.add(cmd);
+    } else {
+      throw new IllegalArgumentException("Command is not valid.");
+    }
+  }
+
+  /**
+   * Returns if the given command is valid - that is, has legitimate start/end times, and does
+   * not move a shape out of bounds or to a negative size.
+   * @param cmd the command to be tested.
+   * @return true if the command is valid, false if not.
+   */
+  private boolean validCommand(Command cmd) {
+    return (cmd.g)
   }
 
   @Override
