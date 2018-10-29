@@ -12,7 +12,9 @@ public class Triangle extends AbstractShape {
   }
 
   @Override
-  public Triangle getNextShape(Shape destination, int deltaT) {
-    return null;
+  public Triangle getNextShape(AbstractShape destination, int deltaT) {
+    return new Triangle(this.getNextColor(destination, deltaT),
+            this.getNextPoint(destination, deltaT),
+            (int) ((destination.getWidth() - this.sideLength / deltaT) + this.sideLength) / 2);
   }
 }

@@ -1,3 +1,7 @@
+/**
+ * Represents a command to be executed in an Animator. Each command has a current shape that is
+ * currently represented, and a destination shape with varying location, color, or size.
+ */
 public class Command {
 
   private int start;
@@ -32,13 +36,5 @@ public class Command {
   @Override
   public String toString() {
    return null;
-  }
-
-  public int getStart() {
-    return this.start;
-  }
-
-  public int getEnd() {
-    return this.end;
   }
 }

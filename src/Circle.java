@@ -7,12 +7,14 @@ public class Circle extends AbstractShape {
 
   private int radius;
 
-  public Circle(int radius, Color color, Point coordinates) {
+  public Circle(Color color, Point coordinates, int radius) {
     super(color, coordinates, 2 * radius, 2 * radius);
   }
 
   @Override
-  public Circle getNextShape(Shape destination, int deltaT) {
-    return null;
+  public Circle getNextShape(AbstractShape destination, int deltaT) {
+    return new Circle(this.getNextColor(destination, deltaT),
+            this.getNextPoint(destination, deltaT),
+            (int) ((destination.getWidth() - this.radius / deltaT) + this.radius) / 2);
   }
 }

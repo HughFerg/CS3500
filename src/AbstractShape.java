@@ -23,35 +23,33 @@ public abstract class AbstractShape implements Shape {
     }
   }
 
-  @Override
-  public Point getCoordinates() {
+  protected Point getCoordinates() {
     return this.coordinates;
   }
 
-  @Override
-  public Color getColor() {
+  protected Color getColor() {
     return this.color;
   }
   
 
-  @Override
-  public int getWidth() {
+  protected int getWidth() {
     return this.width;
   }
 
-  @Override
-  public int getHeight() {
+  protected int getHeight() {
     return this.height;
   }
 
-  public Color getNextColor(Shape destination, int deltaT) {
+  protected Color getNextColor(AbstractShape destination, int deltaT) {
     return new Color((destination.getColor().getRed() - this.color.getRed() / deltaT) + this.color.getRed(),
             (destination.getColor().getGreen() - this.color.getGreen() / deltaT) + this.color.getGreen(),
             (destination.getColor().getBlue() - this.color.getBlue() / deltaT) + this.color.getBlue());
   }
 
-  public Point getNextPoint(Shape destination, int deltaT) {
+  protected Point getNextPoint(AbstractShape destination, int deltaT) {
     return new Point((int) ((destination.getCoordinates().getX() - this.getCoordinates().getX() / deltaT) + this.getCoordinates().getX()),
             (int) ((destination.getCoordinates().getY() - this.getCoordinates().getY() / deltaT) + this.getCoordinates().getY()));
   }
+
+  protected abstract AbstractShape getNextShape(AbstractShape destination, int deltaT);
 }
