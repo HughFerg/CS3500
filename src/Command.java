@@ -34,9 +34,7 @@ public class Command {
   public void update(int currentTick) {
 
     int deltaT = this.end - currentTick;
-
-    AbstractShape newShape = this.current.getNextShape(this.destination, deltaT);
-    this.current = newShape;
+    this.current = this.current.getNextShape(this.destination, deltaT);
   }
 
   /**
@@ -46,8 +44,19 @@ public class Command {
   public String toString() {
 
     String result = "";
-    result += "From time " + this.start + " to time " + this.end
-    + " " + this.current.getClass().getName();
+
+    AbstractShape c = this.current;
+    AbstractShape d = this.destination;
+
+    result += c.getClass().getName() + " - Start: " + this.start + " X: " + (int)c.getCoordinates().getX()
+            + " Y: " + c.getCoordinates().getY() + " W: " + c.getWidth() +
+            " H: " + c.getHeight() + " R: " + c.getColor().getRed() + " G: " + c.getColor().getGreen()
+            + " B: " + c.getColor().getBlue();
+    
+   result +=  " --- End: " + this.end + " X: " + (int)d.getCoordinates().getX()
+            + " Y: " + d.getCoordinates().getY() + " W: " + d.getWidth() +
+            " H: " + d.getHeight() + " R: " + d.getColor().getRed() + " G: " + d.getColor().getGreen()
+            + " B: " + d.getColor().getBlue(); 
 
     return result;
   }
