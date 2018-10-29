@@ -6,8 +6,8 @@ public class Command {
 
   private int start;
   private int end;
-  private Shape current;
-  private Shape destination;
+  private AbstractShape current;
+  private AbstractShape destination;
 
   public Command(int start, int end, AbstractShape current, AbstractShape destination) {
     if (start < 0 || end < 0) {
