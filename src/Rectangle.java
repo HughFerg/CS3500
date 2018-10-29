@@ -8,14 +8,12 @@ public class Rectangle extends AbstractShape {
   private int width;
   private int height;
 
-  public Rectangle(int width, int height, Color color, Point coordinates) {
-    super(color, coordinates);
+  public Rectangle(Color color, Point coordinates, int width, int height) {
+    super(color, coordinates, width, height);
+  }
 
-    if (this.height > 0 && this.width > 0) {
-      this.width = width;
-      this.height = height;
-    } else {
-      throw new IllegalArgumentException("Width or height must be greater than 0.");
-    }
+  @Override
+  public Rectangle getNextShape(Shape destination, int deltaT) {
+    return null;
   }
 }
