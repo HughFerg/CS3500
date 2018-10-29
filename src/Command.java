@@ -20,10 +20,18 @@ public class Command {
     }
   }
 
+  /**
+   * Returns the start time of this command.
+   * @return the start time, in ticks, of this command.
+   */
   public int getStart() {
     return this.start;
   }
 
+  /**
+   * Returns the end time of this command.
+   * @return the end time, in ticks, of this command.
+   */
   public int getEnd() {
     return this.end;
   }

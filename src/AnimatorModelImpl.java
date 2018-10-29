@@ -1,19 +1,24 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * Represents an Animator model implementation for creating, displaying, and manipulating shapes.
  */
 public class AnimatorModelImpl implements AnimatorModel {
 
-  private List<Command> commands;
+  private ArrayList<Command> commands;
   private int tick = 0;
 
+  // Creates an Animator Model with no commands.
   public AnimatorModelImpl() {
-    this.commands = Arrays.asList();
+    this.commands = new ArrayList<>();
   }
 
-  public AnimatorModelImpl(List<Command> commands) {
+  // Creates an Animator Model with the given commands.
+  public AnimatorModelImpl(ArrayList<Command> commands) {
     this.commands = commands;
   }
 
@@ -46,7 +51,8 @@ public class AnimatorModelImpl implements AnimatorModel {
     for (Command cmd : commands) {
       result += cmd.toString() + "\n";
     }
-    return result.substring(0, result.length() - 2);
+    // Trim newline
+    return result.substring(0, result.length() - 1);
   }
 
   @Override

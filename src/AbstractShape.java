@@ -30,7 +30,7 @@ public abstract class AbstractShape {
   protected Color getColor() {
     return this.color;
   }
-  
+
   protected int getWidth() {
     return this.width;
   }
