@@ -15,6 +15,6 @@ public class Circle extends AbstractShape {
   public Circle getNextShape(AbstractShape destination, int deltaT) {
     return new Circle(this.getNextColor(destination, deltaT),
             this.getNextPoint(destination, deltaT),
-            (int) ((destination.getWidth() - this.radius / deltaT) + this.radius) / 2);
+            (int) (((destination.getWidth() - this.radius) / deltaT) + this.radius) / 2);
   }
 }

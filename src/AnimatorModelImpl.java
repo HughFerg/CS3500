@@ -40,7 +40,7 @@ public class AnimatorModelImpl implements AnimatorModel {
    * @return true if the command is valid, false if not.
    */
   private boolean validCommand(Command cmd) {
-    return (cmd.g)
+    return true;
   }
 
   @Override
@@ -53,8 +53,8 @@ public class AnimatorModelImpl implements AnimatorModel {
           cmd.update(this.tick);
         }
       }
-      tick++;
     }
+    tick++;
   }
 
   @Override
@@ -68,7 +68,10 @@ public class AnimatorModelImpl implements AnimatorModel {
       result += cmd.toString() + "\n";
     }
     // Trim newline
-    return result.substring(0, result.length() - 1);
+    if(result.length() > 0) {
+      result = result.substring(0, result.length() - 1);
+    }
+    return result;
   }
 
   @Override

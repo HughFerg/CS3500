@@ -15,7 +15,7 @@ public class Oval extends AbstractShape {
   @Override
   public Oval getNextShape(AbstractShape destination, int deltaT) {
     return new Oval(this.getNextColor(destination, deltaT), this.getNextPoint(destination, deltaT),
-            (int) ((destination.getWidth() - this.xRadius / deltaT) + this.xRadius) / 2,
-            (int) ((destination.getHeight() - this.yRadius / deltaT) + this.yRadius) / 2);
+            (int) (((destination.getWidth() - this.xRadius) / deltaT) + this.xRadius) / 2,
+            (int) (((destination.getHeight() - this.yRadius) / deltaT) + this.yRadius) / 2);
   }
 }
