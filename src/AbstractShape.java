@@ -32,6 +32,7 @@ public abstract class AbstractShape implements Shape {
   public Color getColor() {
     return this.color;
   }
+  
 
   @Override
   public int getWidth() {
