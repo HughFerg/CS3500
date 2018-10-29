@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -7,8 +8,12 @@ import static junit.framework.TestCase.assertEquals;
  */
 public class testAnimator {
 
+  @Before
+  public void init() {
+    AnimatorModel animator = new AnimatorModelImpl();
+  }
+
   @Test
-  public void testTEST() {
-    assertEquals(1, 1);
+  public void testInit() {
   }
 }

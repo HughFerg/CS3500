@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -5,12 +6,21 @@ import java.util.List;
  */
 public class AnimatorModelImpl implements AnimatorModel {
 
-  private int width;
-  private int height;
   private List<Command> commands;
   private int tick = 0;
 
-  // construct
+  public AnimatorModelImpl() {
+    this.commands = Arrays.asList();
+  }
+
+  public AnimatorModelImpl(List<Command> commands) {
+    this.commands = commands;
+  }
+
+  @Override
+  public void addCommand(Command cmd) {
+    this.commands.add(cmd);
+  }
 
   @Override
   public void onTick() {

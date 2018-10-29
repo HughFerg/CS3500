@@ -20,6 +20,14 @@ public class Command {
     }
   }
 
+  public int getStart() {
+    return this.start;
+  }
+
+  public int getEnd() {
+    return this.end;
+  }
+
   /**
    * Updates the current shape's value by the correct amounts per each field.
    */
@@ -36,6 +44,11 @@ public class Command {
    */
   @Override
   public String toString() {
-   return null;
+
+    String result = "";
+    result += "From time " + this.start + " to time " + this.end
+    + " " + this.current.getClass().getName();
+
+    return result;
   }
 }
