@@ -31,7 +31,6 @@ public abstract class AbstractShape {
     return this.color;
   }
   
-
   protected int getWidth() {
     return this.width;
   }

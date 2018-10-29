@@ -2,6 +2,9 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
+/**
+ * Test class for Animator and its related components.
+ */
 public class testAnimator {
 
   @Test
