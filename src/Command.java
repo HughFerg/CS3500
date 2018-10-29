@@ -27,7 +27,7 @@ public class Command {
 
     int deltaT = this.end - currentTick;
 
-    Shape newShape = this.current.getNextShape(this.destination, deltaT);
+    AbstractShape newShape = this.current.getNextShape(this.destination, deltaT);
   }
 
   /**
