@@ -1,14 +1,15 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Point;
 
 import static junit.framework.TestCase.assertEquals;
 
 /**
  * Test class for Animator and its related components.
  */
-public class testAnimator {
+public class TestAnimator {
 
   AnimatorModel animator;
 

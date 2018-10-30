@@ -68,14 +68,14 @@ public class Command {
     AbstractShape c = this.current;
     AbstractShape d = this.destination;
 
-    result += c.getClass().getName() + " - Start: " + this.start + " X: " + (int) c.getCoordinates().getX()
-            + " Y: " + c.getCoordinates().getY() + " W: " + c.getWidth() +
-            " H: " + c.getHeight() + " R: " + c.getColor().getRed() + " G: " + c.getColor().getGreen()
-            + " B: " + c.getColor().getBlue();
+    result += c.getClass().getName() + " - Start: " + this.start + " X: "
+            + (int) c.getCoordinates().getX() + " Y: " + c.getCoordinates().getY() + " W: "
+            + c.getWidth() + " H: " + c.getHeight() + " R: " + c.getColor().getRed() + " G: "
+            + c.getColor().getGreen() + " B: " + c.getColor().getBlue();
 
     result += " --- End: " + this.end + " X: " + (int) d.getCoordinates().getX()
-            + " Y: " + d.getCoordinates().getY() + " W: " + d.getWidth() +
-            " H: " + d.getHeight() + " R: " + d.getColor().getRed() + " G: " + d.getColor().getGreen()
+            + " Y: " + d.getCoordinates().getY() + " W: " + d.getWidth() + " H: "
+            + d.getHeight() + " R: " + d.getColor().getRed() + " G: " + d.getColor().getGreen()
             + " B: " + d.getColor().getBlue();
 
     return result;
