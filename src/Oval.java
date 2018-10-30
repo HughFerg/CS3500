@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Point;
 
 /**
  * Represents a circle to be displayed and manipulated in the animator.

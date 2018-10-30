@@ -9,6 +9,15 @@ public class Command {
   private AbstractShape current;
   private AbstractShape destination;
 
+  /**
+   * Constructs a Command which has 2 ints representing a time frame and two Shapes representing
+   * a current and end state.
+   *
+   * @param start       The tick that the Command begins to update
+   * @param end         The tick that the Command finishes updating
+   * @param current     The current state of the Shape in the Animator
+   * @param destination The goal state of the Shape by the time the end tick is reached
+   */
   public Command(int start, int end, AbstractShape current, AbstractShape destination) {
     if (start < 0 || end < 0 || start > end) {
       throw new IllegalArgumentException("Start and end times must be greater than or equal to 0," +

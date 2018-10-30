@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Point;
 
 /**
  * Represents an equilateral triangle to be represented in the Animator.

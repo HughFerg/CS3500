@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Point;
 
 /**
  * Represents a Rectangle to be used in the Animator.
