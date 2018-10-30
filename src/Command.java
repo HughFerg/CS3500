@@ -23,6 +23,7 @@ public class Command {
 
   /**
    * Returns the start time of this command.
+   *
    * @return the start time, in ticks, of this command.
    */
   public int getStart() {
@@ -31,6 +32,7 @@ public class Command {
 
   /**
    * Returns the end time of this command.
+   *
    * @return the end time, in ticks, of this command.
    */
   public int getEnd() {
@@ -57,15 +59,15 @@ public class Command {
     AbstractShape c = this.current;
     AbstractShape d = this.destination;
 
-    result += c.getClass().getName() + " - Start: " + this.start + " X: " + (int)c.getCoordinates().getX()
+    result += c.getClass().getName() + " - Start: " + this.start + " X: " + (int) c.getCoordinates().getX()
             + " Y: " + c.getCoordinates().getY() + " W: " + c.getWidth() +
             " H: " + c.getHeight() + " R: " + c.getColor().getRed() + " G: " + c.getColor().getGreen()
             + " B: " + c.getColor().getBlue();
-    
-   result +=  " --- End: " + this.end + " X: " + (int)d.getCoordinates().getX()
+
+    result += " --- End: " + this.end + " X: " + (int) d.getCoordinates().getX()
             + " Y: " + d.getCoordinates().getY() + " W: " + d.getWidth() +
             " H: " + d.getHeight() + " R: " + d.getColor().getRed() + " G: " + d.getColor().getGreen()
-            + " B: " + d.getColor().getBlue(); 
+            + " B: " + d.getColor().getBlue();
 
     return result;
   }

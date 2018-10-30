@@ -34,8 +34,9 @@ public class AnimatorModelImpl implements AnimatorModel {
   }
 
   /**
-   * Returns if the given command is valid - that is, has legitimate start/end times, and does
-   * not move a shape out of bounds or to a negative size.
+   * Returns if the given command is valid - that is, has legitimate start/end times, and does not
+   * move a shape out of bounds or to a negative size.
+   *
    * @param cmd the command to be tested.
    * @return true if the command is valid, false if not.
    */
@@ -45,14 +46,18 @@ public class AnimatorModelImpl implements AnimatorModel {
 
   @Override
   public void onTick() {
+    List toRemove = new ArrayList();
     for (Command cmd : commands) {
       if (cmd.getEnd() <= this.tick) {
-        commands.remove(cmd);
+        toRemove.add(cmd);
       } else {
         if (cmd.getStart() <= this.tick) {
           cmd.update(this.tick);
         }
       }
+    }
+    for (Object past : toRemove) {
+      commands.remove(past);
     }
     tick++;
   }
@@ -68,7 +73,7 @@ public class AnimatorModelImpl implements AnimatorModel {
       result += cmd.toString() + "\n";
     }
     // Trim newline
-    if(result.length() > 0) {
+    if (result.length() > 0) {
       result = result.substring(0, result.length() - 1);
     }
     return result;
