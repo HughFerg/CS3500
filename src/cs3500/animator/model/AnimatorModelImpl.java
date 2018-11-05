@@ -1,5 +1,9 @@
+package cs3500.animator.model;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import cs3500.animator.model.AnimatorModel;
 
 /**
  * Represents an Animator model implementation for creating, displaying, and manipulating shapes.
@@ -81,3 +85,4 @@ public class AnimatorModelImpl implements AnimatorModel {
     return this.tick;
   }
 }
+

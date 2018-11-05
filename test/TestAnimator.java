@@ -1,14 +1,22 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Point;
+
+import cs3500.animator.model.AbstractShape;
+import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimatorModelImpl;
+import cs3500.animator.model.Circle;
+import cs3500.animator.model.Command;
+import cs3500.animator.model.Rectangle;
 
 import static junit.framework.TestCase.assertEquals;
 
 /**
  * Test class for Animator and its related components.
  */
-public class testAnimator {
+public class TestAnimator {
 
   AnimatorModel animator;
 
@@ -209,3 +217,4 @@ public class testAnimator {
     assertEquals("", animator.render());
   }
 }
+

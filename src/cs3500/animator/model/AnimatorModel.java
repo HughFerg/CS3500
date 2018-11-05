@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 /**
  * Represents the possible operations performed by an Animator object.
  */
@@ -27,3 +29,4 @@ public interface AnimatorModel {
    */
   public int getTick();
 }
+
