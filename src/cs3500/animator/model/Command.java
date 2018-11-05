@@ -10,6 +10,7 @@ public final class Command {
   private int end;
   private AbstractShape current;
   private AbstractShape destination;
+  private final String NAME;
 
   /**
    * Constructs a Command which has 2 ints representing a time frame and two Shapes representing a
@@ -20,11 +21,13 @@ public final class Command {
    * @param current     The current state of the Shape in the Animator
    * @param destination The goal state of the Shape by the time the end tick is reached
    */
-  public Command(int start, int end, AbstractShape current, AbstractShape destination) {
-    if (start < 0 || end < 0 || start > end) {
+  public Command(String NAME, int start, int end, AbstractShape current,
+                 AbstractShape destination) {
+    if (start < 0 || end < 0 || start > end || !NAME.equals("")) {
       throw new IllegalArgumentException("Start and end times must be greater than or equal to 0," +
               " and start cannot be after end.");
     } else {
+      this.NAME = NAME;
       this.start = start;
       this.end = end;
       this.current = current;
@@ -48,6 +51,14 @@ public final class Command {
    */
   public int getEnd() {
     return this.end;
+  }
+
+  /**
+   * Returns this Command's name.
+   * @return this Command's name.
+   */
+  public String getName() {
+    return this.NAME;
   }
 
   /**

@@ -1,4 +1,5 @@
 canvas 145 50 410 199
+canvas 145 50 410 199
 shape disk1 rectangle
 shape disk2 rectangle
 shape disk3 rectangle

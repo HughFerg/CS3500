@@ -35,13 +35,22 @@ public final class AnimatorModelImpl implements AnimatorModel {
   }
 
   /**
-   * Returns if the given command is valid - that is, has legitimate start/end times, and does not
-   * move a shape out of bounds or to a negative size.
+   * Returns if the given command is valid - that is, has non-conflicting start/end times, and does
+   * not move a shape out of bounds or to a negative size.
    *
    * @param cmd the command to be tested.
    * @return true if the command is valid, false if not.
    */
   private boolean validCommand(Command cmd) {
+
+    for (Command c : this.commands) {
+
+      if (!cmd.getName().equals(c.getName())) {
+        continue;
+      } else {
+        return (cmd.getStart() >= c.getEnd() || cmd.getEnd() <= c.getStart());
+      }
+    }
     return true;
   }
 
@@ -65,23 +74,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
   @Override
   public ArrayList<Command> getCommands() {
-    ArrayList<Command> copy = new ArrayList<>(this.commands);
-    return copy;
-  }
-
-  @Override
-  public String render() {
-
-    String result = "";
-
-    for (Command cmd : commands) {
-      result += cmd.toString() + "\n";
-    }
-    // Trim newline
-    if (result.length() > 0) {
-      result = result.substring(0, result.length() - 1);
-    }
-    return result;
+    return new ArrayList<>(this.commands);
   }
 
   @Override

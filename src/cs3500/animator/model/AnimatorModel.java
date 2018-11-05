@@ -8,11 +8,6 @@ import java.util.ArrayList;
 public interface AnimatorModel {
 
   /**
-   * Returns the String output rendering of the current model state.
-   */
-  public String render();
-
-  /**
    * Updates all shapes based on the current active commands.
    */
   public void onTick();
