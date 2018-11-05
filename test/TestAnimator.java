@@ -1,15 +1,20 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import sun.lwawt.macosx.CPlatformEmbeddedFrame;
+
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import cs3500.animator.model.AbstractShape;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.AnimatorModelImpl;
 import cs3500.animator.model.Circle;
 import cs3500.animator.model.Command;
+import cs3500.animator.model.Oval;
 import cs3500.animator.model.Rectangle;
+import cs3500.animator.model.Triangle;
 
 import static junit.framework.TestCase.assertEquals;
 

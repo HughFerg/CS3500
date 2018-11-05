@@ -64,9 +64,13 @@ public class AnimatorModelImpl implements AnimatorModel {
   }
 
   @Override
-  public String render() {
+  public ArrayList<Command> getCommands() {
+    ArrayList<Command> copy = new ArrayList<>(this.commands);
+    return copy;
+  }
 
-    //Add title constructy shit
+  @Override
+  public String render() {
 
     String result = "";
 

@@ -1,5 +1,7 @@
 package cs3500.animator.model;
 
+import java.util.ArrayList;
+
 /**
  * Represents the possible operations performed by an Animator object.
  */
@@ -21,6 +23,12 @@ public interface AnimatorModel {
    * @param cmd the command to be added to the Animator.
    */
   public void addCommand(Command cmd);
+
+  /**
+   * Returns this Animator's list of commands.
+   * @return This Animator's commands.
+   */
+  public ArrayList<Command> getCommands();
 
   /**
    * Returns the current tick of this Animator.
