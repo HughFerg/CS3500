@@ -2,3 +2,4 @@
 - Valid input for commands
 - Text view shape formatting
 - Fix Command toString
+- Figure out how to output to different formats for TextView testing
