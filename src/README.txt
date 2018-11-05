@@ -14,6 +14,5 @@ of information from each shape when transforming them.
 
 Some design notes:
 - We currently assume that a shape can move off screen, and if so they are just not rendered.
--
 
 
