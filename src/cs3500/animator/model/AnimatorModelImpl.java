@@ -3,12 +3,12 @@ package cs3500.animator.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.util.AnimationBuilder;
 
 /**
  * Represents an Animator model implementation for creating, displaying, and manipulating shapes.
  */
-public class AnimatorModelImpl implements AnimatorModel {
+public final class AnimatorModelImpl implements AnimatorModel {
 
   private int width;
   private int height;
@@ -87,6 +87,34 @@ public class AnimatorModelImpl implements AnimatorModel {
   @Override
   public int getTick() {
     return this.tick;
+  }
+
+  public static final class Builder implements AnimationBuilder<AnimatorModel> {
+
+    @Override
+    public AnimatorModel build() {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<AnimatorModel> setBounds(int x, int y, int width, int height) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<AnimatorModel> declareShape(String name, String type) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<AnimatorModel> addMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<AnimatorModel> addKeyframe(String name, int t, int x, int y, int w, int h, int r, int g, int b) {
+      return null;
+    }
   }
 }
 

@@ -4,7 +4,7 @@ package cs3500.animator.model;
  * Represents a command to be executed in an Animator. Each command has a current shape that is
  * currently represented, and a destination shape with varying location, color, or size.
  */
-public class Command {
+public final class Command {
 
   private int start;
   private int end;
