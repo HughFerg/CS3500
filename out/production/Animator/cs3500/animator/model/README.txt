@@ -6,7 +6,7 @@ chose this because it simplified the process of transformation over time between
 the 2 shapes together with the times relevant to mutation. A when the user inputs an animation, it
 is essentially inputting a future shape.
 
-We chose to have Commands keep track of where they are going over our intital idea of giving shapes
+We chose to have Commands keep track of where they are going over our initial idea of giving shapes
 velocities towards their destinations for the duration of the command because on a large scale
 velocities could cause rounding errors and not reaching your intended destination exactly.
 

@@ -10,8 +10,6 @@ import cs3500.animator.util.AnimationBuilder;
  */
 public final class AnimatorModelImpl implements AnimatorModel {
 
-  private int width;
-  private int height;
   private ArrayList<Command> commands;
   private int tick = 0;
 

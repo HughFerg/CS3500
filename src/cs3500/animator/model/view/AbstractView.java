@@ -1,8 +1,13 @@
 package cs3500.animator.model.view;
 
+import java.awt.*;
+
+import javax.swing.JPanel;
+
 import cs3500.animator.model.AnimatorModel;
 
-public abstract class AbstractView {
+// Represents an abstract superclass for the 3 Animator views.
+public abstract class AbstractView extends JPanel {
 
   // Ticks per second.
   protected final int TPS;
@@ -23,5 +28,12 @@ public abstract class AbstractView {
     } else {
       throw new IllegalArgumentException("Model cannot be null.");
     }
+  }
+
+  @Override
+  protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+
+    
   }
 }

@@ -8,12 +8,18 @@ import cs3500.animator.model.Command;
 public class TextView extends AbstractView implements AnimatorView {
 
   public TextView(AnimatorModel model, int w, int h) {
-   super(0, model, 0, 0, w, h);
+    super(0, model, 0, 0, w, h);
   }
 
   @Override
   public void makeVisible() {
 
+    String result = this.getOutput();
+
+    System.out.print(result);
+  }
+
+  public String getOutput() {
     ArrayList<Command> commands = this.model.getCommands();
 
     // ADD TITLE CONSTRUCTY SHIT + CANVAS
@@ -27,7 +33,7 @@ public class TextView extends AbstractView implements AnimatorView {
     if (result.length() > 0) {
       result = result.substring(0, result.length() - 1);
     }
-    System.out.print(result);
+    return result;
   }
 
   @Override

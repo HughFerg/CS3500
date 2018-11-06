@@ -1,5 +1,5 @@
-- toString for Command class
-- Clean up render for Animator class
-- finish getNextShape for each concrete shape class
-- comments n shit
-- TESTS
+- Animator method that fills in gaps between commands (called after reading commands)
+- Valid input for commands
+- Text view shape formatting
+- Fix Command toString
+- Figure out how to output to different formats for TextView testing
