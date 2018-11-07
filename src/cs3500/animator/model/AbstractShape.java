@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import java.awt.Point;
 import java.awt.Color;
 
@@ -65,3 +67,4 @@ public abstract class AbstractShape {
 
   protected abstract AbstractShape getNextShape(AbstractShape destination, int deltaT);
 }
+

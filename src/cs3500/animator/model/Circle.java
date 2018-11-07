@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import java.awt.Color;
 import java.awt.Point;
 
@@ -19,3 +21,4 @@ public class Circle extends AbstractShape {
             (int) (((destination.getWidth() - this.radius) / deltaT) + this.radius) / 2);
   }
 }
+

@@ -1,5 +1,0 @@
-- toString for Command class
-- Clean up render for Animator class
-- finish getNextShape for each concrete shape class
-- comments n shit
-- TESTS

@@ -1,28 +1,33 @@
+package cs3500.animator.model;
+
 /**
  * Represents a command to be executed in an Animator. Each command has a current shape that is
  * currently represented, and a destination shape with varying location, color, or size.
  */
-public class Command {
+public final class Command {
 
   private int start;
   private int end;
   private AbstractShape current;
   private AbstractShape destination;
+  private final String NAME;
 
   /**
-   * Constructs a Command which has 2 ints representing a time frame and two Shapes representing
-   * a current and end state.
+   * Constructs a Command which has 2 ints representing a time frame and two Shapes representing a
+   * current and end state.
    *
    * @param start       The tick that the Command begins to update
    * @param end         The tick that the Command finishes updating
    * @param current     The current state of the Shape in the Animator
    * @param destination The goal state of the Shape by the time the end tick is reached
    */
-  public Command(int start, int end, AbstractShape current, AbstractShape destination) {
-    if (start < 0 || end < 0 || start > end) {
+  public Command(String NAME, int start, int end, AbstractShape current,
+                 AbstractShape destination) {
+    if (start < 0 || end < 0 || start > end || NAME.equals("")) {
       throw new IllegalArgumentException("Start and end times must be greater than or equal to 0," +
               " and start cannot be after end.");
     } else {
+      this.NAME = NAME;
       this.start = start;
       this.end = end;
       this.current = current;
@@ -49,6 +54,14 @@ public class Command {
   }
 
   /**
+   * Returns this Command's name.
+   * @return this Command's name.
+   */
+  public String getName() {
+    return this.NAME;
+  }
+
+  /**
    * Updates the current shape's value by the correct amounts per each field.
    */
   public void update(int currentTick) {
@@ -68,7 +81,7 @@ public class Command {
     AbstractShape c = this.current;
     AbstractShape d = this.destination;
 
-    result += c.getClass().getName() + " - Start: " + this.start + " X: "
+    result += this.NAME + " - Start: " + this.start + " X: "
             + (int) c.getCoordinates().getX() + " Y: " + c.getCoordinates().getY() + " W: "
             + c.getWidth() + " H: " + c.getHeight() + " R: " + c.getColor().getRed() + " G: "
             + c.getColor().getGreen() + " B: " + c.getColor().getBlue();
@@ -81,3 +94,4 @@ public class Command {
     return result;
   }
 }
+

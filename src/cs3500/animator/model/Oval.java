@@ -1,5 +1,6 @@
-import java.awt.Color;
-import java.awt.Point;
+package cs3500.animator.model;
+
+import java.awt.*;
 
 /**
  * Represents a circle to be displayed and manipulated in the animator.
