@@ -33,7 +33,5 @@ public abstract class AbstractView extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
-
-    
   }
 }
