@@ -8,8 +8,8 @@ import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.AnimatorModelImpl;
 import cs3500.animator.model.Command;
 import cs3500.animator.model.Rectangle;
-import cs3500.animator.model.view.AnimatorView;
-import cs3500.animator.model.view.VisualView;
+import cs3500.animator.view.AnimatorView;
+import cs3500.animator.view.VisualView;
 
 // Testing class for Animator views.
 public class TestViews {

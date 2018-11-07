@@ -1,4 +1,4 @@
-package cs3500.animator.model.view;
+package cs3500.animator.view;
 
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
@@ -10,15 +10,17 @@ import cs3500.animator.model.AnimatorModel;
 // Represents a Visual view for the Animator, displaying images using a JFrame.
 public class VisualView extends AbstractView implements AnimatorView {
 
-  JPanel panel;
+  JFrame frame;
 
   public VisualView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
     super(tps, model, startX, startY, w, h);
 
-    this.setSize(this.WIDTH, this.HEIGHT);
-    this.setLocation(this.START_X, this.START_Y);
+    frame.setSize(this.WIDTH, this.HEIGHT);
+    frame.setLocation(this.START_X, this.START_Y);
 
-    this.panel = new JPanel(new BorderLayout());
+    this.frame = new JFrame();
+    this.frame.getContentPane().add(this);
+
   }
 
   @Override
@@ -41,6 +43,13 @@ public class VisualView extends AbstractView implements AnimatorView {
   public void refresh() {
     
     this.model.onTick();
-    this.panel.add(g.drawRect(350, 350, 40, 40));
+  }
+
+  @Override
+  protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+
+    g = (Graphics2D)g;
+    add(g.drawRect(350, 350, 40, 40)));
   }
 }
