@@ -1,4 +1,4 @@
-<!--the overall svg width is 700 and height is 500. By default anything
+<!--the overall svg width is 560 and height is 430. By default anything
 drawn between (0,0) and (width,height) will be visible -->
 <svg width="700" height="500" version="1.1"
      xmlns="http://www.w3.org/2000/svg">

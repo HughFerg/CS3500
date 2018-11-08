@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
+// Represents a text-based view for the Animator that displays the shapes and their
+// transformations over time.
 public class TextView extends AbstractView implements AnimatorView {
 
   public TextView(AnimatorModel model, int w, int h) {

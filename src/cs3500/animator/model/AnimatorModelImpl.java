@@ -44,7 +44,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
     for (Command c : this.commands) {
 
       if (!cmd.getName().equals(c.getName())) {
-        continue;
+        return true;
       } else {
         return (cmd.getStart() >= c.getEnd() || cmd.getEnd() <= c.getStart());
       }
@@ -67,7 +67,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
     for (Object past : toRemove) {
       commands.remove(past);
     }
-    tick++;
+    this.tick++;
   }
 
   @Override

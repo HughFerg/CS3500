@@ -1,17 +1,17 @@
 package cs3500.animator.model;
 
-import java.awt.Point;
-import java.awt.Color;
+import java.awt.*;
 
 /**
- * Represents an abstract shape to be created in the Animator.
+ * Represents an abstract shape with all common shape characteristics (coordinates, color, width
+ * and height). More specific dimensions are established in subclasses.
  */
 public abstract class AbstractShape {
 
-  private Point coordinates;
-  private Color color;
-  private int width;
-  private int height;
+  protected Point coordinates;
+  protected Color color;
+  protected int width;
+  protected int height;
 
   /**
    * Abstract constructor for creating the backbone of what every shape is defined to be.
@@ -58,6 +58,12 @@ public abstract class AbstractShape {
                     + this.color.getBlue());
   }
 
+  /**
+   * Gets the next point for his shape given the target shape and the deltaT.
+   * @param destination the destination shape to eventually transform into.
+   * @param deltaT the
+   * @return
+   */
   protected Point getNextPoint(AbstractShape destination, int deltaT) {
     return new Point((int) (((destination.getCoordinates().getX() - this.getCoordinates().getX())
             / deltaT) + this.getCoordinates().getX()),
@@ -65,8 +71,19 @@ public abstract class AbstractShape {
                     + this.getCoordinates().getY()));
   }
 
+  /**
+   * Returns the next shape to render based on the current command's destination shape and the
+   * amount they should transform to the next shape (deltaT)
+   * @param destination the destination shape.
+   * @param deltaT the amount to transform the shape's fields.
+   * @return the shape to be rendered on the next tick.
+   */
   protected abstract AbstractShape getNextShape(AbstractShape destination, int deltaT);
 
-  public abstract String generateSVGHeader();
+  /**
+   * Returns the shape representation of this shape for rendering in the view.
+   * @return this shape in Java.Awt shape format.
+   */
+  protected abstract void getDrawing(Graphics2D g);
 }
 

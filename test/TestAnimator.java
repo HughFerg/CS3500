@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import cs3500.animator.model.AbstractShape;
 import cs3500.animator.model.AnimatorModel;
