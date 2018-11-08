@@ -10,7 +10,7 @@ import cs3500.animator.model.AnimatorModel;
 public abstract class AbstractView extends JPanel {
 
   // Ticks per second.
-  protected final int TPS;
+  protected int TPS = 1;
   protected final AnimatorModel model;
   protected final int START_X;
   protected final int START_Y;

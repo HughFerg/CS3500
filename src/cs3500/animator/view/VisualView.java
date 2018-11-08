@@ -4,7 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.*;
 
@@ -15,6 +16,7 @@ import cs3500.animator.model.Command;
 public class VisualView extends AbstractView implements AnimatorView {
 
   JFrame frame;
+  Timer timer;
 
   public VisualView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
     super(tps, model, startX, startY, w, h);
@@ -33,9 +35,10 @@ public class VisualView extends AbstractView implements AnimatorView {
   public void makeVisible() {
 
     frame.setVisible(true);
-    this.setVisible(true);
+    setVisible(true);
 
     while (!this.model.getCommands().isEmpty()) {
+
       this.refresh();
 
       try {
