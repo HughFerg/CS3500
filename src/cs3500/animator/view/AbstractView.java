@@ -18,7 +18,6 @@ public abstract class AbstractView extends JPanel {
   protected final int HEIGHT;
 
   public AbstractView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
-    super();
     if (tps > 0 && model != null && w > 0 && h > 0) {
       this.TPS = tps;
       this.model = model;
@@ -34,5 +33,7 @@ public abstract class AbstractView extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
+
+    
   }
 }

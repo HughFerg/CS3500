@@ -44,7 +44,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
     for (Command c : this.commands) {
 
       if (!cmd.getName().equals(c.getName())) {
-        return true;
+        continue;
       } else {
         return (cmd.getStart() >= c.getEnd() || cmd.getEnd() <= c.getStart());
       }

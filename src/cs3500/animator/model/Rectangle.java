@@ -1,7 +1,7 @@
 package cs3500.animator.model;
 
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
+import java.awt.Color;
+import java.awt.Point;
 
 /**
  * Represents a Rectangle to be used in the Animator.
@@ -13,8 +13,6 @@ public class Rectangle extends AbstractShape {
 
   public Rectangle(Color color, Point coordinates, int width, int height) {
     super(color, coordinates, width, height);
-    this.width = width;
-    this.height = height;
   }
 
   @Override
@@ -25,14 +23,11 @@ public class Rectangle extends AbstractShape {
   }
 
   @Override
-  protected void getDrawing(Graphics2D g) {
-
-    Shape r = new Rectangle2D.Double(this.coordinates.x,
-            this.coordinates.y, this.width, this.height);
-
-    g.setPaint(this.color);
-    g.fill(r);
-    g.draw(r);
+  public String generateSVGHeader() {
+    return String.format("<rect id=\"%s\" x=\"%1$s\" y=\"%2$s\" width=\"%3$s\" height=\"%4$s\" " +
+                    "fill=\"rgb(%5$s,%6$s,%7$s)\" visibility=\"visible\" >\n", getCoordinates().x,
+            getCoordinates().y, width, height, getColor().getRed(), getColor().getGreen(),
+            getColor().getBlue());
   }
 }
 

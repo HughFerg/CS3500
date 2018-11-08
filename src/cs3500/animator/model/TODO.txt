@@ -1,5 +1,5 @@
 - Animator method that fills in gaps between commands (called after reading commands)
 - Valid input for commands
-- Text view shape formatting
+- Text view shape formatting (Hash set to see if first time shape is animated?)
 - Fix Command toString
 - Figure out how to output to different formats for TextView testing
