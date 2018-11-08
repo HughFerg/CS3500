@@ -33,4 +33,8 @@ public class Oval extends AbstractShape {
     g.fill(e);
     g.draw(e);
   }
+
+  public String generateEndTag() {
+    return "</ellipse>\n";
+  }
 }

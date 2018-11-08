@@ -101,5 +101,13 @@ public final class Command {
 
     return result;
   }
+
+  public String generateSVGHeader(){
+    return this.current.generateSVGHeader();
+  }
+
+  public String generateEndTag() {
+    return this.current.generateEndTag();
+  }
 }
 

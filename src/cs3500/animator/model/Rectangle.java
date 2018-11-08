@@ -34,5 +34,9 @@ public class Rectangle extends AbstractShape {
     g.fill(r);
     g.draw(r);
   }
+
+  public String generateEndTag() {
+    return "</rect>\n";
+  }
 }
 

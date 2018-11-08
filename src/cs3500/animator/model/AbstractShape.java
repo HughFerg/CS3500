@@ -85,5 +85,9 @@ public abstract class AbstractShape {
    * @return this shape in Java.Awt shape format.
    */
   protected abstract void getDrawing(Graphics2D g);
+
+  public abstract String generateSVGHeader();
+
+  public abstract String generateEndTag();
 }
 

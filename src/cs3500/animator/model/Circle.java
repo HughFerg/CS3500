@@ -31,5 +31,16 @@ public class Circle extends AbstractShape {
     g.draw(c);
     g.fill(c);
   }
+
+  public String generateSVGHeader() {
+    return String.format("<ellipse id=\"%s\" cx=\"%1$s\" cy=\"%2$s\" rx=\"%3$s\" ry=\"%4$s\" " +
+                    "fill=\"rgb(%5$s,%6$s,%7$s)\" visibility=\"visible\" >\n", getCoordinates().x,
+            getCoordinates().y, radius, radius, getColor().getRed(), getColor().getGreen(),
+            getColor().getBlue());
+  }
+
+  public String generateEndTag() {
+    return "</ellipse>\n";
+  }
 }
 
