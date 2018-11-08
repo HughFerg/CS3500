@@ -1,5 +1,7 @@
 package cs3500.animator.model;
 
+import java.awt.*;
+
 /**
  * Represents a command to be executed in an Animator. Each command has a current shape that is
  * currently represented, and a destination shape with varying location, color, or size.
@@ -68,6 +70,11 @@ public final class Command {
 
     int deltaT = this.end - currentTick;
     this.current = this.current.getNextShape(this.destination, deltaT);
+  }
+
+  public void getDrawing(Graphics2D g, int currentTick) {
+    if (this.getStart() == currentTick)
+     this.current.getDrawing(g);
   }
 
   /**
