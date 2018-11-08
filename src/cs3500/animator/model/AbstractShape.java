@@ -49,6 +49,12 @@ public abstract class AbstractShape {
     return this.height;
   }
 
+  /**
+   * Gets the next color for this shape based on the destination shape and the given delta T.
+   * @param destination the shape to eventually be transformed into.
+   * @param deltaT the current tick - the transformation end time.
+   * @return
+   */
   protected Color getNextColor(AbstractShape destination, int deltaT) {
     return new Color(((destination.getColor().getRed() - this.color.getRed()) / deltaT)
             + this.color.getRed(),
@@ -61,7 +67,7 @@ public abstract class AbstractShape {
   /**
    * Gets the next point for his shape given the target shape and the deltaT.
    * @param destination the destination shape to eventually transform into.
-   * @param deltaT the
+   * @param deltaT the current tick - the transformation end time.
    * @return
    */
   protected Point getNextPoint(AbstractShape destination, int deltaT) {

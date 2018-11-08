@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84be205f-0565-4281-b077-5ff37b24cd44" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/ViewFactory.java" afterDir="false" />
-    </list>
+    <list default="true" id="84be205f-0565-4281-b077-5ff37b24cd44" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -385,7 +383,7 @@
       <workItem from="1541556668927" duration="10971000" />
       <workItem from="1541652859529" duration="515000" />
       <workItem from="1541703943654" duration="5946000" />
-      <workItem from="1541711967993" duration="294000" />
+      <workItem from="1541711967993" duration="434000" />
     </task>
     <task id="LOCAL-00001" summary="woooo">
       <created>1540837360709</created>
@@ -436,7 +434,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7870000" />
+    <option name="totallyTimeSpent" value="8010000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1680" y="0" width="1920" height="1080" extended-state="0" />
