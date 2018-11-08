@@ -97,5 +97,9 @@ public final class Command {
   public String generateSVGHeader(){
     return this.current.generateSVGHeader();
   }
+
+  public String generateEndTag() {
+    return this.current.generateEndTag();
+  }
 }
 

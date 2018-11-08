@@ -68,5 +68,7 @@ public abstract class AbstractShape {
   protected abstract AbstractShape getNextShape(AbstractShape destination, int deltaT);
 
   public abstract String generateSVGHeader();
+
+  public abstract String generateEndTag();
 }
 

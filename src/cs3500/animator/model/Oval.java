@@ -28,4 +28,8 @@ public class Oval extends AbstractShape {
             getCoordinates().y, xRadius, yRadius, getColor().getRed(), getColor().getGreen(),
             getColor().getBlue());
   }
+
+  public String generateEndTag() {
+    return "</ellipse>\n";
+  }
 }

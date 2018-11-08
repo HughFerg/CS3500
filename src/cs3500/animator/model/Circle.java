@@ -20,5 +20,17 @@ public class Circle extends AbstractShape {
             this.getNextPoint(destination, deltaT),
             (int) (((destination.getWidth() - this.radius) / deltaT) + this.radius) / 2);
   }
+
+  @Override
+  public String generateSVGHeader() {
+    return String.format("<ellipse id=\"%s\" cx=\"%1$s\" cy=\"%2$s\" rx=\"%3$s\" ry=\"%4$s\" " +
+                    "fill=\"rgb(%5$s,%6$s,%7$s)\" visibility=\"visible\" >\n", getCoordinates().x,
+            getCoordinates().y, radius, radius, getColor().getRed(), getColor().getGreen(),
+            getColor().getBlue());
+  }
+
+  public String generateEndTag() {
+    return "</ellipse>\n";
+  }
 }
 

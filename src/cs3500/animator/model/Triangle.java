@@ -19,4 +19,17 @@ public class Triangle extends AbstractShape {
             this.getNextPoint(destination, deltaT),
             (int) (((destination.getWidth() - this.sideLength) / deltaT) + this.sideLength) / 2);
   }
+
+  @Override
+  public String generateSVGHeader() {
+    return String.format("<polygon id=\"%s\" points=\"%1$s,%2$s %3$s,%4$s %5$s,%6$s\" " +
+                    "fill=\"rgb(%7$s,%8$s,%9$s)\" visibility=\"visible\" >\n", getCoordinates().x,
+            getCoordinates().y, getCoordinates().x + (getWidth()/2),
+            getCoordinates().y + getHeight(), getCoordinates().x + getWidth(), getCoordinates().y,
+            getColor().getRed(), getColor().getGreen(), getColor().getBlue());
+  }
+
+  public String generateEndTag() {
+    return "</polygon>\n";
+  }
 }

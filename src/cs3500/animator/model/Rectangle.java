@@ -29,5 +29,9 @@ public class Rectangle extends AbstractShape {
             getCoordinates().y, width, height, getColor().getRed(), getColor().getGreen(),
             getColor().getBlue());
   }
+
+  public String generateEndTag() {
+    return "</rect>\n";
+  }
 }
 

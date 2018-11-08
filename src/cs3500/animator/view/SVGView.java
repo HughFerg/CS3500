@@ -22,16 +22,21 @@ public class SVGView extends AbstractView implements AnimatorView {
   public String getOutput() {
     ArrayList<Command> commands = this.model.getCommands();
 
-    String result = String.format("<svg width=\"%s\" height=\"%s\" version=\"1.1\" " +
-            "xmlns=\"http://www.w3.org/2000/svg\">\n", WIDTH, HEIGHT);
+    StringBuilder result = new StringBuilder(String.format("<svg width=\"%s\" height=\"%s\" " +
+            "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n", WIDTH, HEIGHT));
 
     while(commands.size() > 0) {
-      String currentShape = commands.get(0).getName();
+      Command currentShape = commands.get(0);
 
-      result += String.format(commands.get(0).generateSVGHeader(), currentShape);
+      result.append(String.format(commands.get(0).generateSVGHeader(), currentShape.getName()));
+      for(Command command : commands) {
+      
+      }
+      result.append(currentShape.generateEndTag());
     }
 
-    return result;
+    result.append("</svg>");
+    return result.toString();
   }
 
   @Override
