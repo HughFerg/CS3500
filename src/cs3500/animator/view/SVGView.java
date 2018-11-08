@@ -34,7 +34,6 @@ public class SVGView extends AbstractView implements AnimatorView {
       }
       result.append(currentShape.generateEndTag());
     }
-
     result.append("</svg>");
     return result.toString();
   }

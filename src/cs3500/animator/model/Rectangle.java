@@ -35,6 +35,14 @@ public class Rectangle extends AbstractShape {
     g.draw(r);
   }
 
+  @Override
+  public String generateSVGHeader() {
+    return String.format("<rect id=\"%s\" x=\"%1$s\" y=\"%2$s\" width=\"%3$s\" height=\"%4$s\" " +
+                    "fill=\"rgb(%5$s,%6$s,%7$s)\" visibility=\"visible\" >\n", getCoordinates().x,
+            getCoordinates().y, width, height, getColor().getRed(), getColor().getGreen(),
+            getColor().getBlue());
+  }
+
   public String generateEndTag() {
     return "</rect>\n";
   }

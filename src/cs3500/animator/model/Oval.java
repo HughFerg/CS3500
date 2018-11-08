@@ -34,6 +34,14 @@ public class Oval extends AbstractShape {
     g.draw(e);
   }
 
+  @Override
+  public String generateSVGHeader() {
+    return String.format("<ellipse id=\"%s\" cx=\"%1$s\" cy=\"%2$s\" rx=\"%3$s\" ry=\"%4$s\" " +
+                    "fill=\"rgb(%5$s,%6$s,%7$s)\" visibility=\"visible\" >\n", getCoordinates().x,
+            getCoordinates().y, xRadius, yRadius, getColor().getRed(), getColor().getGreen(),
+            getColor().getBlue());
+  }
+
   public String generateEndTag() {
     return "</ellipse>\n";
   }
