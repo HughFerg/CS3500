@@ -57,8 +57,6 @@ public class VisualView extends AbstractView implements AnimatorView {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
-    System.out.print(this.model.getTick());
-
     Graphics2D g2d = (Graphics2D) g;
 
     AffineTransform originalTransform = g2d.getTransform();

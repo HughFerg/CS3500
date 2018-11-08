@@ -19,13 +19,13 @@ public class Circle extends AbstractShape {
   public Circle getNextShape(AbstractShape destination, int deltaT) {
     return new Circle(this.getNextColor(destination, deltaT),
             this.getNextPoint(destination, deltaT),
-            (int) (((destination.getWidth() - this.radius) / deltaT) + this.radius) / 2);
+            (int) (((destination.getWidth() / 2) - this.radius) / deltaT) + this.radius);
   }
 
   @Override
   protected void getDrawing(Graphics2D g) {
-    Shape c = new Ellipse2D.Double((double)2 * this.radius, (double) 2 * this.radius,
-            this.getCoordinates().x, this.getCoordinates().y);
+    Shape c = new Ellipse2D.Double(this.getCoordinates().x, this.getCoordinates().y,
+            (double) this.radius * 2, (double) this.radius * 2);
 
     g.setPaint(this.getColor());
     g.draw(c);

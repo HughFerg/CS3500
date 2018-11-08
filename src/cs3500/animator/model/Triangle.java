@@ -18,7 +18,7 @@ public class Triangle extends AbstractShape {
   public Triangle getNextShape(AbstractShape destination, int deltaT) {
     return new Triangle(this.getNextColor(destination, deltaT),
             this.getNextPoint(destination, deltaT),
-            (int) (((destination.getWidth() - this.sideLength) / deltaT) + this.sideLength) / 2);
+            (int) (((destination.getWidth() - this.sideLength) / deltaT) + this.sideLength));
   }
 
   @Override

@@ -20,8 +20,8 @@ public class Rectangle extends AbstractShape {
   @Override
   public Rectangle getNextShape(AbstractShape destination, int deltaT) {
     return new Rectangle(this.getNextColor(destination, deltaT), this.getNextPoint(destination,
-            deltaT), (int) (((destination.getWidth() - this.width) / deltaT) + this.width) / 2,
-            (int) (((destination.getHeight() - this.height) / deltaT) + this.height) / 2);
+            deltaT), (int) (((destination.getWidth() - this.width) / deltaT) + this.width),
+            (int) (((destination.getHeight() - this.height) / deltaT) + this.height));
   }
 
   @Override
