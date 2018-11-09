@@ -17,8 +17,8 @@ drawn between (0,0) and (width,height) will be visible -->
     <!-- starting at time=2s, move the ellipse's center from (500,100) to (600,400) in 5 seconds -->
     <!-- fill=remove, which is the default if you don't specify it, brings the shape back to its original attributes after 
     this animation is over -->
-    <animate attributeType="xml" begin="2000.0ms" dur="5000.0ms" attributeName="cx" from="500" to="600" fill="remove" />
-    <animate attributeType="xml" begin="2000.0ms" dur="5000.0ms" attributeName="cy" from="100" to="400" fill="remove" />
+    <animate attributeType="xml" begin="2000ms" dur="5000ms" attributeName="cx" from="500" to="600" fill="remove" />
+    <animate attributeType="xml" begin="2000ms" dur="5000ms" attributeName="cy" from="100" to="400" fill="remove" />
     <!--add more animations here for this ellipse using animate tags -->
 </ellipse>
 

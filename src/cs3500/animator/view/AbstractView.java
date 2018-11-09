@@ -1,12 +1,14 @@
 package cs3500.animator.view;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 import cs3500.animator.model.AnimatorModel;
 
-// Represents an abstract superclass for the 3 Animator views.
+/**
+ * Represents an abstract superclass for the 3 Animator views.
+ */
 public abstract class AbstractView extends JPanel {
 
   // Ticks per second.
@@ -17,6 +19,16 @@ public abstract class AbstractView extends JPanel {
   protected final int WIDTH;
   protected final int HEIGHT;
 
+  /**
+   * Constructor for an AbstractView which initializes all basic values that the views share.
+   *
+   * @param tps     ticks per second
+   * @param model   the model that represents our data
+   * @param startX  x coordinate of the top left corner
+   * @param startY  y coordinate of the top left corner
+   * @param w       width of the canvas
+   * @param h       height of the canvas
+   */
   public AbstractView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
     super();
     if (tps > 0 && model != null && w > 0 && h > 0) {

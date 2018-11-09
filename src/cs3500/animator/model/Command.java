@@ -72,6 +72,12 @@ public final class Command {
     this.current = this.current.getNextShape(this.destination, deltaT);
   }
 
+  /**
+   * Draws the graphic onto the canvas.
+   *
+   * @param g            the canvas of the animator
+   * @param currentTick  the tick representing the current time
+   */
   public void getDrawing(Graphics2D g, int currentTick) {
     if (this.getStart() <= currentTick && this.getEnd() >= currentTick) {
       this.current.getDrawing(g);
@@ -102,12 +108,42 @@ public final class Command {
     return result;
   }
 
+  /**
+   * Dispatches the generation of SVG headers to AbstractShpe.
+   *
+   * @return String representation of a SVG shape header
+   */
   public String generateSVGHeader(){
-    return this.current.generateSVGHeader();
+    return this.current.generateSVGHeader(this.getName());
   }
 
+  /**
+   * Generates the closing tag for an SVG header by dispatching to AbstractShape
+   *
+   * @return String representation of a SVG closing tag
+   */
   public String generateEndTag() {
     return this.current.generateEndTag();
+  }
+
+  /**
+   * Dispatches the creation of animation tags for each of the possible transformations a shape can
+   * have.
+   *
+   * @return StringBuilder representing all of the animations over this Command
+   */
+  public StringBuilder generateAnimationTag() {
+    StringBuilder tags = new StringBuilder();
+    if(!this.current.getCoordinates().equals(this.destination.getCoordinates())) {
+      tags.append(this.destination.generatePositionTag(this.getStart(), this.getEnd(), current));
+    }
+    if (!this.current.getColor().equals(this.destination.getColor())) {
+      tags.append(this.destination.generateColorTag(this.getStart(), this.getEnd(), current));
+    }
+    if (!(current.width == destination.width || current.height == destination.height)) {
+      tags.append(this.destination.generateDimensionTag(this.getStart(), this.getEnd(), current));
+    }
+    return tags;
   }
 }
 

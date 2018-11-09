@@ -12,6 +12,7 @@ import cs3500.animator.model.Command;
 import cs3500.animator.model.Rectangle;
 import cs3500.animator.model.Triangle;
 import cs3500.animator.view.AnimatorView;
+import cs3500.animator.view.SVGView;
 import cs3500.animator.view.VisualView;
 
 // Testing class for Animator views.
@@ -49,12 +50,13 @@ public class TestViews {
     model.addCommand(rectCmd2);
     model.addCommand(rectCmd3);
     model.addCommand(rectCmd1);
-    model.addCommand(triCmd2);
     model.addCommand(triCmd1);
+    model.addCommand(triCmd2);
     model.addCommand(circleCmd2);
     model.addCommand(circleCmd3);
 
-    visual = new VisualView(100, model, 200, 200, 800, 800);
+    //visual = new VisualView(100, model, 200, 200, 800, 800);
+    visual = new SVGView(1, model, 0, 0, 700, 500);
   }
 
   @Test
