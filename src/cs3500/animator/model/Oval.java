@@ -34,8 +34,8 @@ public class Oval extends AbstractShape {
 
   @Override
   protected void getDrawing(Graphics2D g) {
-    Shape e = new Ellipse2D.Double(this.coordinates.x, this.coordinates.y, (double)this.xRadius,
-            (double)this.yRadius);
+    Shape e = new Ellipse2D.Double(this.coordinates.x, this.coordinates.y, (double)this.width,
+            (double)this.height);
 
     g.setPaint(this.getColor());
     g.fill(e);
