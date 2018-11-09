@@ -16,6 +16,23 @@ shape shares them), as well as a width and height. While each concrete shape cla
 measurement fields, all can be represented with width and height which allows for cleaner retrieval
 of information from each shape when transforming them.
 
+Our model is responsible for ensuring that our data makes sense by checking for things such as
+negative ticks and and null models. We decided that it is the resonsibility of our conotroller
+to deliver our data to our model in the way we desire, thus our model does not initialize our
+invariants but still maintains them. These invairants being no overlaps and no empty space between
+animations.
+
+Our SVG view is constructed by dispatching as far as we reliably can down to our base shapes. For 
+colorwe are able to share implementation via our abstractShape class but most other transformations 
+are required to be specified by our individual shapes.
+
+Our textView is build off of the same render method from the previous assignment.
+
+Our VisualView works by alternating between painting components which places the images that are visible 
+on the cavas and ticking the model which updates all of the commands to the new positions of all the
+shapes. These two actions are separated by a thread.sleep which sleeps for 1 / TPS to get the correct
+frame rate.
+
 Some design notes:
 - We currently assume that a shape can move off screen, and if so they are just not rendered.
 
