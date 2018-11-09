@@ -4,6 +4,7 @@ package cs3500.animator.model;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import cs3500.animator.util.AnimationBuilder;
@@ -94,23 +95,21 @@ public final class AnimatorModelImpl implements AnimatorModel {
     private int y;
     private int width;
     private int height;
-
-    private String newShapeName;
-    private String newShapeType;
-
-    Command cmd;
+    
+    private HashMap<String, String> shapes = new HashMap<>();
+    ArrayList<Command> commands = new ArrayList<>();
 
     @Override
     public AnimatorModel build() {
 
-      model = new AnimatorModelImpl();
-      model.addCommand(cmd);
+      model = new AnimatorModelImpl(this.commands);
 
       return model;
     }
 
     @Override
     public AnimationBuilder<AnimatorModel> setBounds(int x, int y, int width, int height) {
+      
       this.x = x;
       this.y = y;
       this.width = width;
@@ -121,8 +120,8 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
     @Override
     public AnimationBuilder<AnimatorModel> declareShape(String name, String type) {
-      this.newShapeName = name;
-      this.newShapeType = type;
+      
+      shapes.put(name, type);
 
       return this;
     }
@@ -141,21 +140,23 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
       Point p1 = new Point(x1, y1);
       Point p2 = new Point(x2, y2);
+      
+      String newShapeType = this.shapes.get(name);
 
-      if (this.newShapeName.equals("ellipse")) {
+      if (newShapeType.equals("ellipse")) {
         s1 = new Oval(c1, p1, w1, h1);
         s2 = new Oval(c2, p2, w2, h2);
-      } else if (this.newShapeName.equals("rectangle")) {
+      } else if (newShapeType.equals("rectangle")) {
         s1 = new Rectangle(c1, p1, w1, h1);
         s2 = new Rectangle(c2, p2, w2, h2);
-      } else if (this.newShapeName.equals("triangle")) {
+      } else if (newShapeType.equals("triangle")) {
         s1 = new Triangle(c1, p1, w1);
         s2 = new Triangle(c2, p2, w2);
       } else {
         throw new IllegalArgumentException("Shape not recognized.");
       }
 
-      this.cmd = new Command(name, t1, t2, s1, s2);
+      this.commands.add(new Command(name, t1, t2, s1, s2));
 
       return this;
     }

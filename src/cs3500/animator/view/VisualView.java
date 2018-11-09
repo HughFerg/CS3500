@@ -5,9 +5,8 @@ import java.awt.Graphics;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 import java.util.Timer;
-import java.util.TimerTask;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
@@ -31,10 +30,18 @@ public class VisualView extends AbstractView implements AnimatorView {
     frame.pack();
   }
 
-  //never called
-  @Override
-  public String getOutput() {
-    return "";
+
+  public VisualView(int tps, AnimatorModel model) {
+    super(tps, model);
+
+    setPreferredSize(new Dimension(this.WIDTH, this.HEIGHT));
+
+    frame = new JFrame();
+
+    frame.setSize(this.WIDTH, this.HEIGHT);
+    frame.setLocation(this.START_X, this.START_Y);
+    frame.getContentPane().add(this);
+    frame.pack();
   }
 
   @Override
@@ -54,12 +61,20 @@ public class VisualView extends AbstractView implements AnimatorView {
       }
     }
     setVisible(false);
+    System.exit(0);
   }
 
   @Override
   public void refresh() {
     this.model.onTick();
     repaint();
+  }
+
+
+  // Never called
+  @Override
+  public String getOutput() {
+    return "";
   }
 
   @Override
@@ -73,9 +88,8 @@ public class VisualView extends AbstractView implements AnimatorView {
     g2d.scale(1, -1);
 
     for (Command c : this.model.getCommands()) {
+      g2d.setTransform(originalTransform);
       c.getDrawing(g2d, this.model.getTick());
     }
-
-    g2d.setTransform(originalTransform);
   }
 }

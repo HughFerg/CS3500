@@ -13,6 +13,10 @@ public class TextView extends AbstractView implements AnimatorView {
     super(1, model, 0, 0, w, h);
   }
 
+  public TextView(AnimatorModel model) {
+    super(1, model);
+  }
+
   @Override
   public void makeVisible() {
 

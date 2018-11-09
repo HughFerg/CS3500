@@ -38,6 +38,7 @@ public class Triangle extends AbstractShape {
 
     Shape t = new Polygon(x, y, 3);
 
+    g.translate(this.coordinates.x, this.coordinates.y);
     g.setPaint(this.getColor());
     g.draw(t);
     g.fill(t);

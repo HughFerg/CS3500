@@ -8,11 +8,11 @@ import java.awt.*;
  */
 public final class Command {
 
+  private final String NAME;
   private int start;
   private int end;
   private AbstractShape current;
   private AbstractShape destination;
-  private final String NAME;
 
   /**
    * Constructs a Command which has 2 ints representing a time frame and two Shapes representing a

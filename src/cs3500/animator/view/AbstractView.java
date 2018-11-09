@@ -14,10 +14,10 @@ public abstract class AbstractView extends JPanel {
   // Ticks per second.
   protected int TPS = 1;
   protected final AnimatorModel model;
-  protected final int START_X;
-  protected final int START_Y;
-  protected final int WIDTH;
-  protected final int HEIGHT;
+  protected int START_X = 200;
+  protected int START_Y = 200;
+  protected int WIDTH = 800;
+  protected int HEIGHT = 800;
 
   /**
    * Constructor for an AbstractView which initializes all basic values that the views share.
@@ -40,6 +40,22 @@ public abstract class AbstractView extends JPanel {
       this.HEIGHT = h;
     } else {
       throw new IllegalArgumentException("Model cannot be null.");
+    }
+  }
+
+  /**
+   * Constructor for Abstract view that only takes in a tick/second and a model.
+   * @param tps the ticks/second.
+   * @param model the specified Animator model.
+   */
+  public AbstractView(int tps, AnimatorModel model) {
+    super();
+
+    if (tps > 0 && model != null) {
+      this.TPS = tps;
+      this.model = model;
+    } else {
+      throw new IllegalArgumentException("Model cannot be null, and TPS must be above 0.");
     }
   }
 

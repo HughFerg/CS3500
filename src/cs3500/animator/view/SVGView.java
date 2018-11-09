@@ -24,6 +24,10 @@ public class SVGView extends AbstractView implements AnimatorView {
     super(tps, model, startX, startY, w, h);
   }
 
+  public SVGView(int tps, AnimatorModel model) {
+    super(tps, model);
+  }
+
   @Override
   public void makeVisible() {
 

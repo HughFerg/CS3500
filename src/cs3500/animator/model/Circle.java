@@ -34,6 +34,7 @@ public class Circle extends AbstractShape {
     Shape c = new Ellipse2D.Double(this.getCoordinates().x, this.getCoordinates().y,
             (double) this.radius * 2, (double) this.radius * 2);
 
+    g.translate(this.coordinates.x, this.coordinates.y);
     g.setPaint(this.getColor());
     g.draw(c);
     g.fill(c);

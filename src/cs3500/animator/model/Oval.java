@@ -1,6 +1,9 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
 /**

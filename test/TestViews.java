@@ -4,8 +4,6 @@ import org.junit.Test;
 import java.awt.Color;
 import java.awt.Point;
 
-import javax.xml.soap.Text;
-
 import cs3500.animator.model.AbstractShape;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.AnimatorModelImpl;
@@ -17,7 +15,6 @@ import cs3500.animator.model.Triangle;
 import cs3500.animator.view.AnimatorView;
 import cs3500.animator.view.SVGView;
 import cs3500.animator.view.TextView;
-import cs3500.animator.view.VisualView;
 
 import static org.junit.Assert.assertEquals;
 
@@ -57,15 +54,6 @@ public class TestViews {
   @Before
   public void init() {
     model = new AnimatorModelImpl();
-
-//    model.addCommand(circleCmd1);
-//    model.addCommand(rectCmd3);
-//    model.addCommand(rectCmd1);
-//    model.addCommand(triCmd2);
-//    model.addCommand(triCmd1);
-//    model.addCommand(ovalCmd1);
-
-//    visual = new VisualView(10, model, 200, 200, 800, 800);
   }
 
   /*
@@ -254,9 +242,9 @@ public class TestViews {
 
   @Test
   public void testSingleManyCommandsDifferentOrderSVGView() {
+    model.addCommand(rectCmd2);
     model.addCommand(rectCmd1);
     model.addCommand(rectCmd3);
-    model.addCommand(rectCmd2);
     visual = new SVGView(1, model, 0, 0, 700, 500);
 
     assertEquals(visual.getOutput(), "<svg width=\"700\" height=\"500\" version=\"1.1\" " +
