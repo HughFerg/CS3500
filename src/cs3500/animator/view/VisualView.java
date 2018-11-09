@@ -31,6 +31,12 @@ public class VisualView extends AbstractView implements AnimatorView {
     frame.pack();
   }
 
+  //never called
+  @Override
+  public String getOutput() {
+    return "";
+  }
+
   @Override
   public void makeVisible() {
 

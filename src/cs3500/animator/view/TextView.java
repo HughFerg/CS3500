@@ -10,7 +10,7 @@ import cs3500.animator.model.Command;
 public class TextView extends AbstractView implements AnimatorView {
 
   public TextView(AnimatorModel model, int w, int h) {
-    super(0, model, 0, 0, w, h);
+    super(1, model, 0, 0, w, h);
   }
 
   @Override
