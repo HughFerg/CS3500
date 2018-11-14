@@ -2,7 +2,6 @@ import org.junit.Before;
 import org.junit.Test;
 import java.awt.Color;
 import java.awt.Point;
-import java.util.ArrayList;
 
 import cs3500.animator.model.AbstractShape;
 import cs3500.animator.model.AnimatorModel;
@@ -89,48 +88,6 @@ public class TestAnimator {
     new Oval(Color.RED, new Point(3, 5), -1, 4);
   }
 
-/*
-  @Test
-  public void testInit() {
-    animator.addCommand(circleCmd1);
-    animator.addCommand(circleCmd2);
-    animator.addCommand(circleCmd3);
-
-    assertEquals("Circle1 - Start: 0 X: 3 Y: 3.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 5 X: 3 Y: 3.0 W: 6 H: 6 R: 0 G: 0 B: 0\n" +
-            "Circle1 - Start: 5 X: 3 Y: 3.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 7 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0\n" +
-            "Circle1 - Start: 7 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 10 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 255", textView.makeVisible());
-  }
-
-
-  @Test
-  public void testEmptyRender() {
-
-    assertEquals("", animator.render());
-  }
-
-
-  @Test
-  public void testSmallRender() {
-    animator.addCommand(triCmd1);
-
-    assertEquals("Triangle - Start: 0 X: 1 Y: 1.0 W: 3 H: 2 R: 0 G: 100 B: 0 ---" +
-            " End: 4 X: 4 Y: 4.0 W: 5 H: 4 R: 0 G: 200 B: 0", animator.render());
-  }
-
-  @Test
-  public void testMultiShapeRender() {
-    animator.addCommand(triCmd1);
-    animator.addCommand(circleCmd3);
-
-    assertEquals("Triangle - Start: 0 X: 1 Y: 1.0 W: 3 H: 2 R: 0 G: 100 B: 0 ---" +
-            " End: 4 X: 4 Y: 4.0 W: 5 H: 4 R: 0 G: 200 B: 0\n" +
-            "Circle - Start: 7 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 10 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 255", animator.render());
-  }
-
   @Test
   public void testGet0Tick() {
     assertEquals(0, animator.getTick());
@@ -158,74 +115,5 @@ public class TestAnimator {
 
     assertEquals(1, animator.getTick());
   }
-
-  @Test
-  public void testOnTickSmall() {
-    animator.addCommand(rectCmd2);
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-
-    assertEquals("Rectangle - Start: 4 X: 2 Y: 3.0 W: 1 H: 0 R: 100 G: 200 B: 0 ---" +
-            " End: 6 X: 2 Y: 4.0 W: 5 H: 3 R: 100 G: 200 B: 0", animator.render());
-  }
-
-  @Test
-  public void testOnTickLarge() {
-    animator.addCommand(circleCmd1);
-    animator.addCommand(circleCmd2);
-    animator.addCommand(circleCmd3);
-    animator.onTick();
-
-    assertEquals("Circle - Start: 0 X: 3 Y: 3.0 W: 0 H: 0 R: 0 G: 0 B: 0 ---" +
-            " End: 5 X: 3 Y: 3.0 W: 6 H: 6 R: 0 G: 0 B: 0\n" +
-            "Circle - Start: 5 X: 3 Y: 3.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 7 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0\n" +
-            "Circle - Start: 7 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 10 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 255", animator.render());
-  }
-
-  @Test
-  public void testOnTickLargeCommandRemoved() {
-    animator.addCommand(circleCmd1);
-    animator.addCommand(circleCmd2);
-    animator.addCommand(circleCmd3);
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-
-
-    assertEquals("Circle - Start: 5 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 7 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0\n" +
-            "Circle - Start: 7 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 0 ---" +
-            " End: 10 X: 3 Y: 5.0 W: 6 H: 6 R: 0 G: 0 B: 255", animator.render());
-  }
-
-  @Test
-  public void testOnTickLargeToEnd() {
-    animator.addCommand(circleCmd1);
-    animator.addCommand(circleCmd2);
-    animator.addCommand(circleCmd3);
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-    animator.onTick();
-
-    assertEquals("", animator.render());
-  }
-  */
 }
 

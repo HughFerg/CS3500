@@ -1,7 +1,11 @@
 package cs3500.animator.view;
 
 import java.awt.Graphics;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import cs3500.animator.model.AnimatorModel;
@@ -9,15 +13,15 @@ import cs3500.animator.model.AnimatorModel;
 /**
  * Represents an abstract superclass for the 3 Animator views.
  */
-public abstract class AbstractView extends JPanel {
+public abstract class AbstractView extends JPanel implements AnimatorView {
 
   // Ticks per second.
-  protected int TPS = 1;
+  protected int tps = 1;
   protected final AnimatorModel model;
-  protected int START_X = 200;
-  protected int START_Y = 200;
-  protected int WIDTH = 800;
-  protected int HEIGHT = 800;
+  protected int startX = 200;
+  protected int startY = 200;
+  protected int width = 800;
+  protected int height = 800;
 
   /**
    * Constructor for an AbstractView which initializes all basic values that the views share.
@@ -32,12 +36,12 @@ public abstract class AbstractView extends JPanel {
   public AbstractView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
     super();
     if (tps > 0 && model != null && w >= 0 && h >= 0) {
-      this.TPS = tps;
+      this.tps = tps;
       this.model = model;
-      this.START_X = startX;
-      this.START_Y = startY;
-      this.WIDTH = w;
-      this.HEIGHT = h;
+      this.startX = startX;
+      this.startY = startY;
+      this.width = w;
+      this.height = h;
     } else {
       throw new IllegalArgumentException("Model cannot be null.");
     }
@@ -52,10 +56,27 @@ public abstract class AbstractView extends JPanel {
     super();
 
     if (tps > 0 && model != null) {
-      this.TPS = tps;
+      this.tps = tps;
       this.model = model;
     } else {
-      throw new IllegalArgumentException("Model cannot be null, and TPS must be above 0.");
+      throw new IllegalArgumentException("Model cannot be null, and tps must be above 0.");
+    }
+  }
+
+  @Override
+  public void writeToFile(String fileName) {
+
+    if (fileName.equals("") || fileName.equals("out")) {
+      return;
+    }
+
+    try {
+      BufferedWriter w = new BufferedWriter(new FileWriter(fileName));
+      w.write(this.getOutput());
+      w.close();
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(new JPanel(), "Cannot write to output file", "File Write " +
+              "Error", JOptionPane.WARNING_MESSAGE);
     }
   }
 

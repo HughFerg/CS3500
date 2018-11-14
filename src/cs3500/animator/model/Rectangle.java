@@ -15,12 +15,12 @@ public class Rectangle extends AbstractShape {
   private int height;
 
   /**
-   * Constructor for a rectangle shape
+   * Constructor for a rectangle shape.
    *
-   * @param color       The Color of the rectangle
-   * @param coordinates The coordinate of the top left corner of the rectangle
-   * @param width       The width of the rectangle
-   * @param height      The height of the rectangle
+   * @param color       The Color of the rectangle.
+   * @param coordinates The coordinate of the top left corner of the rectangle.
+   * @param width       The width of the rectangle.
+   * @param height      The height of the rectangle.
    */
   public Rectangle(Color color, Point coordinates, int width, int height) {
     super(color, coordinates, width, height);
@@ -64,11 +64,11 @@ public class Rectangle extends AbstractShape {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
-    if(this.getCoordinates().x != source.getCoordinates().x) {
+    if (this.getCoordinates().x != source.getCoordinates().x) {
       animation.append(String.format(template, "x", source.getCoordinates().x,
               this.getCoordinates().x));
     }
-    if(this.getCoordinates().y != source.getCoordinates().y) {
+    if (this.getCoordinates().y != source.getCoordinates().y) {
       animation.append(String.format(template, "y", source.getCoordinates().y,
               this.getCoordinates().y));
     }
@@ -80,10 +80,10 @@ public class Rectangle extends AbstractShape {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
-    if(this.width != source.width) {
+    if (this.width != source.width) {
       animation.append(String.format(template, "width", source.width, this.width));
     }
-    if(this.height != source.height) {
+    if (this.height != source.height) {
       animation.append(String.format(template, "height", source.height, this.height));
     }
     return animation;

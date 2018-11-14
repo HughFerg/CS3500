@@ -5,7 +5,7 @@ public interface AnimatorView {
 
   /**
    * Generates String representations of data for the views.
-   * @return String data for the views
+   * @return String data for the views.
    */
   public String getOutput();
 
@@ -18,4 +18,9 @@ public interface AnimatorView {
    * Updates the frames in an animation. Only used in VisualView.
    */
   public void refresh();
+
+  /**
+   * Writes the view's output to the given file.
+   */
+  public void writeToFile(String fileName);
 }

@@ -6,19 +6,19 @@ import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
 /**
- * Animator view that generates SVG file formatting of an Animator
+ * Animator view that generates SVG file formatting of an Animator.
  */
 public class SVGView extends AbstractView implements AnimatorView {
 
   /**
-   * Constructs an SVGView
+   * Constructs an SVGView with the given parameters.
    *
-   * @param tps     ticks per second
-   * @param model   the model of our Animator
-   * @param startX  top left x coordinate of the canvas
-   * @param startY  top left y coordinate of the canvas
-   * @param w       overall width of the canvas
-   * @param h       overall height of the canvas
+   * @param tps     ticks per second.
+   * @param model   the model of our Animator.
+   * @param startX  top left x coordinate of the canvas.
+   * @param startY  top left y coordinate of the canvas.
+   * @param w       overall width of the canvas.
+   * @param h       overall height of the canvas.
    */
   public SVGView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
     super(tps, model, startX, startY, w, h);
@@ -39,7 +39,7 @@ public class SVGView extends AbstractView implements AnimatorView {
   /**
    * Generates a StringBuilder which represents the entire set of instructions converted to an SVG.
    *
-   * @return StringBuilder of the entire SVG text properly formatted
+   * @return StringBuilder of the entire SVG text properly formatted.
    */
   public String getOutput() {
     ArrayList<Command> commands = this.model.getCommands();
@@ -47,12 +47,12 @@ public class SVGView extends AbstractView implements AnimatorView {
     StringBuilder result = new StringBuilder(String.format("<svg width=\"%s\" height=\"%s\" " +
             "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n", WIDTH, HEIGHT));
 
-    while(commands.size() > 0) {
+    while (commands.size() > 0) {
       Command currentShape = commands.get(0);
       ArrayList<Command> notUsed = new ArrayList<>();
 
       result.append(String.format(commands.get(0).generateSVGHeader(), currentShape.getName()));
-      for(Command command : commands) {
+      for (Command command : commands) {
 
         if (command.getName().equals(currentShape.getName())) {
           result.append(command.generateAnimationTag());

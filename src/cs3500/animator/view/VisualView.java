@@ -12,11 +12,20 @@ import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
 // Represents a Visual view for the Animator, displaying images using a JFrame.
-public class VisualView extends AbstractView implements AnimatorView {
+public class VisualView extends AbstractView {
 
   JFrame frame;
   Timer timer;
 
+  /**
+   * Creates a new Visual view based on the given arguments.
+   * @param tps the ticks/second.
+   * @param model the model to be associated with this view.
+   * @param startX the starting x coordinate.
+   * @param startY the starting y coordinate.
+   * @param w the view's width.
+   * @param h the view's height.
+   */
   public VisualView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
     super(tps, model, startX, startY, w, h);
 
@@ -25,12 +34,16 @@ public class VisualView extends AbstractView implements AnimatorView {
     frame = new JFrame();
 
     frame.setSize(this.WIDTH, this.HEIGHT);
-    frame.setLocation(this.START_X, this.START_Y);
+    frame.setLocation(this.startX, this.startY);
     frame.getContentPane().add(this);
     frame.pack();
   }
 
-
+  /**
+   * Creates a visual view with the given speed and model.
+   * @param tps the ticks/second.
+   * @param model the model to be associated with this view.
+   */
   public VisualView(int tps, AnimatorModel model) {
     super(tps, model);
 
@@ -39,7 +52,7 @@ public class VisualView extends AbstractView implements AnimatorView {
     frame = new JFrame();
 
     frame.setSize(this.WIDTH, this.HEIGHT);
-    frame.setLocation(this.START_X, this.START_Y);
+    frame.setLocation(this.startX, this.startY);
     frame.getContentPane().add(this);
     frame.pack();
   }
@@ -55,7 +68,7 @@ public class VisualView extends AbstractView implements AnimatorView {
       this.refresh();
 
       try {
-        Thread.sleep((long) 1000.0 / this.TPS);
+        Thread.sleep((long) 1000.0 / this.tps);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
@@ -70,11 +83,15 @@ public class VisualView extends AbstractView implements AnimatorView {
     repaint();
   }
 
-
   // Never called
   @Override
   public String getOutput() {
     return "";
+  }
+
+  @Override
+  public void writeToFile(String filename) {
+    // Visual view does not write to files.
   }
 
   @Override

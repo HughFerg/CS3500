@@ -18,10 +18,10 @@ public abstract class AbstractShape {
   /**
    * Abstract constructor for creating the backbone of what every shape is defined to be.
    *
-   * @param color       The Color of a Shape
-   * @param coordinates The defining coordinate of a Shape used for placement
-   * @param width       The width of a Shape
-   * @param height      The height of a Shape
+   * @param color       The Color of a Shape.
+   * @param coordinates The defining coordinate of a Shape used for placement.
+   * @param width       The width of a Shape.
+   * @param height      The height of a Shape.
    */
   public AbstractShape(Color color, Point coordinates, int width, int height) {
 
@@ -36,7 +36,7 @@ public abstract class AbstractShape {
   }
 
   /**
-   * Getter method for retrieving a shape's coordinate without allowing for mutation
+   * Getter method for retrieving a shape's coordinate without allowing for mutation.
    *
    * @return  The Coordinate of a shape
    */
@@ -45,7 +45,7 @@ public abstract class AbstractShape {
   }
 
   /**
-   * Getter method for retrieving a shape's Color without allowing for mutation
+   * Getter method for retrieving a shape's Color without allowing for mutation.
    *
    * @return  The Color of a shape
    */
@@ -54,7 +54,7 @@ public abstract class AbstractShape {
   }
 
   /**
-   * Getter method for retrieving a shape's width without allowing for mutation
+   * Getter method for retrieving a shape's width without allowing for mutation.
    *
    * @return  The width of a shape
    */
@@ -63,7 +63,7 @@ public abstract class AbstractShape {
   }
 
   /**
-   * Getter method for retrieving a shape's height without allowing for mutation
+   * Getter method for retrieving a shape's height without allowing for mutation.
    *
    * @return  The height of a shape
    */
@@ -75,7 +75,7 @@ public abstract class AbstractShape {
    * Gets the next color for this shape based on the destination shape and the given delta T.
    * @param destination the shape to eventually be transformed into.
    * @param deltaT the current tick - the transformation end time.
-   * @return  The color of the shape after a time of deltaT
+   * @return  The color of the shape after a time of deltaT.
    */
   protected Color getNextColor(AbstractShape destination, int deltaT) {
     return new Color(((destination.getColor().getRed() - this.color.getRed()) / deltaT)
@@ -90,7 +90,7 @@ public abstract class AbstractShape {
    * Gets the next point for his shape given the target shape and the deltaT.
    * @param destination the destination shape to eventually transform into.
    * @param deltaT the current tick - transformation end time
-   * @return  The point of a shape after a time of deltaT
+   * @return  The point of a shape after a time of deltaT.
    */
   protected Point getNextPoint(AbstractShape destination, int deltaT) {
     return new Point((int) (((destination.getCoordinates().getX() - this.getCoordinates().getX())
@@ -101,7 +101,7 @@ public abstract class AbstractShape {
 
   /**
    * Returns the next shape to render based on the current command's destination shape and the
-   * amount they should transform to the next shape (deltaT)
+   * amount they should transform to the next shape (deltaT).
    * @param destination the destination shape.
    * @param deltaT the amount to transform the shape's fields.
    * @return the shape to be rendered on the next tick.
@@ -149,11 +149,18 @@ public abstract class AbstractShape {
    */
   public abstract StringBuilder generateDimensionTag(int start, int end, AbstractShape source);
 
+  /**
+   * Generates the color tag for the given Abstract shape.
+   * @param start the start time of the motion.
+   * @param end the end time of the motion.
+   * @param source the shape to be generated from/
+   * @return string representation of the given shape's color tag.
+   */
   public StringBuilder generateColorTag(int start, int end, AbstractShape source) {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
-    if(!this.getColor().equals(source.getColor())) {
+    if (!this.getColor().equals(source.getColor())) {
       String colorStart = String.format("rgb(%s,%s,%s)", source.getColor().getRed(),
               source.getColor().getGreen(), source.getColor().getBlue());
       String colorEnd = String.format("rgb(%s,%s,%s)", this.getColor().getRed(),

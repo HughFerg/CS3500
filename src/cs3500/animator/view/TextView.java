@@ -7,7 +7,7 @@ import cs3500.animator.model.Command;
 
 // Represents a text-based view for the Animator that displays the shapes and their
 // transformations over time.
-public class TextView extends AbstractView implements AnimatorView {
+public class TextView extends AbstractView {
 
   public TextView(AnimatorModel model, int w, int h) {
     super(1, model, 0, 0, w, h);
@@ -25,10 +25,9 @@ public class TextView extends AbstractView implements AnimatorView {
     System.out.print(result);
   }
 
+  @Override
   public String getOutput() {
     ArrayList<Command> commands = this.model.getCommands();
-
-    // ADD TITLE CONSTRUCTY SHIT + CANVAS
 
     String result = "";
 

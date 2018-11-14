@@ -1,6 +1,6 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 
 /**
  * Represents a command to be executed in an Animator. Each command has a current shape that is
@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public final class Command {
 
-  private final String NAME;
+  private final String name;
   private int start;
   private int end;
   private AbstractShape current;
@@ -23,13 +23,13 @@ public final class Command {
    * @param current     The current state of the Shape in the Animator
    * @param destination The goal state of the Shape by the time the end tick is reached
    */
-  public Command(String NAME, int start, int end, AbstractShape current,
+  public Command(String name, int start, int end, AbstractShape current,
                  AbstractShape destination) {
-    if (start < 0 || end < 0 || start > end || NAME.equals("")) {
+    if (start < 0 || end < 0 || start > end || name.equals("")) {
       throw new IllegalArgumentException("Start and end times must be greater than or equal to 0," +
               " and start cannot be after end.");
     } else {
-      this.NAME = NAME;
+      this.name = name;
       this.start = start;
       this.end = end;
       this.current = current;
@@ -60,7 +60,7 @@ public final class Command {
    * @return this Command's name.
    */
   public String getName() {
-    return this.NAME;
+    return this.name;
   }
 
   /**
@@ -75,8 +75,8 @@ public final class Command {
   /**
    * Draws the graphic onto the canvas.
    *
-   * @param g            the canvas of the animator
-   * @param currentTick  the tick representing the current time
+   * @param g            the canvas of the animator.
+   * @param currentTick  the tick representing the current time.
    */
   public void getDrawing(Graphics2D g, int currentTick) {
     if (this.getStart() <= currentTick && this.getEnd() >= currentTick) {
@@ -95,7 +95,7 @@ public final class Command {
     AbstractShape c = this.current;
     AbstractShape d = this.destination;
 
-    result += this.NAME + " - Start: " + this.start + " X: "
+    result += this.name + " - Start: " + this.start + " X: "
             + (int) c.getCoordinates().getX() + " Y: " + c.getCoordinates().getY() + " W: "
             + c.getWidth() + " H: " + c.getHeight() + " R: " + c.getColor().getRed() + " G: "
             + c.getColor().getGreen() + " B: " + c.getColor().getBlue();
@@ -111,16 +111,16 @@ public final class Command {
   /**
    * Dispatches the generation of SVG headers to AbstractShpe.
    *
-   * @return String representation of a SVG shape header
+   * @return String representation of a SVG shape header.
    */
-  public String generateSVGHeader(){
+  public String generateSVGHeader() {
     return this.current.generateSVGHeader(this.getName());
   }
 
   /**
-   * Generates the closing tag for an SVG header by dispatching to AbstractShape
+   * Generates the closing tag for an SVG header by dispatching to AbstractShape.
    *
-   * @return String representation of a SVG closing tag
+   * @return String representation of a SVG closing tag.
    */
   public String generateEndTag() {
     return this.current.generateEndTag();
@@ -130,11 +130,11 @@ public final class Command {
    * Dispatches the creation of animation tags for each of the possible transformations a shape can
    * have.
    *
-   * @return StringBuilder representing all of the animations over this Command
+   * @return StringBuilder representing all of the animations over this Command.
    */
   public StringBuilder generateAnimationTag() {
     StringBuilder tags = new StringBuilder();
-    if(!this.current.getCoordinates().equals(this.destination.getCoordinates())) {
+    if (!this.current.getCoordinates().equals(this.destination.getCoordinates())) {
       tags.append(this.destination.generatePositionTag(this.getStart(), this.getEnd(), current));
     }
     if (!this.current.getColor().equals(this.destination.getColor())) {

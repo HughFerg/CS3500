@@ -1,6 +1,9 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
 /**
@@ -58,11 +61,11 @@ public class Circle extends AbstractShape {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
-    if(this.getCoordinates().x != source.getCoordinates().x) {
+    if (this.getCoordinates().x != source.getCoordinates().x) {
       animation.append(String.format(template, "cx", source.getCoordinates().x,
               this.getCoordinates().x));
     }
-    if(this.getCoordinates().y != source.getCoordinates().y) {
+    if (this.getCoordinates().y != source.getCoordinates().y) {
       animation.append(String.format(template, "cy", source.getCoordinates().y,
               this.getCoordinates().y));
     }
@@ -74,10 +77,10 @@ public class Circle extends AbstractShape {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
-    if(this.width != source.width) {
+    if (this.width != source.width) {
       animation.append(String.format(template, "rx", source.width / 2, this.width / 2));
     }
-    if(this.height != source.height) {
+    if (this.height != source.height) {
       animation.append(String.format(template, "ry", source.height / 2, this.height / 2));
     }
     return animation;
