@@ -1,12 +1,11 @@
 package cs3500.animator.view;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import cs3500.animator.model.AnimatorModel;
 
@@ -20,8 +19,8 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   protected final AnimatorModel model;
   protected int startX = 200;
   protected int startY = 200;
-  protected int width = 800;
-  protected int height = 800;
+  protected int width = 1000;
+  protected int height = 1000;
 
   /**
    * Constructor for an AbstractView which initializes all basic values that the views share.
@@ -79,6 +78,20 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
       JOptionPane.showMessageDialog(new JPanel(), "Cannot write to output file", "File Write " +
               "Error", JOptionPane.WARNING_MESSAGE);
     }
+  }
+
+  @Override
+  public void makePanel() {
+
+    JFrame frame = new JFrame();
+
+    setPreferredSize(new Dimension(this.width, this.height));
+
+    frame.setPreferredSize(new Dimension(this.width, this.height));
+    frame.setLocation(this.startX, this.startY);
+    frame.getContentPane().add(this);
+    frame.pack();
+    frame.setVisible(true);
   }
 
   @Override

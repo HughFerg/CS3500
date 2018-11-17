@@ -71,6 +71,11 @@ public class SVGView extends AbstractView implements AnimatorView {
   }
 
   @Override
+  public void makePanel() {
+    throw new UnsupportedOperationException("SVG view does not have a panel.");
+  }
+
+  @Override
   public void refresh() {
     throw new UnsupportedOperationException("SVG does not print in real time.");
   }

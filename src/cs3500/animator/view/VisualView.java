@@ -16,7 +16,6 @@ import cs3500.animator.model.Command;
 // Represents a Visual view for the Animator, displaying images using a JFrame.
 public class VisualView extends AbstractView {
 
-  private JFrame frame;
   private Timer timer;
 
   /**
@@ -27,21 +26,13 @@ public class VisualView extends AbstractView {
    */
   public VisualView(int tps, AnimatorModel model) {
     super(tps, model);
-
-    setPreferredSize(new Dimension(this.width, this.height));
-
-    frame = new JFrame();
-
-    frame.setPreferredSize(new Dimension(this.width, this.height));
-    frame.setLocation(this.startX, this.startY);
-    frame.getContentPane().add(this);
-    frame.pack();
   }
 
   @Override
   public void makeVisible() {
 
-    frame.setVisible(true);
+    makePanel();
+
     setVisible(true);
     Timer t = new Timer("refresh time");
 

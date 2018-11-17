@@ -39,6 +39,11 @@ public class TextView extends AbstractView {
   }
 
   @Override
+  public void makePanel() {
+    throw new UnsupportedOperationException("SVG view does not have a panel.");
+  }
+
+  @Override
   public void refresh() {
     throw new UnsupportedOperationException("Text view does not print in real time.");
   }

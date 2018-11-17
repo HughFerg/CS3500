@@ -23,4 +23,9 @@ public interface AnimatorView {
    * Writes the view's output to the given file.
    */
   public void writeToFile(String fileName);
+
+  /*
+
+   */
+  public void makePanel();
 }
