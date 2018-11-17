@@ -19,7 +19,6 @@ public class TextView extends AbstractView {
 
   @Override
   public void makeVisible() {
-
     System.out.print(this.getOutput());
   }
 
