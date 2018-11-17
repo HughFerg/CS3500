@@ -4,7 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
+import java.util.Date;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
@@ -62,16 +64,24 @@ public class VisualView extends AbstractView {
 
     frame.setVisible(true);
     setVisible(true);
+    Timer t = new Timer("refresh time");
 
     while (!this.model.getCommands().isEmpty()) {
 
-      this.refresh();
+      t.scheduleAtFixedRate(new TimerTask() {
+        @Override
+        public void run() {
+          refresh();
+        }
+      }, 0, (long) (1000.0 / this.tps));
 
-      try {
+      //this.refresh();
+
+      /*try {
         Thread.sleep((long) 1000.0 / this.tps);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
-      }
+      }*/
     }
     setVisible(false);
     System.exit(0);
