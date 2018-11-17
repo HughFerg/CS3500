@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
@@ -20,40 +20,19 @@ public class VisualView extends AbstractView {
   private Timer timer;
 
   /**
-   * Creates a new Visual view based on the given arguments.
-   * @param tps the ticks/second.
-   * @param model the model to be associated with this view.
-   * @param startX the starting x coordinate.
-   * @param startY the starting y coordinate.
-   * @param w the view's width.
-   * @param h the view's height.
-   */
-  public VisualView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
-    super(tps, model, startX, startY, w, h);
-
-    setPreferredSize(new Dimension(this.WIDTH, this.HEIGHT));
-
-    frame = new JFrame();
-
-    frame.setSize(this.WIDTH, this.HEIGHT);
-    frame.setLocation(this.startX, this.startY);
-    frame.getContentPane().add(this);
-    frame.pack();
-  }
-
-  /**
    * Creates a visual view with the given speed and model.
-   * @param tps the ticks/second.
+   *
+   * @param tps   the ticks/second.
    * @param model the model to be associated with this view.
    */
   public VisualView(int tps, AnimatorModel model) {
     super(tps, model);
 
-    setPreferredSize(new Dimension(this.WIDTH, this.HEIGHT));
+    setPreferredSize(new Dimension(this.width, this.height));
 
     frame = new JFrame();
 
-    frame.setSize(this.WIDTH, this.HEIGHT);
+    frame.setPreferredSize(new Dimension(this.width, this.height));
     frame.setLocation(this.startX, this.startY);
     frame.getContentPane().add(this);
     frame.pack();
@@ -68,6 +47,7 @@ public class VisualView extends AbstractView {
 
     while (!this.model.getCommands().isEmpty()) {
 
+      /*
       t.scheduleAtFixedRate(new TimerTask() {
         @Override
         public void run() {
@@ -75,13 +55,15 @@ public class VisualView extends AbstractView {
         }
       }, 0, (long) (1000.0 / this.tps));
 
-      //this.refresh();
+      */
 
-      /*try {
+      refresh();
+
+      try {
         Thread.sleep((long) 1000.0 / this.tps);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
-      }*/
+      }
     }
     setVisible(false);
     System.exit(0);
@@ -95,7 +77,7 @@ public class VisualView extends AbstractView {
 
   @Override
   public String getOutput() {
-      throw new UnsupportedOperationException("No String output for visual view.");
+    throw new UnsupportedOperationException("No String output for visual view.");
   }
 
   @Override
