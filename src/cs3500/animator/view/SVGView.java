@@ -13,27 +13,30 @@ public class SVGView extends AbstractView implements AnimatorView {
   /**
    * Constructs an SVGView with the given parameters.
    *
-   * @param tps     ticks per second.
-   * @param model   the model of our Animator.
-   * @param startX  top left x coordinate of the canvas.
-   * @param startY  top left y coordinate of the canvas.
-   * @param w       overall width of the canvas.
-   * @param h       overall height of the canvas.
+   * @param tps    ticks per second.
+   * @param model  the model of our Animator.
+   * @param startX top left x coordinate of the canvas.
+   * @param startY top left y coordinate of the canvas.
+   * @param w      overall width of the canvas.
+   * @param h      overall height of the canvas.
    */
   public SVGView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
     super(tps, model, startX, startY, w, h);
   }
 
+  /**
+   * Constructs an SVGView with the given model and tps.
+   *
+   * @param tps   ticks per second.
+   * @param model the model of our Animator.
+   */
   public SVGView(int tps, AnimatorModel model) {
     super(tps, model);
   }
 
   @Override
   public void makeVisible() {
-
-    String result = this.getOutput();
-
-    System.out.print(result);
+    System.out.print(this.getOutput());
   }
 
   /**
@@ -69,8 +72,6 @@ public class SVGView extends AbstractView implements AnimatorView {
 
   @Override
   public void refresh() {
-    /**
-     * Left blank because SVG view does not print in real time.
-     */
+    throw new UnsupportedOperationException("SVG does not print in real time.");
   }
 }

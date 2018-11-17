@@ -109,7 +109,7 @@ public final class Command {
   }
 
   /**
-   * Dispatches the generation of SVG headers to AbstractShpe.
+   * Dispatches the generation of SVG headers to AbstractShape.
    *
    * @return String representation of a SVG shape header.
    */

@@ -20,9 +20,7 @@ public class TextView extends AbstractView {
   @Override
   public void makeVisible() {
 
-    String result = this.getOutput();
-
-    System.out.print(result);
+    System.out.print(this.getOutput());
   }
 
   @Override
@@ -43,8 +41,6 @@ public class TextView extends AbstractView {
 
   @Override
   public void refresh() {
-    /**
-     * Left blank because text view does not print in real time.
-     */
+    throw new UnsupportedOperationException("Text view does not print in real time.");
   }
 }

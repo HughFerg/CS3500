@@ -67,6 +67,7 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   public void writeToFile(String fileName) {
 
     if (fileName.equals("") || fileName.equals("out")) {
+      this.makeVisible();
       return;
     }
 

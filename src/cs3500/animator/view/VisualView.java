@@ -14,8 +14,8 @@ import cs3500.animator.model.Command;
 // Represents a Visual view for the Animator, displaying images using a JFrame.
 public class VisualView extends AbstractView {
 
-  JFrame frame;
-  Timer timer;
+  private JFrame frame;
+  private Timer timer;
 
   /**
    * Creates a new Visual view based on the given arguments.
@@ -83,15 +83,14 @@ public class VisualView extends AbstractView {
     repaint();
   }
 
-  // Never called
   @Override
   public String getOutput() {
-    return "";
+      throw new UnsupportedOperationException("No String output for visual view.");
   }
 
   @Override
   public void writeToFile(String filename) {
-    // Visual view does not write to files.
+    throw new UnsupportedOperationException("No file output for visual view.");
   }
 
   @Override
