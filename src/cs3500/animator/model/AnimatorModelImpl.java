@@ -144,8 +144,8 @@ public final class AnimatorModelImpl implements AnimatorModel {
       String newShapeType = this.shapes.get(name);
 
       if (newShapeType.equals("ellipse")) {
-        s1 = new Oval(c1, p1, w1, h1);
-        s2 = new Oval(c2, p2, w2, h2);
+        s1 = new Oval(c1, p1, w1 / 2, h1 / 2);
+        s2 = new Oval(c2, p2, w2 / 2, h2 / 2);
       } else if (newShapeType.equals("rectangle")) {
         s1 = new Rectangle(c1, p1, w1, h1);
         s2 = new Rectangle(c2, p2, w2, h2);

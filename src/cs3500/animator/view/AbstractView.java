@@ -85,7 +85,7 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
 
     JFrame frame = new JFrame();
 
-    setPreferredSize(new Dimension(this.width, this.height));
+    this.setPreferredSize(new Dimension(this.width, this.height));
 
     frame.setPreferredSize(new Dimension(this.width, this.height));
     frame.setLocation(this.startX, this.startY);

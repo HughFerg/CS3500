@@ -25,7 +25,7 @@ public interface AnimatorView {
   public void writeToFile(String fileName);
 
   /*
-
+   * Places the view onto a JPanel for display.
    */
   public void makePanel();
 }

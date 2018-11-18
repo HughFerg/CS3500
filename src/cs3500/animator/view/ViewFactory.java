@@ -19,6 +19,8 @@ public class ViewFactory {
       return new VisualView(tps, model);
     } else if (type.equals("svg")) {
       return new SVGView(tps, model);
+    } else if (type.equals("edit")) {
+      return new EditorView(tps, model);
     } else {
       throw new IllegalArgumentException("Not an available view");
     }

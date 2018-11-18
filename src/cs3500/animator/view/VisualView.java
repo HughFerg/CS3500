@@ -2,7 +2,6 @@ package cs3500.animator.view;
 
 import java.awt.Graphics2D;
 import java.awt.Graphics;
-import java.awt.Dimension;
 import java.awt.geom.AffineTransform;
 import java.util.Date;
 import java.util.Timer;
@@ -45,7 +44,6 @@ public class VisualView extends AbstractView {
           refresh();
         }
       }, 0, (long) (1000.0 / this.tps));
-
       */
 
       refresh();
@@ -86,8 +84,9 @@ public class VisualView extends AbstractView {
     g2d.translate(0, this.getPreferredSize().getHeight());
     g2d.scale(1, -1);
 
+    g2d.setTransform(originalTransform);
+
     for (Command c : this.model.getCommands()) {
-      g2d.setTransform(originalTransform);
       c.getDrawing(g2d, this.model.getTick());
     }
   }
