@@ -21,6 +21,8 @@ public class EditorView extends AbstractView {
   private JButton loopButton;
   private JButton incSpeed;
   private JButton decSpeed;
+  private boolean playing;
+  private boolean looping;
 
 
   public EditorView(int tps, AnimatorModel model) {
@@ -29,6 +31,8 @@ public class EditorView extends AbstractView {
     this.visualView = new VisualView(tps, model);
 
     this.playButton = new JButton("Gay");
+    this.playing = true;
+    this.looping = false;
   }
 
   @Override
@@ -71,5 +75,21 @@ public class EditorView extends AbstractView {
     frame.pack();
 
     frame.setVisible(true);
+  }
+
+  private void play() {
+    this.playing = true;
+  }
+
+  private void pause() {
+    this.playing = false;
+  }
+
+  private void restart() {
+    this.visualView.model.reset();
+  }
+
+  private void loop() {
+    looping = !looping;
   }
 }

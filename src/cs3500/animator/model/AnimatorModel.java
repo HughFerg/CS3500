@@ -31,5 +31,10 @@ public interface AnimatorModel {
    * @return current tick.
    */
   public int getTick();
+
+  /**
+   * Resets the current animation to tick 0 and reinitializes the commands.
+   */
+  public void reset();
 }
 

@@ -16,11 +16,13 @@ import cs3500.animator.view.AnimatorView;
 public final class AnimatorModelImpl implements AnimatorModel {
 
   private ArrayList<Command> commands;
+  private ArrayList<Command> commandCache;
   private int tick = 0;
 
   // Creates an Animator Model with no commands.
   public AnimatorModelImpl() {
     this.commands = new ArrayList<>();
+    this.commandCache = new ArrayList<>();
   }
 
   // Creates an Animator Model with the given commands.
@@ -32,6 +34,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
   public void addCommand(Command cmd) {
     if (validCommand(cmd)) {
       this.commands.add(cmd);
+      this.commandCache.add(cmd);
     } else {
       throw new IllegalArgumentException("Command is not valid.");
     }
@@ -166,5 +169,10 @@ public final class AnimatorModelImpl implements AnimatorModel {
                                                        int h, int r, int g, int b) {
       return null;
     }
+  }
+
+  public void reset() {
+    commands = commandCache;
+    tick = 0;
   }
 }
