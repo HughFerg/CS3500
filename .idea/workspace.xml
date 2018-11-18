@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bce90cf7-6729-4abb-841f-996a540f43e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cs3500/animator/controller/AnimatorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cs3500/animator/controller/AnimatorControllerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/AnimatorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/AnimatorModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/AnimatorModelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/AnimatorModelImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/EditorView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/EditorView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +38,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="1146" />
+          <entry key="txt" value="55" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="1146" />
+          <entry key="PLAIN_TEXT" value="55" />
         </counts>
       </usages-collector>
     </session>
@@ -269,7 +266,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542564721318" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542564962072" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -365,12 +362,12 @@
       <workItem from="1542478009260" duration="1502000" />
       <workItem from="1542492361320" duration="2651000" />
     </task>
-    <task id="LOCAL-00001" summary="woooo">
-      <created>1540837360709</created>
+    <task id="LOCAL-00001" summary="Control me bb, also some methods or something">
+      <created>1542564943798</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1540837360709</updated>
+      <updated>1542564943799</updated>
     </task>
     <task id="LOCAL-00002" summary="woooo2">
       <created>1540857058895</created>
@@ -379,10 +376,11 @@
       <option name="project" value="LOCAL" />
       <updated>1540857058895</updated>
     </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2547000" />
+    <option name="totallyTimeSpent" value="3192000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -454,7 +452,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="woooo" />
     <MESSAGE value="woooo2" />
-    <option name="LAST_COMMIT_MESSAGE" value="woooo2" />
+    <MESSAGE value="Control me bb, also some methods or something" />
+    <option name="LAST_COMMIT_MESSAGE" value="Control me bb, also some methods or something" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java">
