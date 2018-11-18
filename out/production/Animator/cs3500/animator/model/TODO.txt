@@ -1,5 +1,8 @@
-- Animator method that fills in gaps between commands (called after reading commands)
-- Valid input for commands
-- Text view shape formatting
-- Fix Command toString
-- Figure out how to output to different formats for TextView testing
+- Create new composite view
+    - start, pause, resume, restart
+    - looping toggle
+    - Increase decrease speed
+- -edit into command options
+- UI (visual queues)
+- make model check for continuity
+- inserting removing keyframes (splicing commands) thus shapes

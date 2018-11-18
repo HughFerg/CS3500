@@ -17,7 +17,7 @@ public interface AnimatorModel {
    *
    * @param cmd the command to be added to the Animator.
    */
-  public void addCommand(Command cmd);
+  public void addCommand(Command cmd) throws IllegalAccessException;
 
   /**
    * Returns this Animator's list of commands.
