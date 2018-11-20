@@ -39,6 +39,7 @@ public class EditorView extends AbstractView implements ActionListener {
   private JButton exit;
 
   private JLabel currentSpeed;
+  private JLabel paused;
 
   private JComboBox<String> shapeList;
 
@@ -66,8 +67,6 @@ public class EditorView extends AbstractView implements ActionListener {
     pauseButton.addActionListener(this);
     restartButton = new JButton("Restart");
     restartButton.addActionListener(this);
-    resumeButton = new JButton("Resume");
-    resumeButton.addActionListener(this);
     loopButton = new JButton("Loop On/Off");
     loopButton.addActionListener(this);
     loopButton.setForeground(Color.BLUE);
@@ -103,10 +102,12 @@ public class EditorView extends AbstractView implements ActionListener {
     currentSpeed = new JLabel(Integer.toString(this.tps));
     currentSpeed.setBackground(Color.WHITE);
 
+    paused = new JLabel("Paused");
+    paused.setVisible(false);
+
     add(playButton);
     add(pauseButton);
     add(restartButton);
-    add(resumeButton);
     add(loopButton);
     add(incSpeed);
     add(decSpeed);
@@ -134,6 +135,10 @@ public class EditorView extends AbstractView implements ActionListener {
     JPanel master = new JPanel();
     master.setLayout(new BorderLayout());
     master.add(this, BorderLayout.CENTER);
+
+    JPanel pausePanel = new JPanel();
+    pausePanel.add(paused);
+    master.add(pausePanel, BorderLayout.WEST);
 
     JPanel addButtons = new JPanel();
     addButtons.add(addOval);
@@ -165,9 +170,11 @@ public class EditorView extends AbstractView implements ActionListener {
 
     if (command.equals("Play")) {
       play();
+      paused.setVisible(false);
     }
     if (command.equals("Pause")) {
       pause();
+      paused.setVisible(true);
     }
     if (command.equals("Restart")) {
       restart();
@@ -175,10 +182,8 @@ public class EditorView extends AbstractView implements ActionListener {
     if (command.equals("Loop On/Off")) {
       if (loopButton.getForeground().equals(Color.BLUE)) {
         loopButton.setForeground(Color.red);
-        loopButton.setOpaque(true);
       } else {
         loopButton.setForeground(Color.BLUE);
-        loopButton.setOpaque(true);
       }
       loop();
     }

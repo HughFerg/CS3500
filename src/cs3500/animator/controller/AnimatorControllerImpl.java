@@ -47,6 +47,7 @@ public class AnimatorControllerImpl implements AnimatorController {
       }
       restart();
     }
+    System.exit(0);
   }
 
   @Override

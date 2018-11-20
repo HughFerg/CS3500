@@ -21,6 +21,7 @@ public final class Excellence {
 
   /**
    * Main method for Animator program. Takes in user input and creates/runs Animator as such.
+   *
    * @param args command line args.
    */
   public static void main(String[] args) {
@@ -77,7 +78,7 @@ public final class Excellence {
       }
 
     } catch (FileNotFoundException e) {
-      JOptionPane.showMessageDialog(new JFrame(),"Input file not found", "File Not Found",
+      JOptionPane.showMessageDialog(new JFrame(), "Input file not found", "File Not Found",
               JOptionPane.WARNING_MESSAGE);
       System.exit(0);
     }
