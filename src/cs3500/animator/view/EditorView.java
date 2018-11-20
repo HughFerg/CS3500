@@ -5,7 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import cs3500.animator.model.Command;
 
@@ -28,6 +34,9 @@ public class EditorView extends AbstractView implements ActionListener {
   private JButton addOval;
   private JButton addRect;
   private JButton addTri;
+  private JButton editCommand;
+  private JButton deleteCommand;
+  private JButton exit;
 
   private JLabel currentSpeed;
 
@@ -61,6 +70,8 @@ public class EditorView extends AbstractView implements ActionListener {
     resumeButton.addActionListener(this);
     loopButton = new JButton("Loop On/Off");
     loopButton.addActionListener(this);
+    loopButton.setForeground(Color.BLUE);
+    loopButton.setOpaque(true);
     incSpeed = new JButton("Speed +");
     incSpeed.addActionListener(this);
     decSpeed = new JButton("Speed -");
@@ -71,8 +82,23 @@ public class EditorView extends AbstractView implements ActionListener {
     addTri.addActionListener(this);
     addRect = new JButton("Add Rectangle");
     addRect.addActionListener(this);
+    editCommand = new JButton("Edit");
+    editCommand.addActionListener(this);
+    deleteCommand = new JButton("Delete");
+    deleteCommand.addActionListener(this);
+    exit = new JButton("Exit");
+    exit.addActionListener(this);
+    exit.setForeground(Color.RED);
+    exit.setOpaque(true);
 
-    shapeList = new JComboBox<>();
+    ArrayList<String> shapes = new ArrayList<>();
+
+    for (Command c : viewCommands) {
+      shapes.add(c.getName());
+    }
+
+    shapeList = new JComboBox(shapes.toArray());
+    shapeList.addActionListener(this);
 
     currentSpeed = new JLabel(Integer.toString(this.tps));
     currentSpeed.setBackground(Color.WHITE);
@@ -113,6 +139,10 @@ public class EditorView extends AbstractView implements ActionListener {
     addButtons.add(addOval);
     addButtons.add(addTri);
     addButtons.add(addRect);
+    addButtons.add(shapeList);
+    addButtons.add(editCommand);
+    addButtons.add(deleteCommand);
+    addButtons.add(exit);
 
     master.add(addButtons, BorderLayout.SOUTH);
 
@@ -142,15 +172,41 @@ public class EditorView extends AbstractView implements ActionListener {
     if (command.equals("Restart")) {
       restart();
     }
-    if (command.equals("Loop")) {
+    if (command.equals("Loop On/Off")) {
+      if (loopButton.getForeground().equals(Color.BLUE)) {
+        loopButton.setForeground(Color.red);
+        loopButton.setOpaque(true);
+      } else {
+        loopButton.setForeground(Color.BLUE);
+        loopButton.setOpaque(true);
+      }
       loop();
     }
     if (command.equals("Speed +")) {
       setSpeed(1);
+      currentSpeed.setText(Integer.toString(tps));
     }
     if (command.equals("Speed -")) {
       setSpeed(-1);
+      currentSpeed.setText(Integer.toString(tps));
     }
+    if (command.equals("Delete")) {
+      deleteCommand();
+    }
+    if (command.equals("Edit")) {
+      editCommand();
+    }
+    if (command.equals("Exit")) {
+      System.exit(0);
+    }
+  }
+
+  private void deleteCommand() {
+
+  }
+
+  private void editCommand() {
+
   }
 
   private void play() {

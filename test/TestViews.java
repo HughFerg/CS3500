@@ -61,7 +61,6 @@ public class TestViews {
   public void testInit() {
     visual.makeVisible();
   }
-  */
 
   @Test(expected = IllegalArgumentException.class)
   public void testNullModelText() {
@@ -267,4 +266,5 @@ public class TestViews {
             "</rect>\n" +
             "</svg>");
   }
+  */
 }
