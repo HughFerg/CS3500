@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import cs3500.animator.controller.AnimatorController;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
@@ -28,6 +29,7 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   protected int startY = 200;
   protected int width = 700;
   protected int height = 700;
+  protected AnimatorController controller;
 
   /**
    * Constructor for an AbstractView which initializes all basic values that the views share.
@@ -72,6 +74,16 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
     } else {
       throw new IllegalArgumentException("Commands cannot be null, and tps must be above 0.");
     }
+  }
+
+  @Override
+  public void addListener(AnimatorController controller) {
+    this.controller = controller;
+  }
+
+  @Override
+  public void setCommands(ArrayList<Command> commands) {
+    this.viewCommands = commands;
   }
 
   @Override

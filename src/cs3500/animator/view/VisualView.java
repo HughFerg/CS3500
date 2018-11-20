@@ -4,20 +4,15 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
 // Represents a Visual view for the Animator, displaying images using a JFrame.
 public class VisualView extends AbstractView {
 
   private ArrayList<Command> viewCommands;
-  protected int tick;
-  private Timer timer;
+  private int tick;
 
   /**
    * Creates a visual view with the given speed and model.
@@ -33,22 +28,13 @@ public class VisualView extends AbstractView {
 
   public VisualView(int tps, ArrayList<Command> viewCommands, int w, int h, int x, int y) {
     super(tps, viewCommands, x, y, w, h);
+    this.viewCommands = viewCommands;
     this.tick = 0;
   }
 
   @Override
   public void makeVisible() {
-
-//    this.timer = new Timer("refresh time");
-      /*
-      timer.scheduleAtFixedRate(new TimerTask() {
-        @Override
-        public void run() {
-          refresh();
-        }
-      }, 0, (long) (1000.0 / this.tps));
-      */
-}
+  }
 
   @Override
   public void refresh() {
@@ -64,16 +50,19 @@ public class VisualView extends AbstractView {
         }
       }
     }
-    for (Object past : toRemove) {
-//      viewCommands.remove(past);
-    }
     repaint();
     tick += 1;
   }
 
   @Override
   public boolean hasCommands() {
-    return false;
+    return !viewCommands.isEmpty();
+  }
+
+  @Override
+  public void setCommands(ArrayList<Command> commands) {
+    tick = 0;
+    viewCommands = new ArrayList<Command>(commands);
   }
 
   @Override

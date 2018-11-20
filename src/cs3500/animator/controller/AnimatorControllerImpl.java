@@ -1,8 +1,10 @@
 package cs3500.animator.controller;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cs3500.animator.model.Command;
 import cs3500.animator.model.ROModel;
 import cs3500.animator.view.AnimatorView;
 
@@ -24,6 +26,7 @@ public class AnimatorControllerImpl implements AnimatorController {
   public void animate() throws IllegalArgumentException,
           IllegalStateException {
 
+    view.addListener(this);
     view.makeVisible();
 
     while (view.hasCommands()) {
@@ -38,5 +41,10 @@ public class AnimatorControllerImpl implements AnimatorController {
           }
     }
     System.exit(0);
+  }
+
+  @Override
+  public void restart() {
+    view.setCommands(new ArrayList<Command>(model.getCommands()));
   }
 }

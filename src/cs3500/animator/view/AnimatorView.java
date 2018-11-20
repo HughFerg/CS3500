@@ -1,5 +1,10 @@
 package cs3500.animator.view;
 
+import java.util.ArrayList;
+
+import cs3500.animator.controller.AnimatorController;
+import cs3500.animator.model.Command;
+
 // Represents the public-facing operations of an Animator view.
 public interface AnimatorView {
 
@@ -39,4 +44,15 @@ public interface AnimatorView {
    * Returns this view's ticks/second.
    */
   public int getTps();
+
+  /**
+   *
+   * @param controller
+   */
+  public void addListener(AnimatorController controller);
+
+  /*
+
+   */
+  public void setCommands(ArrayList<Command> commands);
 }

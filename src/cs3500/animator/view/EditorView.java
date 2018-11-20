@@ -7,12 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import cs3500.animator.model.Command;
 
@@ -37,6 +32,8 @@ public class EditorView extends AbstractView implements ActionListener {
   private JButton addTri;
 
   private JLabel currentSpeed;
+
+  private JComboBox<String> shapeList;
 
   private boolean playing = true;
   private boolean looping = false;
@@ -80,6 +77,8 @@ public class EditorView extends AbstractView implements ActionListener {
     addRect = new JButton("Add Rectangle");
     addRect.addActionListener(this);
 
+    shapeList = new JComboBox<>();
+
     currentSpeed = new JLabel(Integer.toString(this.tps));
     currentSpeed.setBackground(Color.WHITE);
 
@@ -91,7 +90,6 @@ public class EditorView extends AbstractView implements ActionListener {
     add(incSpeed);
     add(decSpeed);
     add(currentSpeed);
-
   }
 
   @Override
@@ -120,7 +118,7 @@ public class EditorView extends AbstractView implements ActionListener {
     addButtons.add(addOval);
     addButtons.add(addTri);
     addButtons.add(addRect);
-    
+
     master.add(addButtons, BorderLayout.SOUTH);
 
     setVisible(true);
@@ -147,7 +145,7 @@ public class EditorView extends AbstractView implements ActionListener {
       pause();
     }
     if (command.equals("Restart")) {
-//      restart();
+      restart();
     }
     if (command.equals("Loop")) {
       loop();
@@ -168,9 +166,13 @@ public class EditorView extends AbstractView implements ActionListener {
     playing = false;
   }
 
-  private void restart(ArrayList<Command> cache) {
-    this.viewCommands = cache;
-    visualView.tick = 0;
+  private void restart() {
+    controller.restart();
+  }
+
+  @Override
+  public void setCommands(ArrayList<Command> commands) {
+    visualView.setCommands(new ArrayList<Command>((commands)));
   }
 
   private void loop() {
