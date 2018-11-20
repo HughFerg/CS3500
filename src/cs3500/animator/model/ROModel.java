@@ -3,9 +3,9 @@ package cs3500.animator.model;
 import java.util.ArrayList;
 
 public final class ROModel implements AnimatorModel {
-  private AnimatorModelImpl baseModel;
+  private AnimatorModel baseModel;
 
-  public ROModel(AnimatorModelImpl baseModel) {
+  public ROModel(AnimatorModel baseModel) {
     this.baseModel = baseModel;
   }
 

@@ -25,8 +25,7 @@ public class AnimatorControllerImpl implements AnimatorController {
   }
 
   @Override
-  public void animate() throws IllegalArgumentException,
-          IllegalStateException {
+  public void animate() {
 
     view.addListener(this);
     view.makeVisible();

@@ -16,8 +16,7 @@ public interface AnimatorController {
    * @throws IllegalStateException    if the controller is unable to successfully receive input or
    *         transmit output
    */
-  void animate() throws IllegalArgumentException,
-          IllegalStateException;
+  void animate();
 
   void play();
 
