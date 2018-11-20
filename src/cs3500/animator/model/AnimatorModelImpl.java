@@ -110,11 +110,11 @@ public final class AnimatorModelImpl implements AnimatorModel {
   public void deleteShape(String name) {
     ArrayList<Command> toRemove = new ArrayList<>();
     for (Command c : commands) {
-      if(c.getName().equals(name)) {
+      if (c.getName().equals(name)) {
         toRemove.add(c);
       }
     }
-    for(Command aboutToRemove : toRemove) {
+    for (Command aboutToRemove : toRemove) {
       commands.remove(aboutToRemove);
     }
   }
@@ -159,6 +159,66 @@ public final class AnimatorModelImpl implements AnimatorModel {
     }
   }
 
+  public void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
+                          String h,
+                          String r, String g, String b) {
+
+    ArrayList<Command> toRm = new ArrayList<>();
+    ArrayList<Command> toAdd = new ArrayList<>();
+
+    for (Command c : commands) {
+      // If KF already exists
+      if (c.getName().equals(name)) {
+        if (c.getStart() == Integer.parseInt(time)) {
+          toAdd.add(new Command(name, c.getStart(), c.getEnd(), c.replaceCurrent(x, y, w, h, r, g, b),
+                  c.getDest()));
+          toRm.add(c);
+        } else {
+          // tween
+        }
+      }
+    }
+
+    // If shape does not exist yet
+    if (toAdd.isEmpty()) {
+
+      AbstractShape nextShape;
+
+      if (shapename.equals("tri")) {
+
+         nextShape = new Triangle(new Color(Integer.parseInt(r), Integer.parseInt(g),
+                 Integer.parseInt(b)), new Point(Integer.parseInt(x), Integer.parseInt(y)),
+                 Integer.parseInt(w));
+
+         toAdd.add(new Command(name, Integer.parseInt(time), Integer.parseInt(time), nextShape,
+                 nextShape));
+
+      } else if (shapename.equals("rect")) {
+
+        nextShape = new Rectangle(new Color(Integer.parseInt(r), Integer.parseInt(g),
+                Integer.parseInt(b)), new Point(Integer.parseInt(x), Integer.parseInt(y)),
+                Integer.parseInt(w), Integer.parseInt(h));
+
+        toAdd.add(new Command(name, Integer.parseInt(time), Integer.parseInt(time), nextShape,
+                nextShape));
+
+      } else if (shapename.equals("oval")) {
+
+        nextShape = new Oval(new Color(Integer.parseInt(r), Integer.parseInt(g),
+                Integer.parseInt(b)), new Point(Integer.parseInt(x), Integer.parseInt(y)),
+                Integer.parseInt(w), Integer.parseInt(h));
+
+        toAdd.add(new Command(name, Integer.parseInt(time), Integer.parseInt(time), nextShape,
+                nextShape));
+      } else {
+
+      }
+    }
+
+    commands.addAll(toAdd);
+    commands.removeAll(toRm);
+  }
+
   // Represents a builder class for constructing an animation read by the AnimationReader
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
 
@@ -168,7 +228,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
     private int y;
     private int width;
     private int height;
-    
+
     private HashMap<String, String> shapes = new HashMap<>();
     ArrayList<Command> commands = new ArrayList<>();
 
@@ -181,7 +241,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
     @Override
     public AnimationBuilder<AnimatorModel> setBounds(int x, int y, int width, int height) {
-      
+
       this.x = x;
       this.y = y;
       this.width = width;
@@ -192,7 +252,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
     @Override
     public AnimationBuilder<AnimatorModel> declareShape(String name, String type) {
-      
+
       shapes.put(name, type);
 
       return this;
@@ -212,7 +272,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
       Point p1 = new Point(x1, y1);
       Point p2 = new Point(x2, y2);
-      
+
       String newShapeType = this.shapes.get(name);
 
       if (newShapeType.equals("ellipse")) {
@@ -237,9 +297,9 @@ public final class AnimatorModelImpl implements AnimatorModel {
     public AnimationBuilder<AnimatorModel> addKeyframe(String name, int t, int x, int y, int w,
                                                        int h, int r, int g, int b) {
       addMotion(name, t, x, y, w, g, r, g, b, t, x, y, w, g, r, g, b);
-
       return this;
     }
+
   }
 
   public void reset() {

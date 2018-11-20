@@ -1,6 +1,6 @@
 package cs3500.animator.model;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 
 /**
  * Represents a command to be executed in an Animator. Each command has a current shape that is
@@ -46,6 +46,33 @@ public final class Command {
     return this.start;
   }
 
+  public int getX() {
+    return current.getCoordinates().x;
+  }
+
+  public int getY() {
+    return current.getCoordinates().y;
+  }
+
+  public int getWidth() {
+    return this.current.width;
+  }
+
+  public int getHeight() {
+    return this.current.height;
+  }
+
+  public int getRed() {
+    return this.current.color.getRed();
+  }
+
+  public int getGreen() {
+    return this.current.color.getGreen();
+  }
+
+  public int getBlue() {
+    return this.current.color.getBlue();
+  }
   /**
    * Returns the end time of this command.
    *
@@ -53,6 +80,21 @@ public final class Command {
    */
   public int getEnd() {
     return this.end;
+  }
+
+  public AbstractShape replaceCurrent(String x, String y, String w, String h, String r, String g,
+                                      String b) {
+    current.coordinates.x = Integer.parseInt(x);
+    current.coordinates.y = Integer.parseInt(y);
+    current.width = Integer.parseInt(w);
+    current.height = Integer.parseInt(h);
+    current.color = new Color(Integer.parseInt(r), Integer.parseInt(g), Integer.parseInt(b));
+
+    return current;
+  }
+
+  public AbstractShape getDest() {
+    return destination;
   }
 
   public Command clone() {

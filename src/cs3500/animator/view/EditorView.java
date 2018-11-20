@@ -1,5 +1,7 @@
 package cs3500.animator.view;
 
+import org.omg.CORBA.INTERNAL;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,29 +33,31 @@ public class EditorView extends AbstractView implements ActionListener {
   private JButton editCommand;
   private JButton deleteCommand;
   private JButton exit;
-  
-  private JLabel name;
-  private JLabel time;
-  private JLabel width;
-  private JLabel height;
-  private JLabel x;
-  private JLabel y;
-  private JLabel red;
-  private JLabel green;
-  private JLabel blue;
-  
+
+  private JLabel name = new JLabel("Name");
+  private JLabel time = new JLabel("Time");
+  private JLabel width = new JLabel("Width");
+  private JLabel height = new JLabel("Height");
+  private JLabel x = new JLabel("X");
+  private JLabel y = new JLabel("Y");
+  private JLabel red = new JLabel("Red");
+  private JLabel green = new JLabel("Green");
+  private JLabel blue = new JLabel("Blue");
+
   private JLabel currentSpeed;
   private JLabel paused;
 
-  private JTextField nameField;
-  private JTextField timeField;
-  private JTextField widthField;
-  private JTextField heightField;
-  private JTextField xField;
-  private JTextField yField;
-  private JTextField redField;
-  private JTextField greenField;
-  private JTextField blueField;
+  private JTextField nameField = new JTextField();
+  private JTextField timeField = new JTextField();
+  private JTextField widthField = new JTextField();
+  private JTextField heightField = new JTextField();
+  private JTextField xField = new JTextField();
+  private JTextField yField = new JTextField();
+  private JTextField redField = new JTextField();
+  private JTextField greenField = new JTextField();
+  private JTextField blueField = new JTextField();
+
+  JPanel keyframePanel = new JPanel();
 
   private JComboBox<String> shapeList;
   private JComboBox<String> keyframes;
@@ -114,6 +118,8 @@ public class EditorView extends AbstractView implements ActionListener {
       shapes.add(c.getName());
       kfStrings.add(c.getName() + " " + c.getStart());
     }
+
+    shapes.add(viewCommands.get(viewCommands.size() - 1).getName() + " " + viewCommands.get(viewCommands.size() - 1).getEnd());
 
     shapeList = new JComboBox(shapes.toArray());
     shapeList.addActionListener(this);
@@ -185,6 +191,27 @@ public class EditorView extends AbstractView implements ActionListener {
     frame.setLocation(this.startX, this.startY);
     frame.pack();
     frame.setVisible(true);
+
+    keyframePanel.setLayout(new GridLayout(0, 1));
+    keyframePanel.add(name);
+    keyframePanel.add(nameField);
+    keyframePanel.add(time);
+    keyframePanel.add(timeField);
+    keyframePanel.add(x);
+    keyframePanel.add(xField);
+    keyframePanel.add(y);
+    keyframePanel.add(yField);
+    keyframePanel.add(width);
+    keyframePanel.add(widthField);
+    keyframePanel.add(height);
+    keyframePanel.add(heightField);
+    keyframePanel.add(red);
+    keyframePanel.add(redField);
+    keyframePanel.add(green);
+    keyframePanel.add(greenField);
+    keyframePanel.add(blue);
+    keyframePanel.add(blueField);
+
   }
 
   @Override
@@ -227,16 +254,16 @@ public class EditorView extends AbstractView implements ActionListener {
       }
     }
     if (command.equals("Edit")) {
-      editCommand();
+      editCommand(keyframes.getSelectedItem().toString());
     }
     if (command.equals("Add Oval")) {
       createOvalKF();
     }
     if (command.equals("Add Triangle")) {
-
+      createTriKF();
     }
     if (command.equals("Add Rectangle")) {
-
+      createRectKF();
     }
     if (command.equals("Exit")) {
       System.exit(0);
@@ -248,10 +275,47 @@ public class EditorView extends AbstractView implements ActionListener {
    */
   private void createOvalKF() {
 
+    int result = JOptionPane.showConfirmDialog(null, keyframePanel, "Test",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+    if (result == JOptionPane.OK_OPTION) {
+      addKeyframe("oval", nameField.getText(), timeField.getText(), xField.getText(),
+              yField.getText(),
+              widthField.getText(), heightField.getText(), redField.getText(),
+              greenField.getText(), blueField.getText());
+    }
   }
 
-  private void showKeyframe() {
+  /**
+   *
+   */
+  private void createTriKF() {
 
+    int result = JOptionPane.showConfirmDialog(null, keyframePanel, "Test",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+    if (result == JOptionPane.OK_OPTION) {
+      addKeyframe("tri", nameField.getText(), timeField.getText(), xField.getText(),
+              yField.getText(),
+              widthField.getText(), heightField.getText(), redField.getText(),
+              greenField.getText(), blueField.getText());
+    }
+  }
+
+  /**
+   *
+   */
+  private void createRectKF() {
+
+    int result = JOptionPane.showConfirmDialog(null, keyframePanel, "Test",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+    if (result == JOptionPane.OK_OPTION) {
+      addKeyframe("rect", nameField.getText(), timeField.getText(), xField.getText(),
+              yField.getText(),
+              widthField.getText(), heightField.getText(), redField.getText(),
+              greenField.getText(), blueField.getText());
+    }
   }
 
   private void deleteShape(String name) {
@@ -263,8 +327,45 @@ public class EditorView extends AbstractView implements ActionListener {
     controller.deleteCommand(name);
   }
 
-  private void editCommand() {
+  private void editCommand(String cmd) {
 
+    String[] data = cmd.split(" ");
+
+    for (Command c : viewCommands) {
+      if (c.getName().equals(data[0]) && c.getStart() == Integer.parseInt(data[1])) {
+        nameField.setText(c.getName());
+        timeField.setText(Integer.toString(c.getStart()));
+        xField.setText(Integer.toString(c.getX()));
+        yField.setText(Integer.toString(c.getY()));
+        widthField.setText(Integer.toString(c.getWidth()));
+        heightField.setText(Integer.toString(c.getHeight()));
+        redField.setText(Integer.toString(c.getRed()));
+        greenField.setText(Integer.toString(c.getGreen()));
+        blueField.setText(Integer.toString(c.getBlue()));
+      }
+    }
+
+    int result = JOptionPane.showConfirmDialog(null, keyframePanel, "Test",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+    if (result == JOptionPane.OK_OPTION) {
+      addKeyframe("", nameField.getText(), timeField.getText(), xField.getText(), yField.getText(),
+              widthField.getText(), heightField.getText(), redField.getText(),
+              greenField.getText(), blueField.getText());
+    }
+  }
+
+  private void addKeyframe(String shapename, String name, String time, String x, String y, String w,
+                           String h,
+                           String r, String g, String b) {
+
+    controller.addKeyFrame(shapename, name, time, x, y, w, h, r, g, b);
+
+    ArrayList<String> kfStrings = new ArrayList<>();
+    for (Command c : viewCommands) {
+      kfStrings.add(c.getName() + " " + c.getStart());
+    }
+    keyframes = new JComboBox(kfStrings.toArray());
   }
 
   private void play() {

@@ -48,6 +48,14 @@ public class AnimatorControllerImpl implements AnimatorController {
   }
 
   @Override
+  public void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
+                          String h,
+                          String r, String g, String b) {
+    model.addKeyFrame(shapename, name, time, x, y, w, h, r, g, b);
+    view.setCommands(model.getCommands());
+  }
+
+  @Override
   public void play() {
     playing = true;
   }

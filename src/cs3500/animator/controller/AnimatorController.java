@@ -32,5 +32,9 @@ public interface AnimatorController {
   void deleteShape(String name);
 
   void deleteCommand(String name);
+
+  void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
+                   String h,
+                   String r, String g, String b);
 }
 

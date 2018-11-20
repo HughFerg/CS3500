@@ -63,4 +63,9 @@ public final class ROModel implements AnimatorModel {
   public void deleteCommand(String name) {
     baseModel.deleteCommand(name);
   }
+
+  public void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
+                          String h, String r, String g, String b) {
+    baseModel.addKeyFrame(shapename, name, time, x, y, w, h, r, g, b);
+  }
 }
