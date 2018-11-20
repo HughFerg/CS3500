@@ -29,5 +29,7 @@ public interface AnimatorController {
   void restart();
 
   void loop();
+
+  void deleteShape(String name);
 }
 

@@ -196,7 +196,7 @@ public class EditorView extends AbstractView implements ActionListener {
       currentSpeed.setText(Integer.toString(tps));
     }
     if (command.equals("Delete")) {
-      deleteCommand();
+      deleteCommand(shapeList.getSelectedItem().toString());
     }
     if (command.equals("Edit")) {
       editCommand();
@@ -219,8 +219,9 @@ public class EditorView extends AbstractView implements ActionListener {
 
   }
 
-  private void deleteCommand() {
-
+  private void deleteCommand(String name) {
+    visualView.deleteShape(name);
+    controller.deleteShape(name);
   }
 
   private void editCommand() {

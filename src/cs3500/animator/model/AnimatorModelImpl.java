@@ -106,6 +106,19 @@ public final class AnimatorModelImpl implements AnimatorModel {
     return h;
   }
 
+  @Override
+  public void deleteShape(String name) {
+    ArrayList<Command> toRemove = new ArrayList<>();
+    for (Command c : commands) {
+      if(c.getName().equals(name)) {
+        toRemove.add(c);
+      }
+    }
+    for(Command aboutToRemove : toRemove) {
+      commands.remove(aboutToRemove);
+    }
+  }
+
   // Represents a builder class for constructing an animation read by the AnimationReader
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
 

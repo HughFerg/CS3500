@@ -44,5 +44,7 @@ public interface AnimatorModel {
   public int getW();
 
   public int getH();
+
+  void deleteShape(String name);
 }
 

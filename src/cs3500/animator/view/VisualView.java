@@ -94,4 +94,16 @@ public class VisualView extends AbstractView {
   public boolean endTick() {
     return tick > viewCommands.get(viewCommands.size() - 1).getEnd();
   }
+
+  public void deleteShape(String name) {
+    ArrayList<Command> toRemove = new ArrayList<>();
+    for (Command c : viewCommands) {
+      if(c.getName().equals(name)) {
+        toRemove.add(c);
+      }
+    }
+    for(Command aboutToRemove : toRemove) {
+      viewCommands.remove(aboutToRemove);
+    }
+  }
 }

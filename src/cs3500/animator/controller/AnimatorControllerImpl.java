@@ -67,4 +67,9 @@ public class AnimatorControllerImpl implements AnimatorController {
   public void loop() {
     looping = !looping;
   }
+
+  @Override
+  public void deleteShape(String name) {
+    model.deleteShape(name);
+  }
 }
