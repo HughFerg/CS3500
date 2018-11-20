@@ -16,11 +16,13 @@ public class ViewFactory {
     if (type.equals("text")) {
       return new TextView(model.getCommands());
     } else if (type.equals("visual")) {
-      return new VisualView(tps, model.getCommands());
+      return new VisualView(tps, model.getCommands(), model.getX(), model.getY(), model.getW(),
+              model.getH());
     } else if (type.equals("svg")) {
       return new SVGView(tps, model.getCommands());
     } else if (type.equals("edit")) {
-      return new EditorView(tps, model.getCommands());
+      return new EditorView(tps, model.getCommands(), model.getX(), model.getY(), model.getW(),
+              model.getH());
     } else {
       throw new IllegalArgumentException("Not an available view");
     }

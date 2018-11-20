@@ -33,4 +33,24 @@ public final class ROModel implements AnimatorModel {
   public void reset() {
     baseModel.reset();
   }
+
+  @Override
+  public int getX() {
+    return baseModel.getX();
+  }
+
+  @Override
+  public int getY() {
+    return baseModel.getY();
+  }
+
+  @Override
+  public int getW() {
+    return baseModel.getW();
+  }
+
+  @Override
+  public int getH() {
+    return baseModel.getH();
+  }
 }

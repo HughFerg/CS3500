@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,11 +22,17 @@ public class VisualView extends AbstractView {
   /**
    * Creates a visual view with the given speed and model.
    *
-   * @param tps   the ticks/second.
+   * @param tps          the ticks/second.
    * @param viewCommands the model to be associated with this view.
    */
   public VisualView(int tps, ArrayList<Command> viewCommands) {
     super(tps, viewCommands);
+    this.viewCommands = viewCommands;
+    this.tick = 0;
+  }
+
+  public VisualView(int tps, ArrayList<Command> viewCommands, int w, int h, int x, int y) {
+    super(tps, viewCommands, x, y, w, h);
     this.tick = 0;
   }
 
@@ -33,9 +40,6 @@ public class VisualView extends AbstractView {
   public void makeVisible() {
 
 //    this.timer = new Timer("refresh time");
-
-    while (!this.viewCommands.isEmpty()) {
-
       /*
       timer.scheduleAtFixedRate(new TimerTask() {
         @Override
@@ -44,25 +48,32 @@ public class VisualView extends AbstractView {
         }
       }, 0, (long) (1000.0 / this.tps));
       */
-
-
-//      refresh();
-//
-//      try {
-//        Thread.sleep((long) 1000.0 / this.tps);
-//      } catch (InterruptedException e) {
-//        Thread.currentThread().interrupt();
-//      }
-    }
-//    setVisible(false);
-//    System.exit(0);
-  }
+}
 
   @Override
   public void refresh() {
-    //this.model.onTick();
+
+    List toRemove = new ArrayList();
+
+    for (Command cmd : viewCommands) {
+      if (cmd.getEnd() <= this.tick) {
+        toRemove.add(cmd);
+      } else {
+        if (cmd.getStart() <= this.tick) {
+          cmd.update(this.tick);
+        }
+      }
+    }
+    for (Object past : toRemove) {
+//      viewCommands.remove(past);
+    }
     repaint();
     tick += 1;
+  }
+
+  @Override
+  public boolean hasCommands() {
+    return false;
   }
 
   @Override
@@ -74,7 +85,6 @@ public class VisualView extends AbstractView {
   public void writeToFile(String filename) {
     throw new UnsupportedOperationException("No file output for visual view.");
   }
-
 
   @Override
   public void paintComponent(Graphics g) {
@@ -88,8 +98,8 @@ public class VisualView extends AbstractView {
 
     g2d.setTransform(originalTransform);
 
-    for (Command c : this.viewCommands) {
-      c.getDrawing(g2d, this.tick);
+    for (Command c : viewCommands) {
+      c.getDrawing(g2d, tick);
     }
   }
 }

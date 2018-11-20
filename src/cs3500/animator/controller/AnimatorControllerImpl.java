@@ -1,5 +1,8 @@
 package cs3500.animator.controller;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import cs3500.animator.model.ROModel;
 import cs3500.animator.view.AnimatorView;
 
@@ -21,8 +24,19 @@ public class AnimatorControllerImpl implements AnimatorController {
   public void animate() throws IllegalArgumentException,
           IllegalStateException {
 
-    while (view.getCommands().isEmpty()) {
-      
+    view.makeVisible();
+
+    while (view.hasCommands()) {
+
+          model.onTick();
+          view.refresh();
+
+          try {
+            Thread.sleep( 1000L / view.getTps());
+          } catch (InterruptedException e) {
+
+          }
     }
+    System.exit(0);
   }
 }

@@ -17,10 +17,23 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
   private ArrayList<Command> commands;
   private int tick = 0;
+  private int w;
+  private int h;
+  private int x;
+  private int y;
 
   // Creates an Animator Model with no commands.
   public AnimatorModelImpl() {
     this.commands = new ArrayList<>();
+  }
+
+  // Creates an Animatormodel with the given dimensions and start point.
+  public AnimatorModelImpl(int w, int h, int x, int y, ArrayList<Command> commands) {
+    this.w = w;
+    this.h = h;
+    this.x = x;
+    this.y = y;
+    this.commands = commands;
   }
 
   // Creates an Animator Model with the given commands.
@@ -59,20 +72,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
   @Override
   public void onTick() {
-    List toRemove = new ArrayList();
-    for (Command cmd : commands) {
-      if (cmd.getEnd() <= this.tick) {
-        toRemove.add(cmd);
-      } else {
-        if (cmd.getStart() <= this.tick) {
-          cmd.update(this.tick);
-        }
-      }
-    }
-    for (Object past : toRemove) {
-      commands.remove(past);
-    }
-    this.tick++;
+    this.tick+= 1;
   }
 
   @Override
@@ -85,11 +85,26 @@ public final class AnimatorModelImpl implements AnimatorModel {
     return this.tick;
   }
 
+  public int getX() {
+    return x;
+  }
+
+  public int getY() {
+    return y;
+  }
+
+  public int getW() {
+    return w;
+  }
+
+  public int getH() {
+    return h;
+  }
+
   // Represents a builder class for constructing an animation read by the AnimationReader
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
 
     AnimatorModel model;
-    AnimatorView view;
 
     private int x;
     private int y;
@@ -102,8 +117,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
     @Override
     public AnimatorModel build() {
 
-      model = new AnimatorModelImpl(this.commands);
-
+      model = new AnimatorModelImpl(width, height, x, y, this.commands);
       return model;
     }
 

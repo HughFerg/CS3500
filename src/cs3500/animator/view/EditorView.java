@@ -1,7 +1,8 @@
 package cs3500.animator.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import sun.tools.jps.Jps;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -44,8 +45,17 @@ public class EditorView extends AbstractView implements ActionListener {
     super(tps, viewCommands);
 
     this.visualView = new VisualView(tps, viewCommands);
-    height = 100;
-    width = 400;
+    initLayout();
+  }
+
+  public EditorView(int tps, ArrayList<Command> viewCommands, int w, int h, int x, int y) {
+    super(tps, viewCommands, x, y, w, h);
+
+    this.visualView = new VisualView(tps, viewCommands);
+    initLayout();
+  }
+
+  private void initLayout() {
 
     setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
@@ -81,9 +91,7 @@ public class EditorView extends AbstractView implements ActionListener {
     add(incSpeed);
     add(decSpeed);
     add(currentSpeed);
-    add(addOval);
-    add(addTri);
-    add(addRect);
+
   }
 
   @Override
@@ -98,26 +106,34 @@ public class EditorView extends AbstractView implements ActionListener {
 
   @Override
   public void refresh() {
+    visualView.refresh();
   }
 
   @Override
   public void makePanel() {
 
     JPanel master = new JPanel();
-    master.setLayout(new BoxLayout(master, BoxLayout.Y_AXIS));
-    master.add(this);
-    master.add(this.visualView);
+    master.setLayout(new BorderLayout());
+    master.add(this, BorderLayout.CENTER);
+
+    JPanel addButtons = new JPanel();
+    addButtons.add(addOval);
+    addButtons.add(addTri);
+    addButtons.add(addRect);
+    
+    master.add(addButtons, BorderLayout.SOUTH);
+
+    setVisible(true);
+    visualView.setVisible(true);
+    master.add(visualView, BorderLayout.NORTH);
 
     frame = new JFrame();
-
+    frame.add(master);
+    frame.setPreferredSize(new Dimension(visualView.width + 200, visualView.height + 80));
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    frame.setPreferredSize(new Dimension(visualView.width + 80, visualView.height + 80));
     frame.setLocation(this.startX, this.startY);
-    frame.getContentPane().add(master);
     frame.pack();
     frame.setVisible(true);
-    visualView.makeVisible();
   }
 
   @Override

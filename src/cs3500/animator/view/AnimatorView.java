@@ -5,6 +5,7 @@ public interface AnimatorView {
 
   /**
    * Generates String representations of data for the views.
+   *
    * @return String data for the views.
    */
   public String getOutput();
@@ -20,6 +21,11 @@ public interface AnimatorView {
   public void refresh();
 
   /**
+   * Returns if there are any more commands to be processed.
+   */
+  public boolean hasCommands();
+
+  /**
    * Writes the view's output to the given file.
    */
   public void writeToFile(String fileName);
@@ -28,4 +34,9 @@ public interface AnimatorView {
    * Places the view onto a JPanel for display.
    */
   public void makePanel();
+
+  /**
+   * Returns this view's ticks/second.
+   */
+  public int getTps();
 }

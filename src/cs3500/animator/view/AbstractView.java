@@ -26,8 +26,8 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   protected ArrayList<Command> viewCommands;
   protected int startX = 200;
   protected int startY = 200;
-  protected int width = 900;
-  protected int height = 900;
+  protected int width = 700;
+  protected int height = 700;
 
   /**
    * Constructor for an AbstractView which initializes all basic values that the views share.
@@ -43,7 +43,7 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
                       int h) throws IllegalArgumentException {
     super();
 
-    if (tps > 0 && viewCommands != null && w >= 0 && h >= 0) {
+    if (tps > 0 && viewCommands != null) {
       this.tps = tps;
       this.viewCommands = viewCommands;
       this.startX = startX;
@@ -72,6 +72,16 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
     } else {
       throw new IllegalArgumentException("Commands cannot be null, and tps must be above 0.");
     }
+  }
+
+  @Override
+  public int getTps() {
+    return this.tps;
+  }
+
+  @Override
+  public boolean hasCommands() {
+    return !viewCommands.isEmpty();
   }
 
   @Override
