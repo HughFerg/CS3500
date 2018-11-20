@@ -22,8 +22,9 @@ public interface AnimatorView {
 
   /**
    * Updates the frames in an animation. Only used in VisualView.
+   * @param playing
    */
-  public void refresh();
+  public void refresh(boolean playing);
 
   /**
    * Returns if there are any more commands to be processed.
@@ -55,4 +56,6 @@ public interface AnimatorView {
 
    */
   public void setCommands(ArrayList<Command> commands);
+
+  boolean endTick();
 }

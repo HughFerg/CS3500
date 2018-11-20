@@ -2,7 +2,6 @@ package cs3500.animator.view;
 
 import java.util.ArrayList;
 
-import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
 // Represents a text-based view for the Animator that displays the shapes and their
@@ -44,7 +43,7 @@ public class TextView extends AbstractView {
   }
 
   @Override
-  public void refresh() {
+  public void refresh(boolean playing) {
     throw new UnsupportedOperationException("Text view does not print in real time.");
   }
 }

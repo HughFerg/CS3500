@@ -37,7 +37,7 @@ public class VisualView extends AbstractView {
   }
 
   @Override
-  public void refresh() {
+  public void refresh(boolean playing) {
 
     List toRemove = new ArrayList();
 
@@ -51,7 +51,9 @@ public class VisualView extends AbstractView {
       }
     }
     repaint();
-    tick += 1;
+    if(playing) {
+      tick += 1;
+    }
   }
 
   @Override
@@ -90,5 +92,10 @@ public class VisualView extends AbstractView {
     for (Command c : viewCommands) {
       c.getDrawing(g2d, tick);
     }
+  }
+
+  @Override
+  public boolean endTick() {
+    return tick > viewCommands.get(viewCommands.size() - 1).getEnd();
   }
 }

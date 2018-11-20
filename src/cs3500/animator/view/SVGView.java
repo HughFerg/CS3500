@@ -1,9 +1,7 @@
 package cs3500.animator.view;
 
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
 /**
@@ -77,7 +75,7 @@ public class SVGView extends AbstractView implements AnimatorView {
   }
 
   @Override
-  public void refresh() {
+  public void refresh(boolean playing) {
     throw new UnsupportedOperationException("SVG does not print in real time.");
   }
 }

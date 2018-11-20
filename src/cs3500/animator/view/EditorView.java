@@ -1,7 +1,5 @@
 package cs3500.animator.view;
 
-import sun.tools.jps.Jps;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,9 +32,6 @@ public class EditorView extends AbstractView implements ActionListener {
   private JLabel currentSpeed;
 
   private JComboBox<String> shapeList;
-
-  private boolean playing = true;
-  private boolean looping = false;
 
   public EditorView(int tps, ArrayList<Command> viewCommands) {
     super(tps, viewCommands);
@@ -103,8 +98,8 @@ public class EditorView extends AbstractView implements ActionListener {
   }
 
   @Override
-  public void refresh() {
-    visualView.refresh();
+  public void refresh(boolean playing) {
+    visualView.refresh(playing);
   }
 
   @Override
@@ -159,11 +154,11 @@ public class EditorView extends AbstractView implements ActionListener {
   }
 
   private void play() {
-    playing = true;
+    controller.play();
   }
 
   private void pause() {
-    playing = false;
+    controller.pause();
   }
 
   private void restart() {
@@ -176,10 +171,15 @@ public class EditorView extends AbstractView implements ActionListener {
   }
 
   private void loop() {
-    looping = !looping;
+    controller.loop();
   }
 
   private void setSpeed(int diff) {
+    tps += diff;
+  }
 
+  @Override
+  public boolean endTick() {
+    return visualView.endTick();
   }
 }

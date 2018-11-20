@@ -132,4 +132,9 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
   }
+
+  @Override
+  public boolean endTick() {
+    throw new UnsupportedOperationException("This makes no sense.");
+  }
 }

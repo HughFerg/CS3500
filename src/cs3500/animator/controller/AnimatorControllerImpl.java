@@ -12,6 +12,8 @@ public class AnimatorControllerImpl implements AnimatorController {
 
   ROModel model;
   AnimatorView view;
+  private boolean playing;
+  private boolean looping;
 
   public AnimatorControllerImpl(ROModel model, AnimatorView view) {
 
@@ -20,6 +22,8 @@ public class AnimatorControllerImpl implements AnimatorController {
     }
     this.model = model;
     this.view = view;
+    this.playing = true;
+    this.looping = true;
   }
 
   @Override
@@ -29,22 +33,40 @@ public class AnimatorControllerImpl implements AnimatorController {
     view.addListener(this);
     view.makeVisible();
 
-    while (view.hasCommands()) {
+    while(looping) {
+      while (!view.endTick()) {
 
-          model.onTick();
-          view.refresh();
+        model.onTick();
+        view.refresh(playing);
 
-          try {
-            Thread.sleep( 1000L / view.getTps());
-          } catch (InterruptedException e) {
+        try {
+          Thread.sleep( 1000L / view.getTps());
+        } catch (InterruptedException e) {
 
-          }
+        }
+      }
+      restart();
     }
     System.exit(0);
   }
 
   @Override
+  public void play() {
+    playing = true;
+  }
+
+  @Override
+  public void pause() {
+    playing = false;
+  }
+
+  @Override
   public void restart() {
     view.setCommands(new ArrayList<Command>(model.getCommands()));
+  }
+
+  @Override
+  public void loop() {
+    looping = !looping;
   }
 }

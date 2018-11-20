@@ -19,9 +19,15 @@ public interface AnimatorController {
   void animate() throws IllegalArgumentException,
           IllegalStateException;
 
+  void play();
+
+  void pause();
+
   /*
 
    */
   void restart();
+
+  void loop();
 }
 
