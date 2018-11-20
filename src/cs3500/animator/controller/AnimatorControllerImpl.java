@@ -1,8 +1,6 @@
 package cs3500.animator.controller;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import cs3500.animator.model.Command;
 import cs3500.animator.model.ROModel;
@@ -42,7 +40,7 @@ public class AnimatorControllerImpl implements AnimatorController {
         try {
           Thread.sleep( 1000L / view.getTps());
         } catch (InterruptedException e) {
-
+          System.out.print("Thread.sleep is a hack.");
         }
       }
       restart();
@@ -62,7 +60,7 @@ public class AnimatorControllerImpl implements AnimatorController {
 
   @Override
   public void restart() {
-    view.setCommands(new ArrayList<Command>(model.getCommands()));
+    view.setCommands(model.getCommands());
   }
 
   @Override

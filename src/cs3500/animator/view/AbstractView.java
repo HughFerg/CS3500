@@ -92,11 +92,6 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   }
 
   @Override
-  public boolean hasCommands() {
-    return !viewCommands.isEmpty();
-  }
-
-  @Override
   public void writeToFile(String fileName) {
 
     if (fileName.equals("") || fileName.equals("out")) {

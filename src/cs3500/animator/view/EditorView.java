@@ -228,7 +228,8 @@ public class EditorView extends AbstractView implements ActionListener {
 
   @Override
   public void setCommands(ArrayList<Command> commands) {
-    visualView.setCommands(new ArrayList<Command>((commands)));
+    viewCommands = commands;
+    visualView.setCommands(viewCommands);
   }
 
   private void loop() {

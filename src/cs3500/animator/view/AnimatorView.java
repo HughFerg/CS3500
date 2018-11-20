@@ -27,11 +27,6 @@ public interface AnimatorView {
   public void refresh(boolean playing);
 
   /**
-   * Returns if there are any more commands to be processed.
-   */
-  public boolean hasCommands();
-
-  /**
    * Writes the view's output to the given file.
    */
   public void writeToFile(String fileName);
@@ -57,5 +52,8 @@ public interface AnimatorView {
    */
   public void setCommands(ArrayList<Command> commands);
 
+  /*
+
+   */
   boolean endTick();
 }

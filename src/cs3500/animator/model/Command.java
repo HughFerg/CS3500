@@ -55,6 +55,10 @@ public final class Command {
     return this.end;
   }
 
+  public Command clone() {
+    return new Command(name, start, end, current, destination);
+  }
+
   /**
    * Returns this Command's name.
    * @return this Command's name.
@@ -67,9 +71,9 @@ public final class Command {
    * Updates the current shape's value by the correct amounts per each field.
    */
   public void update(int currentTick) {
-
     int deltaT = this.end - currentTick;
-    this.current = this.current.getNextShape(this.destination, deltaT);
+    AbstractShape newShape = current.getNextShape(destination, deltaT);
+    this.current = newShape;
   }
 
   /**

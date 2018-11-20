@@ -34,37 +34,33 @@ public class VisualView extends AbstractView {
 
   @Override
   public void makeVisible() {
+    setVisible(true);
   }
 
   @Override
   public void refresh(boolean playing) {
 
-    List toRemove = new ArrayList();
+    if (playing) {
+      List toRemove = new ArrayList();
 
-    for (Command cmd : viewCommands) {
-      if (cmd.getEnd() <= this.tick) {
-        toRemove.add(cmd);
-      } else {
-        if (cmd.getStart() <= this.tick) {
-          cmd.update(this.tick);
+      for (Command cmd : viewCommands) {
+        if (cmd.getEnd() <= this.tick) {
+          toRemove.add(cmd);
+        } else {
+          if (cmd.getStart() <= this.tick) {
+            cmd.update(this.tick);
+          }
         }
       }
-    }
-    repaint();
-    if(playing) {
+      repaint();
       tick += 1;
     }
   }
 
   @Override
-  public boolean hasCommands() {
-    return !viewCommands.isEmpty();
-  }
-
-  @Override
   public void setCommands(ArrayList<Command> commands) {
     tick = 0;
-    viewCommands = new ArrayList<Command>(commands);
+    viewCommands = commands;
   }
 
   @Override

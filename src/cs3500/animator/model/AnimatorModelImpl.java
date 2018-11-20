@@ -72,12 +72,18 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
   @Override
   public void onTick() {
-    this.tick+= 1;
+    this.tick += 1;
   }
 
   @Override
   public ArrayList<Command> getCommands() {
-    return new ArrayList<>(this.commands);
+    ArrayList<Command> next = new ArrayList<>(commands.size());
+
+    for (Command c : commands) {
+      next.add(c.clone());
+    }
+
+    return next;
   }
 
   @Override
