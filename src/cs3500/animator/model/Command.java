@@ -67,6 +67,14 @@ public final class Command {
     return this.name;
   }
 
+  public AbstractShape getCurrent() {
+    return this.current;
+  }
+
+  public AbstractShape getDestination() {
+    return this.destination;
+  }
+
   /**
    * Updates the current shape's value by the correct amounts per each field.
    */

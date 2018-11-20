@@ -139,11 +139,21 @@ public final class AnimatorModelImpl implements AnimatorModel {
     if (start == specifiedShape.get(0).getStart()) {
       commands.remove(specifiedShape.get(0));
     } else if (start == specifiedShape.get(specifiedShape.size() - 1).getStart()) {
+      commands.add(new Command(name, specifiedShape.get(specifiedShape.size() - 2).getStart(),
+              specifiedShape.get(specifiedShape.size() - 1).getEnd(),
+              specifiedShape.get(specifiedShape.size() - 2).getCurrent(),
+              specifiedShape.get(specifiedShape.size() - 1).getDestination()));
+      commands.remove(specifiedShape.get(specifiedShape.size() - 2));
       commands.remove(specifiedShape.get(specifiedShape.size() - 1));
     } else {
       for (int i = 1; i < specifiedShape.size() - 1; i += 1) {
         if (start == specifiedShape.get(i).getStart()) {
           commands.remove(specifiedShape.get(i));
+          Command temp = specifiedShape.get(i - 1);
+          commands.add(commands.indexOf(temp), new Command(name, temp.getStart(),
+                  specifiedShape.get(i + 1).getStart(), temp.getCurrent(),
+                  specifiedShape.get(i + 1).getCurrent()));
+          commands.remove(temp);
         }
       }
     }
