@@ -15,7 +15,7 @@ public class AnimatorControllerImpl implements AnimatorController {
   @Override
   public void animate(ROModel model, AnimatorView view) throws IllegalArgumentException,
           IllegalStateException {
-    if(model == null || view == null) {
+    if (model == null || view == null) {
       throw new IllegalArgumentException("Don't be null.");
     }
     //Make it go

@@ -14,24 +14,24 @@ public class SVGView extends AbstractView implements AnimatorView {
    * Constructs an SVGView with the given parameters.
    *
    * @param tps    ticks per second.
-   * @param model  the model of our Animator.
+   * @param viewCommands  the commands of our Animator.
    * @param startX top left x coordinate of the canvas.
    * @param startY top left y coordinate of the canvas.
    * @param w      overall width of the canvas.
    * @param h      overall height of the canvas.
    */
-  public SVGView(int tps, AnimatorModel model, int startX, int startY, int w, int h) {
-    super(tps, model, startX, startY, w, h);
+  public SVGView(int tps, ArrayList<Command> viewCommands, int startX, int startY, int w, int h) {
+    super(tps, viewCommands, startX, startY, w, h);
   }
 
   /**
    * Constructs an SVGView with the given model and tps.
    *
    * @param tps   ticks per second.
-   * @param model the model of our Animator.
+   * @param viewCommands the commands of our Animator.
    */
-  public SVGView(int tps, AnimatorModel model) {
-    super(tps, model);
+  public SVGView(int tps, ArrayList<Command> viewCommands) {
+    super(tps, viewCommands);
   }
 
   @Override
@@ -45,7 +45,7 @@ public class SVGView extends AbstractView implements AnimatorView {
    * @return StringBuilder of the entire SVG text properly formatted.
    */
   public String getOutput() {
-    ArrayList<Command> commands = this.model.getCommands();
+    ArrayList<Command> commands = this.viewCommands;
 
     StringBuilder result = new StringBuilder(String.format("<svg width=\"%s\" height=\"%s\" " +
             "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n", WIDTH, HEIGHT));

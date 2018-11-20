@@ -14,13 +14,13 @@ public class ViewFactory {
    */
   public AnimatorView getView(String type, int tps, AnimatorModel model) {
     if (type.equals("text")) {
-      return new TextView(model);
+      return new TextView(model.getCommands());
     } else if (type.equals("visual")) {
-      return new VisualView(tps, model);
+      return new VisualView(tps, model.getCommands());
     } else if (type.equals("svg")) {
-      return new SVGView(tps, model);
+      return new SVGView(tps, model.getCommands());
     } else if (type.equals("edit")) {
-      return new EditorView(tps, model);
+      return new EditorView(tps, model.getCommands());
     } else {
       throw new IllegalArgumentException("Not an available view");
     }

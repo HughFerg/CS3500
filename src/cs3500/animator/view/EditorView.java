@@ -1,10 +1,12 @@
 package cs3500.animator.view;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.Command;
 
 /*
  * Represents an Editor view for the Animator, including the visual view with looping,
@@ -25,10 +27,10 @@ public class EditorView extends AbstractView {
   private boolean looping;
 
 
-  public EditorView(int tps, AnimatorModel model) {
-    super(tps, model);
+  public EditorView(int tps, ArrayList<Command> viewCommands) {
+    super(tps, viewCommands);
 
-    this.visualView = new VisualView(tps, model);
+    this.visualView = new VisualView(tps, viewCommands);
 
     this.playButton = new JButton("Gay");
     this.playing = true;
@@ -85,8 +87,9 @@ public class EditorView extends AbstractView {
     this.playing = false;
   }
 
-  private void restart() {
-    this.visualView.model.reset();
+  private void restart(ArrayList<Command> cache) {
+    this.viewCommands = cache;
+    visualView.tick = 0;
   }
 
   private void loop() {

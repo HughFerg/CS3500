@@ -9,12 +9,12 @@ import cs3500.animator.model.Command;
 // transformations over time.
 public class TextView extends AbstractView {
 
-  public TextView(AnimatorModel model, int w, int h) {
-    super(1, model, 0, 0, w, h);
+  public TextView(ArrayList<Command> viewCommands, int w, int h) {
+    super(1, viewCommands, 0, 0, w, h);
   }
 
-  public TextView(AnimatorModel model) {
-    super(1, model);
+  public TextView(ArrayList<Command> viewCommands) {
+    super(1, viewCommands);
   }
 
   @Override
@@ -24,7 +24,7 @@ public class TextView extends AbstractView {
 
   @Override
   public String getOutput() {
-    ArrayList<Command> commands = this.model.getCommands();
+    ArrayList<Command> commands = this.viewCommands;
 
     String result = "";
 

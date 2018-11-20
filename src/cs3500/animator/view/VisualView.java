@@ -3,6 +3,7 @@ package cs3500.animator.view;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,16 +16,19 @@ import cs3500.animator.model.Command;
 // Represents a Visual view for the Animator, displaying images using a JFrame.
 public class VisualView extends AbstractView {
 
+  private ArrayList<Command> viewCommands;
+  protected int tick;
   private Timer timer;
 
   /**
    * Creates a visual view with the given speed and model.
    *
    * @param tps   the ticks/second.
-   * @param model the model to be associated with this view.
+   * @param viewCommands the model to be associated with this view.
    */
-  public VisualView(int tps, AnimatorModel model) {
-    super(tps, model);
+  public VisualView(int tps, ArrayList<Command> viewCommands) {
+    super(tps, viewCommands);
+    this.tick = 0;
   }
 
   @Override
@@ -35,33 +39,34 @@ public class VisualView extends AbstractView {
     setVisible(true);
     Timer t = new Timer("refresh time");
 
-    while (!this.model.getCommands().isEmpty()) {
+    while (!this.viewCommands.isEmpty()) {
 
-      /*
+
       t.scheduleAtFixedRate(new TimerTask() {
         @Override
         public void run() {
           refresh();
         }
       }, 0, (long) (1000.0 / this.tps));
-      */
 
-      refresh();
 
-      try {
-        Thread.sleep((long) 1000.0 / this.tps);
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-      }
+//      refresh();
+//
+//      try {
+//        Thread.sleep((long) 1000.0 / this.tps);
+//      } catch (InterruptedException e) {
+//        Thread.currentThread().interrupt();
+//      }
     }
-    setVisible(false);
-    System.exit(0);
+//    setVisible(false);
+//    System.exit(0);
   }
 
   @Override
   public void refresh() {
-    this.model.onTick();
+    //this.model.onTick();
     repaint();
+    tick += 1;
   }
 
   @Override
@@ -73,6 +78,7 @@ public class VisualView extends AbstractView {
   public void writeToFile(String filename) {
     throw new UnsupportedOperationException("No file output for visual view.");
   }
+
 
   @Override
   protected void paintComponent(Graphics g) {
@@ -86,8 +92,8 @@ public class VisualView extends AbstractView {
 
     g2d.setTransform(originalTransform);
 
-    for (Command c : this.model.getCommands()) {
-      c.getDrawing(g2d, this.model.getTick());
+    for (Command c : this.viewCommands) {
+      c.getDrawing(g2d, this.tick);
     }
   }
 }

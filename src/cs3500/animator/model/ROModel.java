@@ -28,4 +28,9 @@ public final class ROModel implements AnimatorModel {
   public int getTick() {
     return baseModel.getTick();
   }
+
+  @Override
+  public void reset() {
+    baseModel.reset();
+  }
 }
