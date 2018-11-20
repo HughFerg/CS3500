@@ -5,13 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import cs3500.animator.model.Command;
 
@@ -37,11 +31,32 @@ public class EditorView extends AbstractView implements ActionListener {
   private JButton editCommand;
   private JButton deleteCommand;
   private JButton exit;
-
+  
+  private JLabel name;
+  private JLabel time;
+  private JLabel width;
+  private JLabel height;
+  private JLabel x;
+  private JLabel y;
+  private JLabel red;
+  private JLabel green;
+  private JLabel blue;
+  
   private JLabel currentSpeed;
   private JLabel paused;
 
+  private JTextField nameField;
+  private JTextField timeField;
+  private JTextField widthField;
+  private JTextField heightField;
+  private JTextField xField;
+  private JTextField yField;
+  private JTextField redField;
+  private JTextField greenField;
+  private JTextField blueField;
+
   private JComboBox<String> shapeList;
+  private JComboBox<String> keyframes;
 
   public EditorView(int tps, ArrayList<Command> viewCommands) {
     super(tps, viewCommands);
@@ -91,13 +106,20 @@ public class EditorView extends AbstractView implements ActionListener {
     exit.setOpaque(true);
 
     ArrayList<String> shapes = new ArrayList<>();
+    shapes.add("-");
+    ArrayList<String> kfStrings = new ArrayList<>();
+    kfStrings.add("-");
 
     for (Command c : viewCommands) {
       shapes.add(c.getName());
+      kfStrings.add(c.getName() + " " + c.getStart());
     }
 
     shapeList = new JComboBox(shapes.toArray());
     shapeList.addActionListener(this);
+
+    keyframes = new JComboBox(kfStrings.toArray());
+    keyframes.addActionListener(this);
 
     currentSpeed = new JLabel(Integer.toString(this.tps));
     currentSpeed.setBackground(Color.WHITE);
@@ -147,6 +169,7 @@ public class EditorView extends AbstractView implements ActionListener {
     addButtons.add(shapeList);
     addButtons.add(editCommand);
     addButtons.add(deleteCommand);
+    addButtons.add(keyframes);
     addButtons.add(exit);
 
     master.add(addButtons, BorderLayout.SOUTH);
@@ -157,7 +180,7 @@ public class EditorView extends AbstractView implements ActionListener {
 
     frame = new JFrame();
     frame.add(master);
-    frame.setPreferredSize(new Dimension(visualView.width + 200, visualView.height + 80));
+    frame.setPreferredSize(new Dimension(visualView.width + 250, visualView.height + 100));
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     frame.setLocation(this.startX, this.startY);
     frame.pack();
@@ -196,13 +219,14 @@ public class EditorView extends AbstractView implements ActionListener {
       currentSpeed.setText(Integer.toString(tps));
     }
     if (command.equals("Delete")) {
-      deleteCommand(shapeList.getSelectedItem().toString());
+      deleteCommand(keyframes.getSelectedItem().toString());
+      deleteShape(shapeList.getSelectedItem().toString());
     }
     if (command.equals("Edit")) {
       editCommand();
     }
     if (command.equals("Add Oval")) {
-
+      createOvalKF();
     }
     if (command.equals("Add Triangle")) {
 
@@ -215,13 +239,24 @@ public class EditorView extends AbstractView implements ActionListener {
     }
   }
 
-  private void showKeyframe(String shape) {
+  /**
+   *
+   */
+  private void createOvalKF() {
 
   }
 
-  private void deleteCommand(String name) {
+  private void showKeyframe() {
+
+  }
+
+  private void deleteShape(String name) {
     visualView.deleteShape(name);
     controller.deleteShape(name);
+  }
+
+  private void deleteCommand(String name) {
+
   }
 
   private void editCommand() {
