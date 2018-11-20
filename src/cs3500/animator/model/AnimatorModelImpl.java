@@ -77,12 +77,11 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
   @Override
   public ArrayList<Command> getCommands() {
-    ArrayList<Command> next = new ArrayList<>(commands.size());
 
+    ArrayList<Command> next = new ArrayList<>(commands.size());
     for (Command c : commands) {
       next.add(c.clone());
     }
-
     return next;
   }
 
@@ -184,7 +183,9 @@ public final class AnimatorModelImpl implements AnimatorModel {
     @Override
     public AnimationBuilder<AnimatorModel> addKeyframe(String name, int t, int x, int y, int w,
                                                        int h, int r, int g, int b) {
-      return null;
+      addMotion(name, t, x, y, w, g, r, g, b, t, x, y, w, g, r, g, b);
+
+      return this;
     }
   }
 

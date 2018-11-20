@@ -13,44 +13,44 @@ public interface AnimatorView {
    *
    * @return String data for the views.
    */
-  public String getOutput();
+  String getOutput();
 
   /**
    * Provides the outward facing representation to the user.
    */
-  public void makeVisible();
+  void makeVisible();
 
   /**
    * Updates the frames in an animation. Only used in VisualView.
    * @param playing
    */
-  public void refresh(boolean playing);
+  void refresh(boolean playing);
 
   /**
    * Writes the view's output to the given file.
    */
-  public void writeToFile(String fileName);
+  void writeToFile(String fileName);
 
   /*
    * Places the view onto a JPanel for display.
    */
-  public void makePanel();
+  void makePanel();
 
   /**
    * Returns this view's ticks/second.
    */
-  public int getTps();
+  int getTps();
 
   /**
    *
    * @param controller
    */
-  public void addListener(AnimatorController controller);
+  void addListener(AnimatorController controller);
 
   /*
 
    */
-  public void setCommands(ArrayList<Command> commands);
+  void setCommands(ArrayList<Command> commands);
 
   /*
 

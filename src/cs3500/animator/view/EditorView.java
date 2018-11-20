@@ -201,6 +201,15 @@ public class EditorView extends AbstractView implements ActionListener {
     if (command.equals("Edit")) {
       editCommand();
     }
+    if (command.equals("Add Oval")) {
+
+    }
+    if (command.equals("Add Triangle")) {
+
+    }
+    if (command.equals("Add Rectangle")) {
+
+    }
     if (command.equals("Exit")) {
       System.exit(0);
     }
