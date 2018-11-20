@@ -215,6 +215,10 @@ public class EditorView extends AbstractView implements ActionListener {
     }
   }
 
+  private void showKeyframe(String shape) {
+
+  }
+
   private void deleteCommand() {
 
   }
