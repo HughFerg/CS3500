@@ -6,3 +6,4 @@
 - UI (visual queues)
 - make model check for continuity
 - inserting removing keyframes (splicing commands) thus shapes
+- replace calls of model in views with ROModel

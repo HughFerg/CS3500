@@ -1,12 +1,16 @@
 package cs3500.animator.view;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
@@ -16,13 +20,14 @@ import cs3500.animator.model.Command;
  */
 public abstract class AbstractView extends JPanel implements AnimatorView {
 
+
   // Ticks per second.
   protected int tps = 1;
   protected ArrayList<Command> viewCommands;
   protected int startX = 200;
   protected int startY = 200;
-  protected int width = 1000;
-  protected int height = 1000;
+  protected int width = 900;
+  protected int height = 900;
 
   /**
    * Constructor for an AbstractView which initializes all basic values that the views share.
@@ -37,6 +42,7 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   public AbstractView(int tps, ArrayList<Command> viewCommands, int startX, int startY, int w,
                       int h) throws IllegalArgumentException {
     super();
+
     if (tps > 0 && viewCommands != null && w >= 0 && h >= 0) {
       this.tps = tps;
       this.viewCommands = viewCommands;
@@ -44,6 +50,8 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
       this.startY = startY;
       this.width = w;
       this.height = h;
+
+      this.setPreferredSize(new Dimension(this.width, this.height));
     } else {
       throw new IllegalArgumentException("Model cannot be null.");
     }
@@ -60,6 +68,7 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
     if (tps > 0 && viewCommands != null) {
       this.tps = tps;
       this.viewCommands = viewCommands;
+      this.setPreferredSize(new Dimension(this.width, this.height));
     } else {
       throw new IllegalArgumentException("Commands cannot be null, and tps must be above 0.");
     }
@@ -88,7 +97,7 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
 
     JFrame frame = new JFrame();
 
-    this.setPreferredSize(new Dimension(this.width, this.height));
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     frame.setPreferredSize(new Dimension(this.width, this.height));
     frame.setLocation(this.startX, this.startY);

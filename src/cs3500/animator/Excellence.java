@@ -7,8 +7,11 @@ import java.io.FileReader;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import cs3500.animator.controller.AnimatorController;
+import cs3500.animator.controller.AnimatorControllerImpl;
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.AnimatorModelImpl;
+import cs3500.animator.model.ROModel;
 import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.AnimatorView;
 import cs3500.animator.view.ViewFactory;
@@ -26,6 +29,7 @@ public final class Excellence {
     AnimatorModel model;
     ViewFactory factory = new ViewFactory();
     AnimatorView view;
+    AnimatorController controller;
 
     String readFile = "";
     String outFile = "";
@@ -62,9 +66,16 @@ public final class Excellence {
       model = AnimationReader.parseFile(rd, new AnimatorModelImpl.Builder());
 
       view = factory.getView(viewType, tps, model);
-      view.makeVisible();
 
-      view.writeToFile(outFile);
+      controller = new AnimatorControllerImpl((ROModel) model, view);
+      controller.animate();
+
+      // fix
+      try {
+        view.writeToFile(outFile);
+      } catch (UnsupportedOperationException e) {
+
+      }
 
     } catch (FileNotFoundException e) {
       JOptionPane.showMessageDialog(new JFrame(),"Input file not found", "File Not Found",

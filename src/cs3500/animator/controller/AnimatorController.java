@@ -12,13 +12,11 @@ public interface AnimatorController {
   /**
    * Runs a new animation using the given model and view.
    *
-   * @param model The AnimatorModel which represents the animation being played
-   * @param view  The AnimatorView which represents the visual representation of the model
    * @throws IllegalArgumentException if the controller's model or view is null
    * @throws IllegalStateException    if the controller is unable to successfully receive input or
    *         transmit output
    */
-  void animate(ROModel model, AnimatorView view) throws IllegalArgumentException,
+  void animate() throws IllegalArgumentException,
           IllegalStateException;
 }
 

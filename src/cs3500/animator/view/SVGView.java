@@ -1,5 +1,6 @@
 package cs3500.animator.view;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import cs3500.animator.model.AnimatorModel;

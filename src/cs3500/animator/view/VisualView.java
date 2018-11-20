@@ -8,8 +8,6 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.*;
-
 import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
@@ -34,20 +32,18 @@ public class VisualView extends AbstractView {
   @Override
   public void makeVisible() {
 
-    makePanel();
-
-    setVisible(true);
-    Timer t = new Timer("refresh time");
+//    this.timer = new Timer("refresh time");
 
     while (!this.viewCommands.isEmpty()) {
 
-
-      t.scheduleAtFixedRate(new TimerTask() {
+      /*
+      timer.scheduleAtFixedRate(new TimerTask() {
         @Override
         public void run() {
           refresh();
         }
       }, 0, (long) (1000.0 / this.tps));
+      */
 
 
 //      refresh();
@@ -81,7 +77,7 @@ public class VisualView extends AbstractView {
 
 
   @Override
-  protected void paintComponent(Graphics g) {
+  public void paintComponent(Graphics g) {
     super.paintComponent(g);
 
     Graphics2D g2d = (Graphics2D) g;

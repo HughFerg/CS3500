@@ -4,20 +4,25 @@ import cs3500.animator.model.ROModel;
 import cs3500.animator.view.AnimatorView;
 
 public class AnimatorControllerImpl implements AnimatorController {
+
   ROModel model;
   AnimatorView view;
 
   public AnimatorControllerImpl(ROModel model, AnimatorView view) {
+
+    if (model == null || view == null) {
+      throw new IllegalArgumentException("Don't be null.");
+    }
     this.model = model;
     this.view = view;
   }
 
   @Override
-  public void animate(ROModel model, AnimatorView view) throws IllegalArgumentException,
+  public void animate() throws IllegalArgumentException,
           IllegalStateException {
-    if (model == null || view == null) {
-      throw new IllegalArgumentException("Don't be null.");
+
+    while (view.getCommands().isEmpty()) {
+      
     }
-    //Make it go
   }
 }
