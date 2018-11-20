@@ -119,6 +119,36 @@ public final class AnimatorModelImpl implements AnimatorModel {
     }
   }
 
+  @Override
+  public void deleteCommand(String name) {
+    String[] data = name.split(" ");
+    String shapeName = data[0];
+    int start = Integer.parseInt(data[1]);
+    ArrayList<Command> specifiedShape = new ArrayList<>();
+
+    for (Command c : commands) {
+      if (c.getName().equals(shapeName)) {
+        specifiedShape.add(c);
+      }
+    }
+
+    if (specifiedShape.size() == 1) {
+      this.deleteShape(shapeName);
+    }
+
+    if (start == specifiedShape.get(0).getStart()) {
+      commands.remove(specifiedShape.get(0));
+    } else if (start == specifiedShape.get(specifiedShape.size() - 1).getStart()) {
+      commands.remove(specifiedShape.get(specifiedShape.size() - 1));
+    } else {
+      for (int i = 1; i < specifiedShape.size() - 1; i += 1) {
+        if (start == specifiedShape.get(i).getStart()) {
+          commands.remove(specifiedShape.get(i));
+        }
+      }
+    }
+  }
+
   // Represents a builder class for constructing an animation read by the AnimationReader
   public static final class Builder implements AnimationBuilder<AnimatorModel> {
 

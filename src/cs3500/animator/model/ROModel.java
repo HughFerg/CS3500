@@ -58,4 +58,9 @@ public final class ROModel implements AnimatorModel {
   public void deleteShape(String name) {
     baseModel.deleteShape(name);
   }
+
+  @Override
+  public void deleteCommand(String name) {
+    baseModel.deleteCommand(name);
+  }
 }
