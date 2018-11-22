@@ -22,7 +22,7 @@ public interface AnimatorView {
 
   /**
    * Updates the frames in an animation. Only used in VisualView.
-   * @param playing
+   * @param playing if the animation is playing or not.
    */
   void refresh(boolean playing);
 
@@ -42,18 +42,20 @@ public interface AnimatorView {
   int getTps();
 
   /**
-   *
-   * @param controller
+   * Adds the given controller to this view.
+   * @param controller controller to add.
    */
   void addListener(AnimatorController controller);
 
-  /*
-
+  /**
+   * Sets the list of commands for this view.
+   * @param commands list of commands.
    */
   void setCommands(ArrayList<Command> commands);
 
-  /*
-
+  /**
+   * Checks if the view is at its last tick.
+   * @return if view has ended.
    */
   boolean endTick();
 }

@@ -56,12 +56,6 @@ public class TestViews {
     model = new AnimatorModelImpl();
   }
 
-  /*
-  @Test
-  public void testInit() {
-    visual.makeVisible();
-  }
-
   @Test(expected = IllegalArgumentException.class)
   public void testNullModelText() {
     new TextView(null, 0, 0);
@@ -74,197 +68,31 @@ public class TestViews {
 
   @Test(expected = IllegalArgumentException.class)
   public void testBadBoundsText() {
-    new TextView(model, 0, -1);
+    new TextView(model.getCommands(), 0, -1);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testBadTickSVG() {
-    new SVGView(0, model, 0, 0, 0, 0);
+    new SVGView(0, model.getCommands(), 0, 0, 0, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testBadDimensionSVG() {
-    new SVGView(1, model, 0, 0, -10, 0);
+    new SVGView(1, model.getCommands(), 0, 0, -10, 0);
   }
 
   @Test
   public void testEmptyTextView() {
-    visual = new TextView(model, 0, 0);
+    visual = new TextView(model.getCommands(), 0, 0);
 
     assertEquals(visual.getOutput(), "");
   }
 
   @Test
   public void testEmptySVGView() {
-    visual = new SVGView(1, model, 0, 0, 0, 0);
+    visual = new SVGView(1, model.getCommands(), 0, 0, 0, 0);
 
     assertEquals(visual.getOutput(), "<svg width=\"0\" height=\"0\" version=\"1.1\" " +
             "xmlns=\"http://www.w3.org/2000/svg\">\n</svg>");
   }
-
-  @Test
-  public void testSingleTextView() {
-    model.addCommand(rectCmd3);
-    visual = new TextView(model, 700, 500);
-
-    assertEquals(visual.getOutput(), "Rectangle1 - Start: 600 X: 200 Y: 400.0 W: 500 H: " +
-            "300 R: 100 G: 200 B: 0 --- End: 1000 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: " +
-            "0");
-  }
-
-  @Test
-  public void testSingleSVGView() {
-    model.addCommand(rectCmd3);
-    visual = new SVGView(1, model, 0, 0, 700, 500);
-
-    assertEquals(visual.getOutput(), "<svg width=\"700\" height=\"500\" version=\"1.1\" " +
-            "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "<rect id=\"Rectangle1\" x=\"200\" y=\"400\" width=\"500\" height=\"300\" " +
-            "fill=\"rgb(100,200,0)\" visibility=\"visible\" >\n</rect>\n" +
-            "</svg>");
-  }
-
-  @Test
-  public void testAllShapesTextView() {
-    model.addCommand(circleCmd1);
-    model.addCommand(rectCmd3);
-    model.addCommand(triCmd1);
-    model.addCommand(ovalCmd1);
-    visual = new TextView(model, 700, 500);
-
-    assertEquals(visual.getOutput(), "Circle1 - Start: 0 X: 300 Y: 300.0 W: 400 H: 400 R: " +
-            "0 G: 0 B: 0 --- End: 100 X: 300 Y: 500.0 W: 400 H: 400 R: 0 G: 0 B: 255\n" +
-            "Rectangle1 - Start: 600 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0 --- End: " +
-            "1000 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0\n" +
-            "Triangle1 - Start: 0 X: 100 Y: 100.0 W: 300 H: 259 R: 0 G: 100 B: 0 --- " +
-            "End: 400 X: 400 Y: 400.0 W: 500 H: 433 R: 0 G: 200 B: 0\n" +
-            "Oval1 - Start: 0 X: 220 Y: 100.0 W: 200 H: 100 R: 255 G: 0 B: 0 --- " +
-            "End: 1000 X: 220 Y: 100.0 W: 200 H: 200 R: 255 G: 0 B: 0");
-  }
-
-  @Test
-  public void testAllShapesSVGView() {
-    model.addCommand(circleCmd1);
-    model.addCommand(rectCmd3);
-    model.addCommand(triCmd1);
-    model.addCommand(ovalCmd1);
-    visual = new SVGView(1, model, 0, 0, 700, 500);
-
-    assertEquals(visual.getOutput(), "<svg width=\"700\" height=\"500\" version=\"1.1\" " +
-            "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "<ellipse id=\"Circle1\" cx=\"300\" cy=\"300\" rx=\"200\" ry=\"200\" " +
-            "fill=\"rgb(0,0,0)\" visibility=\"visible\" >\n" +
-            "    <animate attributeType=\"xml\" begin=\"0000.0ms\" dur=\"100000.0ms\" " +
-            "attributeName=\"cy\" from=\"300\" to=\"500\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"0000.0ms\" dur=\"100000.0ms\" " +
-            "attributeName=\"fill\" from=\"rgb(0,0,0)\" to=\"rgb(0,0,255)\" fill=\"freeze\" />\n" +
-            "</ellipse>\n" +
-            "<rect id=\"Rectangle1\" x=\"200\" y=\"400\" width=\"500\" height=\"300\" " +
-            "fill=\"rgb(100,200,0)\" visibility=\"visible\" >\n" +
-            "</rect>\n" +
-            "<polygon id=\"Triangle1\" points=\"100,100 250,-159 400,100\" fill=\"rgb(0,100,0)\" " +
-            "visibility=\"visible\" >\n" +
-            "    <animate attributeType=\"xml\" begin=\"0000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"points\" from=\"400,100 250,-159 400,100\" " +
-            "to=\"400,400 650,-33 900,400\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"0000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"fill\" from=\"rgb(0,100,0)\" to=\"rgb(0,200,0)\" fill=\"freeze\"" +
-            " />\n    <animate attributeType=\"xml\" begin=\"0000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"points\" from=\"400,100 250,-159 400,100\" " +
-            "to=\"400,400 650,-33 900,400\" fill=\"freeze\" />\n" +
-            "</polygon>\n" +
-            "<ellipse id=\"Oval1\" cx=\"220\" cy=\"100\" rx=\"100\" ry=\"50\" " +
-            "fill=\"rgb(255,0,0)\" visibility=\"visible\" >\n" +
-            "</ellipse>\n" +
-            "</svg>");
-  }
-
-  @Test
-  public void testSingleManyCommandsTextView() {
-    model.addCommand(rectCmd1);
-    model.addCommand(rectCmd2);
-    model.addCommand(rectCmd3);
-    visual = new TextView(model, 700, 500);
-
-    assertEquals(visual.getOutput(), "Rectangle1 - Start: 300 X: 100 Y: 100.0 W: 300 H: " +
-            "400 R: 100 G: 100 B: 100 --- " +
-            "End: 400 X: 200 Y: 200.0 W: 300 H: 400 R: 100 G: 200 B: 0\n" +
-            "Rectangle1 - Start: 400 X: 200 Y: 200.0 W: 300 H: 400 R: 100 G: 200 B: 0 --- " +
-            "End: 600 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0\n" +
-            "Rectangle1 - Start: 600 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0 --- " +
-            "End: 1000 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0");
-  }
-
-  @Test
-  public void testSingleManyCommandsSVGView() {
-    model.addCommand(rectCmd1);
-    model.addCommand(rectCmd2);
-    model.addCommand(rectCmd3);
-    visual = new SVGView(1, model, 0, 0, 700, 500);
-
-    assertEquals(visual.getOutput(), "<svg width=\"700\" height=\"500\" version=\"1.1\" " +
-            "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "<rect id=\"Rectangle1\" x=\"100\" y=\"100\" width=\"300\" height=\"400\" " +
-            "fill=\"rgb(100,100,100)\" visibility=\"visible\" >\n" +
-            "    <animate attributeType=\"xml\" begin=\"300000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"x\" from=\"100\" to=\"200\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"300000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"y\" from=\"100\" to=\"200\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"300000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"fill\" from=\"rgb(100,100,100)\" to=\"rgb(100,200,0)\" " +
-            "fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"400000.0ms\" dur=\"600000.0ms\" " +
-            "attributeName=\"y\" from=\"200\" to=\"400\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"400000.0ms\" dur=\"600000.0ms\" " +
-            "attributeName=\"width\" from=\"300\" to=\"500\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"400000.0ms\" dur=\"600000.0ms\" " +
-            "attributeName=\"height\" from=\"400\" to=\"300\" fill=\"freeze\" />\n" +
-            "</rect>\n" +
-            "</svg>");
-  }
-
-  @Test
-  public void testSingleManyCommandsDifferentOrderTextView() {
-    model.addCommand(rectCmd1);
-    model.addCommand(rectCmd3);
-    model.addCommand(rectCmd2);
-    visual = new TextView(model, 700, 500);
-
-    assertEquals(visual.getOutput(), "Rectangle1 - Start: 300 X: 100 Y: 100.0 W: 300 H: " +
-            "400 R: 100 G: 100 B: 100 --- End: 400 X: 200 Y: 200.0 W: 300 H: 400 R: 100 G: " +
-            "200 B: 0\n" +
-            "Rectangle1 - Start: 600 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0 --- " +
-            "End: 1000 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0\n" +
-            "Rectangle1 - Start: 400 X: 200 Y: 200.0 W: 300 H: 400 R: 100 G: 200 B: 0 --- " +
-            "End: 600 X: 200 Y: 400.0 W: 500 H: 300 R: 100 G: 200 B: 0");
-  }
-
-  @Test
-  public void testSingleManyCommandsDifferentOrderSVGView() {
-    model.addCommand(rectCmd2);
-    model.addCommand(rectCmd1);
-    model.addCommand(rectCmd3);
-    visual = new SVGView(1, model, 0, 0, 700, 500);
-
-    assertEquals(visual.getOutput(), "<svg width=\"700\" height=\"500\" version=\"1.1\" " +
-            "xmlns=\"http://www.w3.org/2000/svg\">\n" +
-            "<rect id=\"Rectangle1\" x=\"100\" y=\"100\" width=\"300\" height=\"400\" " +
-            "fill=\"rgb(100,100,100)\" visibility=\"visible\" >\n" +
-            "    <animate attributeType=\"xml\" begin=\"300000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"x\" from=\"100\" to=\"200\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"300000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"y\" from=\"100\" to=\"200\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"300000.0ms\" dur=\"400000.0ms\" " +
-            "attributeName=\"fill\" from=\"rgb(100,100,100)\" to=\"rgb(100,200,0)\" " +
-            "fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"400000.0ms\" dur=\"600000.0ms\" " +
-            "attributeName=\"y\" from=\"200\" to=\"400\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"400000.0ms\" dur=\"600000.0ms\" " +
-            "attributeName=\"width\" from=\"300\" to=\"500\" fill=\"freeze\" />\n" +
-            "    <animate attributeType=\"xml\" begin=\"400000.0ms\" dur=\"600000.0ms\" " +
-            "attributeName=\"height\" from=\"400\" to=\"300\" fill=\"freeze\" />\n" +
-            "</rect>\n" +
-            "</svg>");
-  }
-  */
 }

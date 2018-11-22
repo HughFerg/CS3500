@@ -75,6 +75,12 @@ public class SVGView extends AbstractView implements AnimatorView {
   }
 
   @Override
+  public boolean endTick() {
+    controller.loop();
+    return true;
+  }
+
+  @Override
   public void refresh(boolean playing) {
     throw new UnsupportedOperationException("SVG does not print in real time.");
   }

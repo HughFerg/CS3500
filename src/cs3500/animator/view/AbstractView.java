@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import cs3500.animator.controller.AnimatorController;
-import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
 /**
@@ -126,10 +125,5 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
-  }
-
-  @Override
-  public boolean endTick() {
-    throw new UnsupportedOperationException("This makes no sense.");
   }
 }

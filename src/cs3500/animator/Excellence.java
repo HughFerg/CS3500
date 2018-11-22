@@ -68,13 +68,18 @@ public final class Excellence {
 
       view = factory.getView(viewType, tps, model);
 
-      controller = new AnimatorControllerImpl(new ROModel((AnimatorModelImpl) model), view);
-      controller.animate();
+      controller = new AnimatorControllerImpl(new ROModel(model), view);
 
-      // fix
+      try {
+        controller.animate();
+      } catch (UnsupportedOperationException e) {
+        throw new FileNotFoundException();
+      }
+
       try {
         view.writeToFile(outFile);
       } catch (UnsupportedOperationException e) {
+        throw new FileNotFoundException("Output file not found");
       }
 
     } catch (FileNotFoundException e) {

@@ -18,7 +18,7 @@ public class VisualView extends AbstractView {
    * Creates a visual view with the given speed and model.
    *
    * @param tps          the ticks/second.
-   * @param viewCommands the model to be associated with this view.
+   * @param viewCommands the commands to be associated with this view.
    */
   public VisualView(int tps, ArrayList<Command> viewCommands) {
     super(tps, viewCommands);
@@ -26,6 +26,15 @@ public class VisualView extends AbstractView {
     this.tick = 0;
   }
 
+  /**
+   * Creates a visual view w given speed commands and dimensions.
+   * @param tps ticks/sec
+   * @param viewCommands commands to be rendered.
+   * @param w witdh.
+   * @param h height.
+   * @param x x coord.
+   * @param y y coord.
+   */
   public VisualView(int tps, ArrayList<Command> viewCommands, int w, int h, int x, int y) {
     super(tps, viewCommands, x, y, w, h);
     this.viewCommands = viewCommands;
@@ -95,14 +104,18 @@ public class VisualView extends AbstractView {
     return tick > viewCommands.get(viewCommands.size() - 1).getEnd();
   }
 
+  /**
+   * Deletes the given shape from this list of commands.
+   * @param name the name of the shape to be deleted.
+   */
   public void deleteShape(String name) {
     ArrayList<Command> toRemove = new ArrayList<>();
     for (Command c : viewCommands) {
-      if(c.getName().equals(name)) {
+      if (c.getName().equals(name)) {
         toRemove.add(c);
       }
     }
-    for(Command aboutToRemove : toRemove) {
+    for (Command aboutToRemove : toRemove) {
       viewCommands.remove(aboutToRemove);
     }
   }

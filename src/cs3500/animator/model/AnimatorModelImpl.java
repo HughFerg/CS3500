@@ -5,10 +5,8 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import cs3500.animator.util.AnimationBuilder;
-import cs3500.animator.view.AnimatorView;
 
 /**
  * Represents an Animator model implementation for creating, displaying, and manipulating shapes.
@@ -27,7 +25,9 @@ public final class AnimatorModelImpl implements AnimatorModel {
     this.commands = new ArrayList<>();
   }
 
-  // Creates an Animatormodel with the given dimensions and start point.
+  /**
+   Creates an Animatormodel with the given dimensions and start point.
+   */
   public AnimatorModelImpl(int w, int h, int x, int y, ArrayList<Command> commands) {
     this.w = w;
     this.h = h;
@@ -39,35 +39,6 @@ public final class AnimatorModelImpl implements AnimatorModel {
   // Creates an Animator Model with the given commands.
   public AnimatorModelImpl(ArrayList<Command> commands) {
     this.commands = commands;
-  }
-
-  @Override
-  public void addCommand(Command cmd) {
-    if (validCommand(cmd)) {
-      this.commands.add(cmd);
-    } else {
-      throw new IllegalArgumentException("Command is not valid.");
-    }
-  }
-
-  /**
-   * Returns if the given command is valid - that is, has non-conflicting start/end times, and does
-   * not move a shape out of bounds or to a negative size.
-   *
-   * @param cmd the command to be tested.
-   * @return true if the command is valid, false if not.
-   */
-  private boolean validCommand(Command cmd) {
-
-    for (Command c : this.commands) {
-
-      if (!cmd.getName().equals(c.getName())) {
-        return true;
-      } else {
-        return (cmd.getStart() >= c.getEnd() || cmd.getEnd() <= c.getStart());
-      }
-    }
-    return true;
   }
 
   @Override
@@ -90,18 +61,22 @@ public final class AnimatorModelImpl implements AnimatorModel {
     return this.tick;
   }
 
+  @Override
   public int getX() {
     return x;
   }
 
+  @Override
   public int getY() {
     return y;
   }
 
+  @Override
   public int getW() {
     return w;
   }
 
+  @Override
   public int getH() {
     return h;
   }
@@ -159,9 +134,10 @@ public final class AnimatorModelImpl implements AnimatorModel {
     }
   }
 
-  public void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
-                          String h,
-                          String r, String g, String b) {
+  @Override
+  public void addKeyFrame(String shapename, String name, int time, int x, int y, int w,
+                          int h,
+                          int r, int g, int b) {
 
     ArrayList<Command> toRm = new ArrayList<>();
     ArrayList<Command> toAdd = new ArrayList<>();
@@ -169,12 +145,24 @@ public final class AnimatorModelImpl implements AnimatorModel {
     for (Command c : commands) {
       // If KF already exists
       if (c.getName().equals(name)) {
-        if (c.getStart() == Integer.parseInt(time)) {
-          toAdd.add(new Command(name, c.getStart(), c.getEnd(), c.replaceCurrent(x, y, w, h, r, g, b),
+        if (c.getStart() == time) {
+          toAdd.add(new Command(name, c.getStart(), c.getEnd(),
+                  c.replaceCurrent(x, y, w, h, r, g, b),
                   c.getDest()));
           toRm.add(c);
+        } else if (c.getEnd() == time) {
+          toAdd.add(new Command(name, c.getStart(), c.getEnd(), c.getCurrent(),
+                  c.replaceDest(x, y, w, h, r, g, b)));
+          toRm.add(c);
         } else {
-          // tween
+          if (c.getStart() < time && c.getEnd() > time) {
+            toRm.add(c);
+            toAdd.add(new Command(name, c.getStart(), time, c.replaceCurrent(x, y, w, h, r, g,
+                    b),
+                    c.getDest()));
+            toAdd.add(new Command(name, time, c.getEnd(), c.getCurrent(), c.replaceDest(x, y, w, h,
+                    r, g, b)));
+          }
         }
       }
     }
@@ -186,35 +174,34 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
       if (shapename.equals("tri")) {
 
-         nextShape = new Triangle(new Color(Integer.parseInt(r), Integer.parseInt(g),
-                 Integer.parseInt(b)), new Point(Integer.parseInt(x), Integer.parseInt(y)),
-                 Integer.parseInt(w));
+        nextShape = new Triangle(new Color(r, g,
+                b), new Point(x, y),
+                w);
 
-         toAdd.add(new Command(name, Integer.parseInt(time), Integer.parseInt(time), nextShape,
-                 nextShape));
+        toAdd.add(new Command(name, time, time, nextShape,
+                nextShape));
 
       } else if (shapename.equals("rect")) {
 
-        nextShape = new Rectangle(new Color(Integer.parseInt(r), Integer.parseInt(g),
-                Integer.parseInt(b)), new Point(Integer.parseInt(x), Integer.parseInt(y)),
-                Integer.parseInt(w), Integer.parseInt(h));
+        nextShape = new Rectangle(new Color(r, g,
+                b), new Point(x, y),
+                w, h);
 
-        toAdd.add(new Command(name, Integer.parseInt(time), Integer.parseInt(time), nextShape,
+        toAdd.add(new Command(name, time, time, nextShape,
                 nextShape));
 
       } else if (shapename.equals("oval")) {
 
-        nextShape = new Oval(new Color(Integer.parseInt(r), Integer.parseInt(g),
-                Integer.parseInt(b)), new Point(Integer.parseInt(x), Integer.parseInt(y)),
-                Integer.parseInt(w), Integer.parseInt(h));
+        nextShape = new Oval(new Color(r, g,
+                b), new Point(x, y),
+                w, h);
 
-        toAdd.add(new Command(name, Integer.parseInt(time), Integer.parseInt(time), nextShape,
+        toAdd.add(new Command(name, time, time, nextShape,
                 nextShape));
       } else {
-
+        throw new IllegalArgumentException("Invalid shape type.");
       }
     }
-
     commands.addAll(toAdd);
     commands.removeAll(toRm);
   }

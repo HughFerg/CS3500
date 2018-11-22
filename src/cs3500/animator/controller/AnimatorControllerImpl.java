@@ -1,8 +1,5 @@
 package cs3500.animator.controller;
 
-import java.util.ArrayList;
-
-import cs3500.animator.model.Command;
 import cs3500.animator.model.ROModel;
 import cs3500.animator.view.AnimatorView;
 
@@ -13,6 +10,11 @@ public class AnimatorControllerImpl implements AnimatorController {
   private boolean playing;
   private boolean looping;
 
+  /****
+   * Constructs a controller with the given model and view.
+   * @param model the animator model to be controlled.
+   * @param view the view to be controlled.
+   */
   public AnimatorControllerImpl(ROModel model, AnimatorView view) {
 
     if (model == null || view == null) {
@@ -30,7 +32,7 @@ public class AnimatorControllerImpl implements AnimatorController {
     view.addListener(this);
     view.makeVisible();
 
-    while(looping) {
+    do {
       while (!view.endTick()) {
 
         model.onTick();
@@ -44,13 +46,15 @@ public class AnimatorControllerImpl implements AnimatorController {
       }
       restart();
     }
+    while (looping);
+
     System.exit(0);
   }
 
   @Override
-  public void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
-                          String h,
-                          String r, String g, String b) {
+  public void addKeyFrame(String shapename, String name, int time, int x, int y, int w,
+                          int h,
+                          int r, int g, int b) {
     model.addKeyFrame(shapename, name, time, x, y, w, h, r, g, b);
     view.setCommands(model.getCommands());
   }

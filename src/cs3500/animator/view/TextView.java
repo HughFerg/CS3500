@@ -43,6 +43,12 @@ public class TextView extends AbstractView {
   }
 
   @Override
+  public boolean endTick() {
+    controller.loop();
+    return true;
+  }
+
+  @Override
   public void refresh(boolean playing) {
     throw new UnsupportedOperationException("Text view does not print in real time.");
   }

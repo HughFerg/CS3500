@@ -15,11 +15,6 @@ public final class ROModel implements AnimatorModel {
   }
 
   @Override
-  public void addCommand(Command cmd) throws IllegalAccessException {
-    throw new IllegalAccessException("You are not allowed to edit this.");
-  }
-
-  @Override
   public ArrayList<Command> getCommands() {
     return baseModel.getCommands();
   }
@@ -64,8 +59,9 @@ public final class ROModel implements AnimatorModel {
     baseModel.deleteCommand(name);
   }
 
-  public void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
-                          String h, String r, String g, String b) {
+  public void addKeyFrame(String shapename, String name, int time, int x, int y, int w,
+                          int h,
+                          int r, int g, int b) {
     baseModel.addKeyFrame(shapename, name, time, x, y, w, h, r, g, b);
   }
 }

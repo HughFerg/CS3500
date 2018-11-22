@@ -1,8 +1,5 @@
 package cs3500.animator.controller;
 
-import cs3500.animator.model.ROModel;
-import cs3500.animator.view.AnimatorView;
-
 /**
  * This interface represents the operations offered by the Animator Controller. An instance of an
  * AnimatorController connects a model and a view.
@@ -18,23 +15,53 @@ public interface AnimatorController {
    */
   void animate();
 
+  /**
+   * Plays the animation.
+   */
   void play();
 
+  /**
+   * Pauses the animation.
+   */
   void pause();
 
-  /*
-
+  /**
+   * Restarts the animation.
    */
   void restart();
 
+  /**
+   * Loops the animation.
+   */
   void loop();
 
+  /**
+   * Deletes the given shape.
+   * @param name name of shape to be deleted.
+   */
   void deleteShape(String name);
 
+  /**
+   * Deletes the given command.
+   * @param name name of command to be deleted.
+   */
   void deleteCommand(String name);
 
-  void addKeyFrame(String shapename, String name, String time, String x, String y, String w,
-                   String h,
-                   String r, String g, String b);
+  /**
+   * Adds the given keyframe to the model.
+   * @param shapename type of the new shape.
+   * @param name name of the shape.
+   * @param time time of Kf.
+   * @param x x location.
+   * @param y y location.
+   * @param w width.
+   * @param h height.
+   * @param r red val.
+   * @param g green val.
+   * @param b blue val.
+   */
+  void addKeyFrame(String shapename, String name, int time, int x, int y, int w,
+                   int h,
+                   int r, int g, int b);
 }
 

@@ -47,12 +47,12 @@ public class TestAnimator {
   Command circleCmd2 = new Command("Circle1",5, 7, c1, c2);
   Command circleCmd3 = new Command("Circle1",7, 10, c2, c3);
 
-/*
   @Before
   public void init() {
     animator = new AnimatorModelImpl();
-    textView = new TextView(animator,300, 300);
+    textView = new TextView(animator.getCommands(),300, 300);
   }
+  /*
   @Test(expected = IllegalArgumentException.class)
   public void testTimeTravellingCommand() {
     animator.addCommand(new Command("Circle",2, 1, c1, c2));
@@ -67,6 +67,7 @@ public class TestAnimator {
   public void testDoubleNegativeTime() {
     animator.addCommand(new Command("Circle",-2, -1, c1, c2));
   }
+*/
 
   @Test(expected = IllegalArgumentException.class)
   public void testBadRect() {
@@ -98,7 +99,7 @@ public class TestAnimator {
     animator.onTick();
     assertEquals(1, animator.getTick());
   }
-
+  /*
   @Test
   public void test0TickFull() {
     animator.addCommand(rectCmd2);

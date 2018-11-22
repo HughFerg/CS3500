@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
  * Represents a command to be executed in an Animator. Each command has a current shape that is
@@ -73,6 +74,7 @@ public final class Command {
   public int getBlue() {
     return this.current.color.getBlue();
   }
+
   /**
    * Returns the end time of this command.
    *
@@ -82,37 +84,87 @@ public final class Command {
     return this.end;
   }
 
-  public AbstractShape replaceCurrent(String x, String y, String w, String h, String r, String g,
-                                      String b) {
-    current.coordinates.x = Integer.parseInt(x);
-    current.coordinates.y = Integer.parseInt(y);
-    current.width = Integer.parseInt(w);
-    current.height = Integer.parseInt(h);
-    current.color = new Color(Integer.parseInt(r), Integer.parseInt(g), Integer.parseInt(b));
+  /**
+   * Replaces the destination shape with the given shape params.
+   * @param x x coord..
+   * @param y y coord.
+   * @param w width.
+   * @param h height.
+   * @param r red.
+   * @param g green.
+   * @param b blue.
+   * @return new shape.
+   */
+  public AbstractShape replaceDest(int x, int y, int w, int h, int r, int g,
+                                   int b) {
+    destination.coordinates.x = x;
+    destination.coordinates.y = y;
+    destination.width = w;
+    destination.height = h;
+    destination.color = new Color(r, g, b);
+
+    return destination;
+  }
+
+  /**
+   * Replaces the current shape with the given shape params.
+   * @param x x coord..
+   * @param y y coord.
+   * @param w width.
+   * @param h height.
+   * @param r red.
+   * @param g green.
+   * @param b blue.
+   * @return new shape.
+   */
+  public AbstractShape replaceCurrent(int x, int y, int w, int h, int r, int g,
+                                      int b) {
+    current.coordinates.x = x;
+    current.coordinates.y = y;
+    current.width = w;
+    current.height = h;
+    current.color = new Color(r, g, b);
 
     return current;
   }
 
+  /**
+   * Gets the destination shape.
+   * @return destination shape.
+   */
   public AbstractShape getDest() {
     return destination;
   }
 
+  /**
+   * Clones this command.
+   * @return a copy of this command.
+   */
   public Command clone() {
     return new Command(name, start, end, current, destination);
   }
 
   /**
    * Returns this Command's name.
+   *
    * @return this Command's name.
    */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * Returns this command's current shape.
+   * @return current shape.
+   */
   public AbstractShape getCurrent() {
     return this.current;
   }
 
+  /**
+   * Returns this command's destination shape.
+   * @return dest. shape.
+   */
   public AbstractShape getDestination() {
     return this.destination;
   }
@@ -129,8 +181,8 @@ public final class Command {
   /**
    * Draws the graphic onto the canvas.
    *
-   * @param g            the canvas of the animator.
-   * @param currentTick  the tick representing the current time.
+   * @param g           the canvas of the animator.
+   * @param currentTick the tick representing the current time.
    */
   public void getDrawing(Graphics2D g, int currentTick) {
     if (this.getStart() <= currentTick && this.getEnd() >= currentTick) {
