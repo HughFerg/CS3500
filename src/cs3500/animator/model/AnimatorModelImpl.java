@@ -57,27 +57,22 @@ public final class AnimatorModelImpl implements AnimatorModel {
   }
 
   @Override
-  public int getTick() {
-    return this.tick;
-  }
-
-  @Override
-  public int getX() {
+  public int getCanvasX() {
     return x;
   }
 
   @Override
-  public int getY() {
+  public int getCanvasY() {
     return y;
   }
 
   @Override
-  public int getW() {
+  public int getCanvasWidth() {
     return w;
   }
 
   @Override
-  public int getH() {
+  public int getCanvasHeight() {
     return h;
   }
 

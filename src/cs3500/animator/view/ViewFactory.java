@@ -1,6 +1,7 @@
 package cs3500.animator.view;
 
 import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.provider.view.JFrameView;
 
 // Represents a factory to build the specified view.
 public class ViewFactory {
@@ -24,7 +25,7 @@ public class ViewFactory {
       return new EditorView(tps, model.getCommands(), model.getX(), model.getY(), model.getW(),
               model.getH());
     } else {
-      throw new IllegalArgumentException("Not an available view");
-    }
+        throw new IllegalArgumentException("Not an available view");
+      }
   }
 }

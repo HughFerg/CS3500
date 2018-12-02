@@ -20,33 +20,28 @@ public final class ROModel implements AnimatorModel {
   }
 
   @Override
-  public int getTick() {
-    return baseModel.getTick();
-  }
-
-  @Override
   public void reset() {
     baseModel.reset();
   }
 
   @Override
-  public int getX() {
-    return baseModel.getX();
+  public int getCanvasX() {
+    return baseModel.getCanvasX();
   }
 
   @Override
-  public int getY() {
-    return baseModel.getY();
+  public int getCanvasY() {
+    return baseModel.getCanvasY();
   }
 
   @Override
-  public int getW() {
-    return baseModel.getW();
+  public int getCanvasWidth() {
+    return baseModel.getCanvasWidth();
   }
 
   @Override
-  public int getH() {
-    return baseModel.getH();
+  public int getCanvasHeight() {
+    return baseModel.getCanvasHeight();
   }
 
   @Override

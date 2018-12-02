@@ -47,7 +47,6 @@ public class AnimatorControllerImpl implements AnimatorController {
       restart();
     }
     while (looping);
-
     System.exit(0);
   }
 
