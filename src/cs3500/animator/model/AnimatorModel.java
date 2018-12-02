@@ -5,54 +5,54 @@ import java.util.ArrayList;
 /**
  * Represents the possible operations performed by an Animator object.
  */
-public interface AnimatorModel {
+ interface AnimatorModel {
 
   /**
    * Updates all shapes based on the current active commands.
    */
-  public void onTick();
+   void onTick();
 
   /**
    * Returns this Animator's list of commands.
    * @return This Animator's commands.
    */
-  public ArrayList<Command> getCommands();
+   ArrayList<Command> getCommands();
 
   /**
    * Returns the current tick of this Animator.
    *
    * @return current tick.
    */
-  public int getTick();
+   int getTick();
 
   /**
-   * Resets the current animation to tick 0 and reinitializes the commands.
+   * Resets the current animation to tick 0 and reinitialize the commands.
    */
-  public void reset();
+   void reset();
 
   /**
    * Gets the x location.
    * @return x coordinate.
    */
-  public int getX();
+   int getX();
 
   /**
    * Gets the y location.
    * @return y coordinate.
    */
-  public int getY();
+   int getY();
 
   /**
    * Gets the width of this model.
    * @return width.
    */
-  public int getW();
+   int getW();
 
   /**
    * Gets the height of this model.
    * @return height.
    */
-  public int getH();
+   int getH();
 
   /**
    * Deletes the given shape.

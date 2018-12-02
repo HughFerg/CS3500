@@ -73,7 +73,7 @@ public final class Excellence {
       try {
         controller.animate();
       } catch (UnsupportedOperationException e) {
-        throw new FileNotFoundException();
+        // Do nothing because non-animating controllers will throw errors.
       }
 
       try {

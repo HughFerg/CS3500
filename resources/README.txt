@@ -1,6 +1,6 @@
 Our Animator is represented by the concrete class AnimatorModelImpl, which implements the
 AnimatorModel interface. Animation commands are represented as a Command object, with start/end
-times, shape at start of the command (to be updated as time passes) and shape at end of command. We
+times, concrete shape at start of the command (to be updated as time passes) and shape at end of command. We
 chose this because it simplified the process of transformation over time between shapes, and coupled
 the 2 shapes together with the times relevant to mutation. A when the user inputs an animation, it
 is essentially inputting a future shape.
@@ -40,6 +40,5 @@ Our Editor view is a panel with editing operations on it (Add/update/delete) and
  pause and loop. We had to refactor our design for this assignment by moving the conception of ticks
   and looping out of the model and into the controller, which uses that to render the animations
   correctly. We also created a read=only model so that the controller cannot mutate it incorrectly.
-  Overall we refactored a decent amount between this and the last.
 
 

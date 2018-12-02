@@ -10,7 +10,7 @@ public class AnimatorControllerImpl implements AnimatorController {
   private boolean playing;
   private boolean looping;
 
-  /****
+  /**
    * Constructs a controller with the given model and view.
    * @param model the animator model to be controlled.
    * @param view the view to be controlled.
