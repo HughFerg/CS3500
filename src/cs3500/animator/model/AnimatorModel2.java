@@ -15,26 +15,26 @@ public interface AnimatorModel2 {
   /**
    * Takes in a time which updates the shapes in the model to that tick.
    *
-   * @param time the time to update the model to
+   * @param time the time to update the model to.
    */
   void tick(int time);
 
   /**
    * Gets the list of shape to be drawn.
    *
-   * @return a list of visible ModelShapes to be drawn for cs3500.animator.view
+   * @return a list of visible ModelShapes to be drawn for cs3500.animator.view.
    */
   List<ModelShape> getShapeStates();
 
   /**
    * Adds a shape to the animation cs3500.animator.model.
    *
-   * @param shape the shape to be added
+   * @param shape the shape to be added.
    */
   void addShape(ModelShape shape);
 
   /**
-   * Removes a shape from the animation cs3500.animator.model. Does nothing if the shape is not
+   * Removes a shape from the animation cs3500.animator.model. Does nothing if the shape is not.
    * found.
    *
    * @param shapeName the name of the shape to be removed from the animation cs3500.animator.model.
@@ -44,8 +44,8 @@ public interface AnimatorModel2 {
   /**
    * Returns a copy of the shape with the given name's animations.
    *
-   * @param shapeName the shape's name
-   * @return a copy of the list of the animations for the given shape name
+   * @param shapeName the shape's name.
+   * @return a copy of the list of the animations for the given shape name.
    */
   List<Animation> getAnimationsOfShapeToEdit(String shapeName);
 
@@ -53,9 +53,9 @@ public interface AnimatorModel2 {
    * Sets the given shape name's animation to the given list of animations. Does nothing if the
    * shape is not found.
    *
-   * @param shapeName  the name of the shape
-   * @param animations the new list of animations
-   * @throws IllegalStateException if the new list of animations is not valid
+   * @param shapeName  the name of the shape.
+   * @param animations the new list of animations.
+   * @throws IllegalStateException if the new list of animations is not valid.
    */
   void setAnimation(String shapeName, List<Animation> animations) throws IllegalStateException;
 
@@ -64,18 +64,18 @@ public interface AnimatorModel2 {
   /**
    * Sets the bounds for the canvas.
    *
-   * @param x      the x value of the canvas
-   * @param y      the y value of the canvas
-   * @param width  the width of the canvas
-   * @param height the height of the canvas
-   * @throws IllegalArgumentException if the width or height are less than 0
+   * @param x      the x value of the canvas.
+   * @param y      the y value of the canvas.
+   * @param width  the width of the canvas.
+   * @param height the height of the canvas.
+   * @throws IllegalArgumentException if the width or height are less than 0.
    */
   void setBounds(int x, int y, int width, int height) throws IllegalArgumentException;
 
   /**
    * Gets a list of all of the shape names in the model.
    *
-   * @return a list of strings for the shape names in the model
+   * @return a list of strings for the shape names in the model.
    */
 
   List<String> getListOfShapeNames();
@@ -83,7 +83,7 @@ public interface AnimatorModel2 {
   /**
    * Gets the x value of the canvas.
    *
-   * @return the x value of the canvas
+   * @return the x value of the canvas.
    */
 
   int getCanvasX();
@@ -91,7 +91,7 @@ public interface AnimatorModel2 {
   /**
    * Gets the y value of the canvas.
    *
-   * @return the y value of the canvas
+   * @return the y value of the canvas.
    */
 
   int getCanvasY();
@@ -99,7 +99,7 @@ public interface AnimatorModel2 {
   /**
    * Gets the width of the canvas.
    *
-   * @return the width of the canvas
+   * @return the width of the canvas.
    */
 
   int getCanvasWidth();
@@ -115,8 +115,8 @@ public interface AnimatorModel2 {
   /**
    * Gets a copy of the shape that has the given name in the model.
    *
-   * @param name the name of the shape
-   * @return gives the shape that matches the given name
+   * @param name the name of the shape.
+   * @return gives the shape that matches the given name.
    */
 
   ModelShape getCopy(String name);
@@ -124,8 +124,8 @@ public interface AnimatorModel2 {
   /**
    * Adds a single animation to the list of animations for a shape.
    *
-   * @param name      the name of the shape that is having the animation being added to
-   * @param animation the animation that is being added to the shape
+   * @param name      the name of the shape that is having the animation being added to.
+   * @param animation the animation that is being added to the shape.
    */
   void addSingleAnimation(String name, Animation animation);
 
@@ -134,15 +134,15 @@ public interface AnimatorModel2 {
 
   /**
    * Returns true if the animation is over at the given time.
-   * @param time a positive int
-   * @return whether or not the animation is over at that time
+   * @param time a positive int.
+   * @return whether or not the animation is over at that time.
    */
   boolean isOver(int time);
 
   /**
    * Returns a list of string representations of a shapes keyframes.
    *
-   * @param name name of the shape
+   * @param name name of the shape.
    * @return the list of string representations of a keyframe.
    */
   List<String> getKeyFrames(String name);
@@ -150,13 +150,13 @@ public interface AnimatorModel2 {
   /**
    * Edits a shapes animations to add a new key frame.
    *
-   * @param name name of shape to edit
-   * @param time time of keyframe
-   * @param height height of the shape
-   * @param width width of the shape
-   * @param color color of shape
-   * @param x x position of shape
-   * @param y y position of shape
+   * @param name name of shape to edit.
+   * @param time time of keyframe.
+   * @param height height of the shape.
+   * @param width width of the shape.
+   * @param color color of shape.
+   * @param x x position of shape.
+   * @param y y position of shape.
    */
   void addKeyFrame(String name, int time, int height, int width, Color color, int x, int y);
 

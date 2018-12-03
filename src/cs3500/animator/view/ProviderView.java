@@ -3,13 +3,17 @@ package cs3500.animator.view;
 import java.util.ArrayList;
 
 import cs3500.animator.controller.AnimatorController;
+import cs3500.animator.model.AdapterModel;
+import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
-import cs3500.animator.provider.view.JFrameView;
+import cs3500.animator.provider.view.ExtendedVisualView;
 
 /**
  * Represents an adapter class to interface between the AnimatorViews and the provider views.
  */
-public class ProviderView extends JFrameView implements AnimatorView {
+public class ProviderView extends ExtendedVisualView implements AnimatorView {
+
+  private AnimatorModel model;
 
   /**
    * A constructor for the JFrameView that forms a JFrame view based on the given ticks per second.
@@ -17,8 +21,9 @@ public class ProviderView extends JFrameView implements AnimatorView {
    * @param tps ticks per second
    * @throws IllegalArgumentException if ticks are not zero or positive
    */
-  public ProviderView(int tps) throws IllegalArgumentException {
+  public ProviderView(int tps, AnimatorModel model) throws IllegalArgumentException {
     super(tps);
+    this.model = model;
   }
 
   @Override
@@ -28,8 +33,7 @@ public class ProviderView extends JFrameView implements AnimatorView {
 
   @Override
   public void makeVisible() {
-    // NEED TO CREATE SIMILAR interface between models
-    display();
+    display(model);
   }
 
   @Override
@@ -66,6 +70,6 @@ public class ProviderView extends JFrameView implements AnimatorView {
 
   @Override
   public boolean endTick() {
-    return false;
+    return model.isOver(time);
   }
 }

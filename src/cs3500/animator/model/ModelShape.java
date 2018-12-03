@@ -1,8 +1,7 @@
-package cs3500.animator.model.shape;
-
+package cs3500.animator.model;
 import java.util.List;
 
-import cs3500.animator.model.animation.Animation;
+import cs3500.animator.model.shape.Attributes;
 
 /**
  * Interface representing a single shape in an animation.
