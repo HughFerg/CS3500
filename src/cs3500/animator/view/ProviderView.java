@@ -50,6 +50,7 @@ public class ProviderView extends JFrameView implements AnimatorView {
   @Override
   public int getTps() {
     // NEED TO FIGURE OUT TIMER (if its in controller or view because provider has it in view)
+    //view should be able to just request from the controller I believe
     return this.timer.getDelay() / 1000;
   }
 

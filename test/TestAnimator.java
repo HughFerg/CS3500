@@ -11,8 +11,8 @@ import cs3500.animator.model.Command;
 import cs3500.animator.model.Oval;
 import cs3500.animator.model.Rectangle;
 import cs3500.animator.model.Triangle;
-import cs3500.animator.view.AnimatorView;
-import cs3500.animator.view.TextView;
+import cs3500.animator.provider.view.AnimatorView;
+import cs3500.animator.provider.view.TextView;
 
 import static junit.framework.TestCase.assertEquals;
 
