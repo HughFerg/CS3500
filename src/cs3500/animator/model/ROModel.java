@@ -20,6 +20,11 @@ public final class ROModel implements AnimatorModel {
   }
 
   @Override
+  public boolean isOver(int time) {
+    return baseModel.isOver(time);
+  }
+
+  @Override
   public void reset() {
     baseModel.reset();
   }

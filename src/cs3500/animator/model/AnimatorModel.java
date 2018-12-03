@@ -28,11 +28,6 @@ public interface AnimatorModel {
   boolean isOver(int time);
 
   /**
-   * Returns the list of shapes in the current model.
-   */
-  List<ModelShape> getShapeStates();
-
-  /**
    * Resets the current animation to tick 0 and reinitialize the commands.
    */
   void reset();

@@ -8,7 +8,7 @@ import java.awt.Point;
  * Represents an abstract shape with all common shape characteristics (coordinates, color, width
  * and height). More specific dimensions are established in subclasses.
  */
-public abstract class AbstractShape {
+public abstract class AbstractShape implements IShape {
 
   protected Point coordinates;
   protected Color color;
@@ -35,12 +35,21 @@ public abstract class AbstractShape {
     }
   }
 
+  @Override
+  public void replace(int x, int y, int w, int h, int r, int g, int b) {
+    this.coordinates = new Point(x, y);
+    this.width = w;
+    this.height = h;
+    this.color = new Color(r, g, b);
+  }
+
   /**
    * Getter method for retrieving a shape's coordinate without allowing for mutation.
    *
    * @return  The Coordinate of a shape
    */
-  protected Point getCoordinates() {
+  @Override
+  public Point getCoordinates() {
     return this.coordinates;
   }
 
@@ -49,7 +58,8 @@ public abstract class AbstractShape {
    *
    * @return  The Color of a shape
    */
-  protected Color getColor() {
+  @Override
+  public Color getColor() {
     return this.color;
   }
 
@@ -58,7 +68,8 @@ public abstract class AbstractShape {
    *
    * @return  The width of a shape
    */
-  protected int getWidth() {
+  @Override
+  public int getWidth() {
     return this.width;
   }
 
@@ -67,7 +78,8 @@ public abstract class AbstractShape {
    *
    * @return  The height of a shape
    */
-  protected int getHeight() {
+  @Override
+  public int getHeight() {
     return this.height;
   }
 
@@ -77,7 +89,8 @@ public abstract class AbstractShape {
    * @param deltaT the current tick - the transformation end time.
    * @return  The color of the shape after a time of deltaT.
    */
-  protected Color getNextColor(AbstractShape destination, int deltaT) {
+  @Override
+  public Color getNextColor(IShape destination, int deltaT) {
     return new Color(((destination.getColor().getRed() - this.color.getRed()) / deltaT)
             + this.color.getRed(),
             ((destination.getColor().getGreen() - this.color.getGreen()) / deltaT)
@@ -92,71 +105,24 @@ public abstract class AbstractShape {
    * @param deltaT the current tick - transformation end time
    * @return  The point of a shape after a time of deltaT.
    */
-  protected Point getNextPoint(AbstractShape destination, int deltaT) {
+  @Override
+  public Point getNextPoint(IShape destination, int deltaT) {
     return new Point((int) (((destination.getCoordinates().getX() - this.getCoordinates().getX())
             / deltaT) + this.getCoordinates().getX()),
             (int) (((destination.getCoordinates().getY() - this.getCoordinates().getY()) / deltaT)
                     + this.getCoordinates().getY()));
   }
 
-  /**
-   * Returns the next shape to render based on the current command's destination shape and the
-   * amount they should transform to the next shape (deltaT).
-   * @param destination the destination shape.
-   * @param deltaT the amount to transform the shape's fields.
-   * @return the shape to be rendered on the next tick.
-   */
-  protected abstract AbstractShape getNextShape(AbstractShape destination, int deltaT);
 
   /**
-   * Returns the shape representation of this shape for rendering in the view.
-   * @return this shape in Java.Awt shape format.
-   */
-  protected abstract void getDrawing(Graphics2D g);
-
-  /**
-   * Abstract method for dispatching to each shape to render their own headings.
-   *
-   * @param name The name of the shape that a header is being generated for
-   * @return     The String representing the header for an SVG file
-   */
-  public abstract String generateSVGHeader(String name);
-
-  /**
-   * Abstract method for dispatching to each shape to render their own end tag.
-   *
-   * @return A String representing the closing tag for a SVG header
-   */
-  public abstract String generateEndTag();
-
-  /**
-   * Abstract method for dispatching to each shape to render their own animation tag for position.
-   *
-   * @param start  the starting tick of the animation
-   * @param end    the ending tick of the animation
-   * @param source the starting state of the shape that is being transformed
-   * @return       StringBuilder representing all of the animations needed to move the position
-   */
-  public abstract StringBuilder generatePositionTag(int start, int end, AbstractShape source);
-
-  /**
-   * Abstract method for dispatching to each shape to render their own animation tag for dimension.
-   *
-   * @param start  the starting tick of the animation
-   * @param end    the ending tick of the animation
-   * @param source the starting state of the shape that is being transformed
-   * @return       StringBuilder representing all of the animations needed to change the dimension
-   */
-  public abstract StringBuilder generateDimensionTag(int start, int end, AbstractShape source);
-
-  /**
-   * Generates the color tag for the given Abstract shape.
+   * Generates the color tag for the given shape.
    * @param start the start time of the motion.
    * @param end the end time of the motion.
    * @param source the shape to be generated from/
    * @return string representation of the given shape's color tag.
    */
-  public StringBuilder generateColorTag(int start, int end, AbstractShape source) {
+  @Override
+  public StringBuilder generateColorTag(int start, int end, IShape source) {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";

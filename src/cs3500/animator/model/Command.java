@@ -7,13 +7,13 @@ import java.awt.Graphics2D;
  * Represents a command to be executed in an Animator. Each command has a current shape that is
  * currently represented, and a destination shape with varying location, color, or size.
  */
-public final class Command {
+public final class Command implements CommandInterface {
 
   private final String name;
   private int start;
   private int end;
-  private AbstractShape current;
-  private AbstractShape destination;
+  private IShape current;
+  private IShape destination;
 
   /**
    * Constructs a Command which has 2 ints representing a time frame and two Shapes representing a
@@ -24,8 +24,8 @@ public final class Command {
    * @param current     The current state of the Shape in the Animator
    * @param destination The goal state of the Shape by the time the end tick is reached
    */
-  public Command(String name, int start, int end, AbstractShape current,
-                 AbstractShape destination) {
+  public Command(String name, int start, int end, IShape current,
+                 IShape destination) {
     if (start < 0 || end < 0 || start > end || name.equals("")) {
       throw new IllegalArgumentException("Start and end times must be greater than or equal to 0," +
               " and start cannot be after end.");
@@ -38,101 +38,73 @@ public final class Command {
     }
   }
 
-  /**
-   * Returns the start time of this command.
-   *
-   * @return the start time, in ticks, of this command.
-   */
+
+  @Override
   public int getStart() {
     return this.start;
   }
 
+  @Override
   public int getX() {
     return current.getCoordinates().x;
   }
 
+  @Override
   public int getY() {
     return current.getCoordinates().y;
   }
 
+  @Override
   public int getWidth() {
-    return this.current.width;
+    return this.current.getWidth();
   }
 
+  @Override
   public int getHeight() {
-    return this.current.height;
+    return this.current.getHeight();
   }
 
+  @Override
   public int getRed() {
-    return this.current.color.getRed();
+    return this.current.getColor().getRed();
   }
 
+  @Override
   public int getGreen() {
-    return this.current.color.getGreen();
+    return this.current.getColor().getGreen();
   }
 
+  @Override
   public int getBlue() {
-    return this.current.color.getBlue();
+    return this.current.getColor().getBlue();
   }
 
-  /**
-   * Returns the end time of this command.
-   *
-   * @return the end time, in ticks, of this command.
-   */
+  @Override
   public int getEnd() {
     return this.end;
   }
 
-  /**
-   * Replaces the destination shape with the given shape params.
-   * @param x x coord..
-   * @param y y coord.
-   * @param w width.
-   * @param h height.
-   * @param r red.
-   * @param g green.
-   * @param b blue.
-   * @return new shape.
-   */
-  public AbstractShape replaceDest(int x, int y, int w, int h, int r, int g,
+  @Override
+  public IShape replaceDest(int x, int y, int w, int h, int r, int g,
                                    int b) {
-    destination.coordinates.x = x;
-    destination.coordinates.y = y;
-    destination.width = w;
-    destination.height = h;
-    destination.color = new Color(r, g, b);
-
+    destination.replace(x, y, w, g, r, g, b);
     return destination;
   }
 
-  /**
-   * Replaces the current shape with the given shape params.
-   * @param x x coord..
-   * @param y y coord.
-   * @param w width.
-   * @param h height.
-   * @param r red.
-   * @param g green.
-   * @param b blue.
-   * @return new shape.
-   */
-  public AbstractShape replaceCurrent(int x, int y, int w, int h, int r, int g,
-                                      int b) {
-    current.coordinates.x = x;
-    current.coordinates.y = y;
-    current.width = w;
-    current.height = h;
-    current.color = new Color(r, g, b);
-
+  @Override
+  public IShape replaceCurrent(int x, int y, int w, int h, int r, int g,
+                            int b) {
+    current.replace(x, y, w, g, r, g, b);
     return current;
   }
+
 
   /**
    * Gets the destination shape.
    * @return destination shape.
    */
-  public AbstractShape getDest() {
+  @Override
+  public IShape getDest() {
     return destination;
   }
 
@@ -140,6 +112,7 @@ public final class Command {
    * Clones this command.
    * @return a copy of this command.
    */
+  @Override
   public Command clone() {
     return new Command(name, start, end, current, destination);
   }
@@ -149,6 +122,7 @@ public final class Command {
    *
    * @return this Command's name.
    */
+  @Override
   public String getName() {
     return this.name;
   }
@@ -157,24 +131,18 @@ public final class Command {
    * Returns this command's current shape.
    * @return current shape.
    */
-  public AbstractShape getCurrent() {
+  @Override
+  public IShape getCurrent() {
     return this.current;
-  }
-
-  /**
-   * Returns this command's destination shape.
-   * @return dest. shape.
-   */
-  public AbstractShape getDestination() {
-    return this.destination;
   }
 
   /**
    * Updates the current shape's value by the correct amounts per each field.
    */
+  @Override
   public void update(int currentTick) {
     int deltaT = this.end - currentTick;
-    AbstractShape newShape = current.getNextShape(destination, deltaT);
+    IShape newShape = current.getNextShape(destination, deltaT);
     this.current = newShape;
   }
 
@@ -184,6 +152,7 @@ public final class Command {
    * @param g           the canvas of the animator.
    * @param currentTick the tick representing the current time.
    */
+  @Override
   public void getDrawing(Graphics2D g, int currentTick) {
     if (this.getStart() <= currentTick && this.getEnd() >= currentTick) {
       this.current.getDrawing(g);
@@ -198,8 +167,8 @@ public final class Command {
 
     String result = "";
 
-    AbstractShape c = this.current;
-    AbstractShape d = this.destination;
+    IShape c = this.current;
+    IShape d = this.destination;
 
     result += this.name + " - Start: " + this.start + " X: "
             + (int) c.getCoordinates().getX() + " Y: " + c.getCoordinates().getY() + " W: "
@@ -215,19 +184,21 @@ public final class Command {
   }
 
   /**
-   * Dispatches the generation of SVG headers to AbstractShape.
+   * Dispatches the generation of SVG headers to Shape.
    *
    * @return String representation of a SVG shape header.
    */
+  @Override
   public String generateSVGHeader() {
     return this.current.generateSVGHeader(this.getName());
   }
 
   /**
-   * Generates the closing tag for an SVG header by dispatching to AbstractShape.
+   * Generates the closing tag for an SVG header by dispatching to Shape.
    *
    * @return String representation of a SVG closing tag.
    */
+  @Override
   public String generateEndTag() {
     return this.current.generateEndTag();
   }
@@ -238,6 +209,7 @@ public final class Command {
    *
    * @return StringBuilder representing all of the animations over this Command.
    */
+  @Override
   public StringBuilder generateAnimationTag() {
     StringBuilder tags = new StringBuilder();
     if (!this.current.getCoordinates().equals(this.destination.getCoordinates())) {
@@ -246,7 +218,7 @@ public final class Command {
     if (!this.current.getColor().equals(this.destination.getColor())) {
       tags.append(this.destination.generateColorTag(this.getStart(), this.getEnd(), current));
     }
-    if (!(current.width == destination.width || current.height == destination.height)) {
+    if (!(current.getWidth() == destination.getWidth() || current.getHeight() == destination.getHeight())) {
       tags.append(this.destination.generateDimensionTag(this.getStart(), this.getEnd(), current));
     }
     return tags;

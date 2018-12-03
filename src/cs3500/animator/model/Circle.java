@@ -25,15 +25,16 @@ public class Circle extends AbstractShape {
     this.radius = radius;
   }
 
+
   @Override
-  public Circle getNextShape(AbstractShape destination, int deltaT) {
+  public IShape getNextShape(IShape destination, int deltaT) {
     return new Circle(this.getNextColor(destination, deltaT),
             this.getNextPoint(destination, deltaT),
             (int) (((destination.getWidth() / 2) - this.radius) / deltaT) + this.radius);
   }
 
   @Override
-  protected void getDrawing(Graphics2D g) {
+  public void getDrawing(Graphics2D g) {
     Shape c = new Ellipse2D.Double(this.getCoordinates().x, this.getCoordinates().y,
             (double) this.radius * 2, (double) this.radius * 2);
 
@@ -57,7 +58,7 @@ public class Circle extends AbstractShape {
   }
 
   @Override
-  public StringBuilder generatePositionTag(int start, int end, AbstractShape source) {
+  public StringBuilder generatePositionTag(int start, int end, IShape source) {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
@@ -73,15 +74,15 @@ public class Circle extends AbstractShape {
   }
 
   @Override
-  public StringBuilder generateDimensionTag(int start, int end, AbstractShape source) {
+  public StringBuilder generateDimensionTag(int start, int end, IShape source) {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
-    if (this.width != source.width) {
-      animation.append(String.format(template, "rx", source.width / 2, this.width / 2));
+    if (this.width != source.getWidth()) {
+      animation.append(String.format(template, "rx", source.getWidth()/ 2, this.getWidth() / 2));
     }
-    if (this.height != source.height) {
-      animation.append(String.format(template, "ry", source.height / 2, this.height / 2));
+    if (this.height != source.getHeight()) {
+      animation.append(String.format(template, "ry", source.getHeight() / 2, this.height / 2));
     }
     return animation;
   }

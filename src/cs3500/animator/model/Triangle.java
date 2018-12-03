@@ -26,14 +26,14 @@ public class Triangle extends AbstractShape {
   }
 
   @Override
-  public Triangle getNextShape(AbstractShape destination, int deltaT) {
+  public Triangle getNextShape(IShape destination, int deltaT) {
     return new Triangle(this.getNextColor(destination, deltaT),
             this.getNextPoint(destination, deltaT),
             (int) (((destination.getWidth() - this.sideLength) / deltaT) + this.sideLength));
   }
 
   @Override
-  protected void getDrawing(Graphics2D g) {
+  public void getDrawing(Graphics2D g) {
 
     int[] x = {
         this.getCoordinates().x, this.getCoordinates().x + this.sideLength,
@@ -67,7 +67,7 @@ public class Triangle extends AbstractShape {
   }
 
   @Override
-  public StringBuilder generatePositionTag(int start, int end, AbstractShape source) {
+  public StringBuilder generatePositionTag(int start, int end, IShape source) {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s,%s %s,%s %s,%s\" " +
@@ -86,7 +86,7 @@ public class Triangle extends AbstractShape {
   }
 
   @Override
-  public StringBuilder generateDimensionTag(int start, int end, AbstractShape source) {
+  public StringBuilder generateDimensionTag(int start, int end, IShape source) {
     return this.generatePositionTag(start, end, source);
   }
 }

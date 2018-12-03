@@ -29,14 +29,14 @@ public class Oval extends AbstractShape {
   }
 
   @Override
-  public Oval getNextShape(AbstractShape destination, int deltaT) {
-    return new Oval(this.getNextColor(destination, deltaT), this.getNextPoint(destination, deltaT),
+  public IShape getNextShape(IShape destination, int deltaT) {
+    return new Oval(getNextColor(destination, deltaT), this.getNextPoint(destination, deltaT),
             (int) ((((destination.getWidth() / 2) - this.xRadius) / deltaT) + this.xRadius),
             (int) ((((destination.getHeight() / 2) - this.yRadius) / deltaT) + this.yRadius));
   }
 
   @Override
-  protected void getDrawing(Graphics2D g) {
+  public void getDrawing(Graphics2D g) {
     Shape e = new Ellipse2D.Double(this.coordinates.x, this.coordinates.y, (double)this.width,
             (double)this.height);
 
@@ -59,7 +59,7 @@ public class Oval extends AbstractShape {
   }
 
   @Override
-  public StringBuilder generatePositionTag(int start, int end, AbstractShape source) {
+  public StringBuilder generatePositionTag(int start, int end, IShape source) {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
@@ -75,15 +75,15 @@ public class Oval extends AbstractShape {
   }
 
   @Override
-  public StringBuilder generateDimensionTag(int start, int end, AbstractShape source) {
+  public StringBuilder generateDimensionTag(int start, int end, IShape source) {
     StringBuilder animation = new StringBuilder();
     String template = "    <animate attributeType=\"xml\" begin=\"" + start + "000.0ms\" dur=\""
             + end + "000.0ms\" attributeName=\"%s\" from=\"%s\" to=\"%s\" fill=\"freeze\" />\n";
-    if (this.width != source.width) {
-      animation.append(String.format(template, "rx", source.width / 2, this.width / 2));
+    if (this.width != source.getWidth()) {
+      animation.append(String.format(template, "rx", source.getWidth() / 2, this.width / 2));
     }
-    if (this.height != source.height) {
-      animation.append(String.format(template, "ry", source.height / 2, this.height / 2));
+    if (this.getHeight() != source.getHeight()) {
+      animation.append(String.format(template, "ry", source.getHeight() / 2, this.getHeight() / 2));
     }
     return animation;
   }

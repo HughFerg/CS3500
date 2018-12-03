@@ -57,6 +57,20 @@ public final class AnimatorModelImpl implements AnimatorModel {
   }
 
   @Override
+  public boolean isOver(int time) {
+
+    int lastTime = 0;
+
+    for (Command c : commands) {
+      if (c.getEnd() > lastTime) {
+        lastTime = c.getEnd();
+      }
+    }
+
+    return (time == lastTime);
+  }
+
+  @Override
   public int getCanvasX() {
     return x;
   }
@@ -112,7 +126,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
       commands.add(new Command(name, specifiedShape.get(specifiedShape.size() - 2).getStart(),
               specifiedShape.get(specifiedShape.size() - 1).getEnd(),
               specifiedShape.get(specifiedShape.size() - 2).getCurrent(),
-              specifiedShape.get(specifiedShape.size() - 1).getDestination()));
+              specifiedShape.get(specifiedShape.size() - 1).getDest()));
       commands.remove(specifiedShape.get(specifiedShape.size() - 2));
       commands.remove(specifiedShape.get(specifiedShape.size() - 1));
     } else {
@@ -141,10 +155,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
       // If KF already exists
       if (c.getName().equals(name)) {
         if (c.getStart() == time) {
-          toAdd.add(new Command(name, c.getStart(), c.getEnd(),
-                  c.replaceCurrent(x, y, w, h, r, g, b),
-                  c.getDest()));
-          toRm.add(c);
+          c.replaceCurrent(x, y, w, h, r, g, b);
         } else if (c.getEnd() == time) {
           toAdd.add(new Command(name, c.getStart(), c.getEnd(), c.getCurrent(),
                   c.replaceDest(x, y, w, h, r, g, b)));
