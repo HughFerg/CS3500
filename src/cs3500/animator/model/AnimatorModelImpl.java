@@ -60,6 +60,8 @@ public final class AnimatorModelImpl implements AnimatorModel {
     }
   }
 
+
+
   @Override
   public List<String> getShapeNames() {
     ArrayList<String> names = new ArrayList<>();
@@ -78,6 +80,18 @@ public final class AnimatorModelImpl implements AnimatorModel {
       next.add(c.clone());
     }
     return next;
+  }
+
+  @Override
+  public void setBounds(int x, int y, int w, int h) throws IllegalArgumentException {
+    if (x < 0 || y < 0 || w <= 0 || y <= 0) {
+      throw new IllegalArgumentException("Width, height, x, and y must be greater than or = to 0");
+    } else {
+      this.x = x;
+      this.y = y;
+      this.w = w;
+      this.h = h;
+    }
   }
 
   @Override

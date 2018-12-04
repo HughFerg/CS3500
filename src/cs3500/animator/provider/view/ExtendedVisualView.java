@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 
 import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimatorModel2;
 
 public class ExtendedVisualView extends JFrameView implements AnimatorEditorView {
   private EditorPanel editor;
@@ -104,7 +105,7 @@ public class ExtendedVisualView extends JFrameView implements AnimatorEditorView
   }
 
   @Override
-  public void display(AnimatorModel model) {
+  public void display(AnimatorModel2 model) {
     this.model = model;
     this.canvas.setPreferredSize(new Dimension(model.getCanvasWidth() + model.getCanvasX(),
             model.getCanvasHeight() + model.getCanvasY()));

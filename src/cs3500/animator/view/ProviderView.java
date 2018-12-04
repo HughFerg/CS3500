@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cs3500.animator.controller.AnimatorController;
 import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimatorModel2;
 import cs3500.animator.model.Command;
 import cs3500.animator.provider.view.ExtendedVisualView;
 
@@ -12,7 +13,7 @@ import cs3500.animator.provider.view.ExtendedVisualView;
  */
 public class ProviderView extends ExtendedVisualView implements AnimatorView {
 
-  private AnimatorModel model;
+  private AnimatorModel2 model;
 
   /**
    * A constructor for the JFrameView that forms a JFrame view based on the given ticks per second.
@@ -20,7 +21,7 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
    * @param tps ticks per second
    * @throws IllegalArgumentException if ticks are not zero or positive
    */
-  public ProviderView(int tps, AnimatorModel model) throws IllegalArgumentException {
+  public ProviderView(int tps, AnimatorModel2 model) throws IllegalArgumentException {
     super(tps);
     this.model = model;
   }

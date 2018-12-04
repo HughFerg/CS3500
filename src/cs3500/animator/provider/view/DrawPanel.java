@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import cs3500.animator.model.shape.Attributes;
-import cs3500.animator.model.shape.ModelShape;
+import cs3500.animator.model.Attributes;
+import cs3500.animator.model.ModelShape;
 
 /**
  * A JPanel dedicated to drawing the list of shapes it contains.

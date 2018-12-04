@@ -137,10 +137,4 @@ public interface IShape extends Attributes{
    */
   StringBuilder generateColorTag(int start, int end, IShape source);
 
-  /**Returns the Attributes
-   *
-   *
-   * @return
-   */
-  Attributes getAttributes();
 }

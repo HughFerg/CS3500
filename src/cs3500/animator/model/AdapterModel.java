@@ -48,7 +48,7 @@ public class AdapterModel implements AnimatorModel2 {
 
   @Override
   public void setBounds(int x, int y, int width, int height) throws IllegalArgumentException {
-
+    base.setBounds(x, y, width, height);
   }
 
   @Override

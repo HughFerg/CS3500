@@ -27,6 +27,17 @@ public interface AnimatorModel {
   ArrayList<Command> getCommands();
 
   /**
+   * Sets the bounds for the canvas.
+   *
+   * @param x      the x value of the canvas.
+   * @param y      the y value of the canvas.
+   * @param w the width of the canvas.
+   * @param h the height of the canvas.
+   * @throws IllegalArgumentException if the width or height are less than 0.
+   */
+  void setBounds(int x, int y, int w, int h) throws IllegalArgumentException;
+
+  /**
    * Returns if the animation has finished running.
    *
    * @return if the animation is over or not.
