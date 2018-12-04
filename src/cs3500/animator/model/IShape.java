@@ -69,6 +69,13 @@ public interface IShape {
   void getDrawing(Graphics2D g);
 
   /**
+   * Returns the type of shape that this is.
+   *
+   * @return the shape type.
+   */
+  String getShapeType();
+
+  /**
    * Abstract method for dispatching to each shape to render their own headings.
    *
    * @param name The name of the shape that a header is being generated for

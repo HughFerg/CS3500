@@ -53,6 +53,11 @@ public class Triangle extends AbstractShape {
   }
 
   @Override
+  public String getShapeType() {
+    return "triangle";
+  }
+
+  @Override
   public String generateSVGHeader(String name) {
     return String.format("<polygon id=\"%s\" points=\"%s,%s %s,%s %s,%s\" " +
                     "fill=\"rgb(%s,%s,%s)\" visibility=\"visible\" >\n", name,

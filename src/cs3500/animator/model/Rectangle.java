@@ -47,6 +47,11 @@ public class Rectangle extends AbstractShape {
   }
 
   @Override
+  public String getShapeType() {
+    return "rectangle";
+  }
+
+  @Override
   public String generateSVGHeader(String name) {
     return String.format("<rect id=\"%s\" x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" " +
                     "fill=\"rgb(%s,%s,%s)\" visibility=\"visible\" >\n", name,

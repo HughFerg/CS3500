@@ -45,6 +45,11 @@ public class Circle extends AbstractShape {
   }
 
   @Override
+  public String getShapeType() {
+    return "circle";
+  }
+
+  @Override
   public String generateSVGHeader(String name) {
     return String.format("<ellipse id=\"%s\" cx=\"%s\" cy=\"%s\" rx=\"%s\" ry=\"%s\" " +
                     "fill=\"rgb(%s,%s,%s)\" visibility=\"visible\" >\n", name, getCoordinates().x,
