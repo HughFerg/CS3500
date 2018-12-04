@@ -1,6 +1,6 @@
 package cs3500.animator.provider.view;
 
-import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimatorModel2;
 
 /**
  * Classes that implement this interface will in some way display an animation whether through text
@@ -14,6 +14,6 @@ public interface AnimatorView {
    *
    * @param model the given animation model
    */
-  void display(AnimatorModel model);
+  void display(AnimatorModel2 model);
 
 }

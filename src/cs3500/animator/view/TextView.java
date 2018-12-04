@@ -49,6 +49,11 @@ public class TextView extends AbstractView {
   }
 
   @Override
+  public int getTick() {
+    return 0;
+  }
+
+  @Override
   public void refresh(boolean playing) {
     throw new UnsupportedOperationException("Text view does not print in real time.");
   }

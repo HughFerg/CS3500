@@ -1,14 +1,19 @@
 package cs3500.animator.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 import cs3500.animator.model.ROModel;
 import cs3500.animator.view.AnimatorView;
 
 public class AnimatorControllerImpl implements AnimatorController {
 
-  ROModel model;
-  AnimatorView view;
+  private ROModel model;
+  private AnimatorView view;
   private boolean playing;
   private boolean looping;
+  private Timer timer;
 
   /**
    * Constructs a controller with the given model and view.
@@ -24,6 +29,20 @@ public class AnimatorControllerImpl implements AnimatorController {
     this.view = view;
     this.playing = true;
     this.looping = true;
+    this.timer = new Timer(1000 / view.getTps(), new PaintRefresh());
+  }
+
+  private class PaintRefresh implements ActionListener {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      if (view.endTick() && looping) {
+        restart();
+      } else if (playing) {
+        model.tick(view.getTick());
+        view.refresh(playing);
+      }
+    }
   }
 
   @Override
@@ -31,23 +50,6 @@ public class AnimatorControllerImpl implements AnimatorController {
 
     view.addListener(this);
     view.makeVisible();
-
-    do {
-      while (!view.endTick()) {
-
-        model.onTick();
-        view.refresh(playing);
-
-        try {
-          Thread.sleep( 1000L / view.getTps());
-        } catch (InterruptedException e) {
-          System.out.print("Thread.sleep is a hack.");
-        }
-      }
-      restart();
-    }
-    while (looping);
-    System.exit(0);
   }
 
   @Override

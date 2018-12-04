@@ -10,9 +10,6 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 
 import cs3500.animator.model.AnimatorModel;
-import cs3500.animator.model.shape.ModelEllipse;
-import cs3500.animator.model.shape.ModelRectangle;
-import cs3500.animator.model.shape.ShapeAttributes;
 
 public class ExtendedVisualView extends JFrameView implements AnimatorEditorView {
   private EditorPanel editor;

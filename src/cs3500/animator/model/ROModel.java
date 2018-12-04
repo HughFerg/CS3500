@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public final class ROModel implements AnimatorModel {
   private AnimatorModel baseModel;
@@ -10,8 +11,13 @@ public final class ROModel implements AnimatorModel {
   }
 
   @Override
-  public void onTick() {
-    baseModel.onTick();
+  public void tick(int tick) {
+    baseModel.tick(tick);
+  }
+
+  @Override
+  public List<String> getShapeNames() {
+    return baseModel.getShapeNames();
   }
 
   @Override

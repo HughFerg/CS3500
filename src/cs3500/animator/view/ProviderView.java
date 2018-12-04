@@ -47,7 +47,7 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
 
   @Override
   public void makePanel() {
-
+    // Left blank because provider view already initializes panels in makeVisible().
   }
 
   @Override
@@ -59,7 +59,7 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
 
   @Override
   public void addListener(AnimatorController controller) {
-
+    // Left blank because provider view does not have instance of controller but model instead.
   }
 
   @Override
@@ -70,5 +70,10 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
   @Override
   public boolean endTick() {
     return model.isOver(time);
+  }
+
+  @Override
+  public int getTick() {
+    return time;
   }
 }

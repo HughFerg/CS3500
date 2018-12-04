@@ -3,9 +3,6 @@ package cs3500.animator.model;
 import java.awt.Color;
 import java.util.List;
 
-import cs3500.animator.model.animation.Animation;
-import cs3500.animator.model.shape.ModelShape;
-
 /**
  * Represents animation of multiple 2D shapes. Can be played frame by frame or rendered as a text
  * description of the animation.

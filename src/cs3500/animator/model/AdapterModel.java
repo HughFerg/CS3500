@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class AdapterModel implements AnimatorModel2 {
 
-  AnimatorModel base;
+  private AnimatorModel base;
 
   public AdapterModel(AnimatorModel base) {
     this.base = base;
@@ -17,7 +17,7 @@ public class AdapterModel implements AnimatorModel2 {
 
   @Override
   public void tick(int time) {
-    base.onTick();
+    base.tick(time);
   }
 
   @Override
@@ -53,7 +53,7 @@ public class AdapterModel implements AnimatorModel2 {
 
   @Override
   public List<String> getListOfShapeNames() {
-    return null;
+    return base.getShapeNames();
   }
 
   @Override

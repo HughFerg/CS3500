@@ -58,4 +58,9 @@ public interface AnimatorView {
    * @return if view has ended.
    */
   boolean endTick();
+
+  /**
+   * Returns the current tick of this view.
+   */
+  int getTick();
 }

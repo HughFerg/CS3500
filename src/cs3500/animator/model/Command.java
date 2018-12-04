@@ -1,6 +1,5 @@
 package cs3500.animator.model;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
@@ -37,7 +36,6 @@ public final class Command implements CommandInterface {
       this.destination = destination;
     }
   }
-
 
   @Override
   public int getStart() {

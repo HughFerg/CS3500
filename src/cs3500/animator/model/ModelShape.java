@@ -76,7 +76,6 @@ public interface ModelShape {
    */
   void setAnimations(List<Animation> animations);
 
-
   /**
    * Adds a keyframe at the given time with the given attributes.
    *

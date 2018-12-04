@@ -73,6 +73,11 @@ public class VisualView extends AbstractView {
   }
 
   @Override
+  public int getTick() {
+    return tick;
+  }
+
+  @Override
   public String getOutput() {
     throw new UnsupportedOperationException("No String output for visual view.");
   }

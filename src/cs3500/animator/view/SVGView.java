@@ -75,6 +75,11 @@ public class SVGView extends AbstractView implements AnimatorView {
   }
 
   @Override
+  public int getTick() {
+    return 0;
+  }
+
+  @Override
   public boolean endTick() {
     controller.loop();
     return true;

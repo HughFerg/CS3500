@@ -10,7 +10,7 @@ import javax.swing.Timer;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
-import cs3500.animator.model.AnimatorModel;
+import cs3500.animator.model.AnimatorModel2;
 
 /**
  * Displays the given animation model in a JFrame view.
@@ -20,10 +20,9 @@ public class JFrameView implements AnimatorView {
   protected Timer timer;
   protected JFrame frame;
   protected DrawPanel canvas;
-  protected AnimatorModel model;
+  protected AnimatorModel2 model;
   protected int time = 0;
   protected boolean isLoop = false;
-
 
   /**
    * A constructor for the JFrameView that forms a JFrame view based on the given ticks per second.
@@ -57,7 +56,7 @@ public class JFrameView implements AnimatorView {
   }
 
   @Override
-  public void display(AnimatorModel model) {
+  public void display(AnimatorModel2 model) {
     this.model = model;
     this.canvas.setPreferredSize(new Dimension(model.getCanvasWidth() + model.getCanvasX(),
             model.getCanvasHeight() + model.getCanvasY()));

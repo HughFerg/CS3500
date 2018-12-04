@@ -11,7 +11,13 @@ public interface AnimatorModel {
   /**
    * Updates all shapes based on the current active commands.
    */
-  void onTick();
+  void tick(int tick);
+
+  /**
+   * Returns a list of current shape names.
+   * @return list of shape names.
+   */
+  List<String> getShapeNames();
 
   /**
    * Returns this Animator's list of commands.

@@ -478,4 +478,8 @@ public class EditorView extends AbstractView implements ActionListener {
     return visualView.endTick();
   }
 
+  @Override
+  public int getTick() {
+    return visualView.getTick();
+  }
 }

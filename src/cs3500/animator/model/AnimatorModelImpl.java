@@ -1,10 +1,10 @@
-
 package cs3500.animator.model;
 
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cs3500.animator.util.AnimationBuilder;
 
@@ -14,6 +14,7 @@ import cs3500.animator.util.AnimationBuilder;
 public final class AnimatorModelImpl implements AnimatorModel {
 
   private ArrayList<Command> commands;
+  private ArrayList<Command> immutableCommands;
   private int tick = 0;
   private int w;
   private int h;
@@ -23,10 +24,11 @@ public final class AnimatorModelImpl implements AnimatorModel {
   // Creates an Animator Model with no commands.
   public AnimatorModelImpl() {
     this.commands = new ArrayList<>();
+    this.immutableCommands = new ArrayList<>();
   }
 
   /**
-   Creates an Animatormodel with the given dimensions and start point.
+   * Creates an AnimatorModel with the given dimensions and start point.
    */
   public AnimatorModelImpl(int w, int h, int x, int y, ArrayList<Command> commands) {
     this.w = w;
@@ -34,6 +36,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
     this.x = x;
     this.y = y;
     this.commands = commands;
+    this.immutableCommands = commands;
   }
 
   // Creates an Animator Model with the given commands.
@@ -42,8 +45,29 @@ public final class AnimatorModelImpl implements AnimatorModel {
   }
 
   @Override
-  public void onTick() {
-    this.tick += 1;
+  public void tick(int tick) {
+    this.tick = tick;
+
+    if (tick == 0) {
+      commands.clear();
+      for (Command c : immutableCommands) {
+        commands.add(c);
+      }
+    } else {
+      for (Command c : commands) {
+        c.update(tick);
+      }
+    }
+  }
+
+  @Override
+  public List<String> getShapeNames() {
+    ArrayList<String> names = new ArrayList<>();
+
+    for (Command c : commands) {
+      names.add(c.getName());
+    }
+    return names;
   }
 
   @Override
@@ -66,7 +90,6 @@ public final class AnimatorModelImpl implements AnimatorModel {
         lastTime = c.getEnd();
       }
     }
-
     return (time == lastTime);
   }
 
@@ -184,8 +207,6 @@ public final class AnimatorModelImpl implements AnimatorModel {
                 b), new Point(x, y),
                 w);
 
-        toAdd.add(new Command(name, time, time, nextShape,
-                nextShape));
 
       } else if (shapename.equals("rect")) {
 
@@ -193,8 +214,6 @@ public final class AnimatorModelImpl implements AnimatorModel {
                 b), new Point(x, y),
                 w, h);
 
-        toAdd.add(new Command(name, time, time, nextShape,
-                nextShape));
 
       } else if (shapename.equals("oval")) {
 
@@ -202,11 +221,11 @@ public final class AnimatorModelImpl implements AnimatorModel {
                 b), new Point(x, y),
                 w, h);
 
-        toAdd.add(new Command(name, time, time, nextShape,
-                nextShape));
       } else {
         throw new IllegalArgumentException("Invalid shape type.");
       }
+      toAdd.add(new Command(name, time, time, nextShape,
+              nextShape));
     }
     commands.addAll(toAdd);
     commands.removeAll(toRm);
