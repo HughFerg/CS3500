@@ -53,6 +53,24 @@ public abstract class AbstractShape implements IShape {
     return this.coordinates;
   }
 
+  @Override
+  public void changeShapeSize(int width, int height) {
+    this.replace(this.getX(), this.getY(), width, height, this.color.getRed(),
+            this.color.getGreen(), this.color.getBlue());
+  }
+
+  @Override
+  public void moveShape(int x, int y) {
+    this.replace(x, y, this.getWidth(), this.getHeight(), this.color.getRed(),
+            this.color.getGreen(), this.color.getBlue());
+  }
+
+  @Override
+  public void setColor(Color color) {
+    this.replace(this.getX(), this.getY(), this.getWidth(), this.getHeight(), color.getRed(),
+            color.getGreen(), color.getBlue());
+  }
+
   /**
    * Getter method for retrieving a shape's Color without allowing for mutation.
    *
@@ -63,6 +81,16 @@ public abstract class AbstractShape implements IShape {
     return this.color;
   }
 
+  @Override
+  public int getX() {
+    return (int) this.getCoordinates().getX();
+  }
+
+  @Override
+  public int getY() {
+    return (int) this.getCoordinates().getY();
+  }
+
   /**
    * Getter method for retrieving a shape's width without allowing for mutation.
    *
@@ -71,6 +99,11 @@ public abstract class AbstractShape implements IShape {
   @Override
   public int getWidth() {
     return this.width;
+  }
+
+  @Override
+  public Attributes copy() {
+    return this.copy();
   }
 
   /**

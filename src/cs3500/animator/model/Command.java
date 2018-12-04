@@ -87,14 +87,14 @@ public final class Command implements CommandInterface {
   @Override
   public IShape replaceDest(int x, int y, int w, int h, int r, int g,
                                    int b) {
-    destination.replace(x, y, w, g, r, g, b);
+    destination.replace(x, y, w, h, r, g, b);
     return destination;
   }
 
   @Override
   public IShape replaceCurrent(int x, int y, int w, int h, int r, int g,
                             int b) {
-    current.replace(x, y, w, g, r, g, b);
+    current.replace(x, y, w, h, r, g, b);
     return current;
   }
 

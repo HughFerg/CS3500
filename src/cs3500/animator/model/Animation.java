@@ -1,8 +1,5 @@
 package cs3500.animator.model;
 
-import cs3500.animator.model.shape.Attributes;
-import cs3500.animator.model.shape.ModelShape;
-
 /**
  * Describes the objects for different animations that can be applied to ModelShapes.
  */

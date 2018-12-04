@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import java.awt.Graphics2D;
+import java.util.List;
 
 /**
  * Represents the public facing functionality of a command object.
@@ -156,6 +157,8 @@ interface CommandInterface {
    */
   String generateEndTag();
 
+  StringBuilder generateAnimationTag();
+
 
   /**
    * Dispatches the creation of animation tags for each of the possible transformations a shape can
@@ -163,5 +166,6 @@ interface CommandInterface {
    *
    * @return StringBuilder representing all of the animations over this Command.
    */
-  StringBuilder generateAnimationTag();
+  //StringBuilder generateAnimationTag();
+
 }

@@ -1,4 +1,4 @@
-package cs3500.animator.model.shape;
+package cs3500.animator.model;
 
 import java.awt.Color;
 

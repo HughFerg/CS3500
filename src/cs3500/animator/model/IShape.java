@@ -7,7 +7,7 @@ import java.awt.Point;
 /**
  * Represents functionality of a shape in the Animator model.
  */
-public interface IShape {
+public interface IShape extends Attributes{
 
   /**
    * Getter method for retrieving a shape's coordinate without allowing for mutation.
@@ -136,4 +136,11 @@ public interface IShape {
    * @return string representation of the given shape's color tag.
    */
   StringBuilder generateColorTag(int start, int end, IShape source);
+
+  /**Returns the Attributes
+   *
+   *
+   * @return
+   */
+  Attributes getAttributes();
 }

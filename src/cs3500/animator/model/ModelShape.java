@@ -1,8 +1,6 @@
 package cs3500.animator.model;
 import java.util.List;
 
-import cs3500.animator.model.shape.Attributes;
-
 /**
  * Interface representing a single shape in an animation.
  */
@@ -86,7 +84,7 @@ public interface ModelShape {
    * @param attributes the attributes of the shape at the keyframe's given time
    */
 
-  void addKeyFrame(int time, ShapeAttributes attributes);
+  void addKeyFrame(int time, Attributes attributes);
 
   /**
    * Removes a keyframe from the given index of the list of keyframes, does not remove anything if

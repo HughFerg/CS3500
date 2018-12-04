@@ -17,11 +17,12 @@ public class AdapterModel implements AnimatorModel2 {
 
   @Override
   public void tick(int time) {
-
+    base.onTick();
   }
 
   @Override
   public List<ModelShape> getShapeStates() {
+    //need some class for what a ModelShape is
     return null;
   }
 
