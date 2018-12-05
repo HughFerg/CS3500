@@ -7,7 +7,7 @@ import java.awt.Point;
 /**
  * Represents functionality of a shape in the Animator model.
  */
-public interface IShape extends Attributes{
+public interface IShape extends Attributes {
 
   /**
    * Getter method for retrieving a shape's coordinate without allowing for mutation.
@@ -36,6 +36,13 @@ public interface IShape extends Attributes{
    * @return The height of a shape
    */
   int getHeight();
+
+  /**
+   * Converts this shape into a model shape.
+   * @param name the name of the shape.
+   * @return the model shape version of this shape.
+   */
+  ModelShape toModelShape(String name);
 
   /**
    * Replaces this shape's abstract qualities with the given ones.

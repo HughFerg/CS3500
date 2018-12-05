@@ -28,11 +28,23 @@ public class Rectangle extends AbstractShape {
     this.height = height;
   }
 
+  /**
+   * Creates a default values oval to be edited later.
+   */
+  public Rectangle() {
+    super();
+  }
+
   @Override
   public Rectangle getNextShape(IShape destination, int deltaT) {
     return new Rectangle(this.getNextColor(destination, deltaT), this.getNextPoint(destination,
             deltaT), (int) (((destination.getWidth() - this.width) / deltaT) + this.width),
             (int) (((destination.getHeight() - this.height) / deltaT) + this.height));
+  }
+
+  @Override
+  public ModelShape toModelShape(String name) {
+    return new ModelRectangle(name, this);
   }
 
   @Override

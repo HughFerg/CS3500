@@ -72,7 +72,7 @@ public interface Attributes {
    * Returns a copy of the attributes.
    * @return a copy of the attributes
    */
-  Attributes copy();
+  Attributes copyShape();
 
 
 }

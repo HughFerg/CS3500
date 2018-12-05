@@ -9,8 +9,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.AnimatorModel2;
+import cs3500.animator.model.ModelEllipse;
+import cs3500.animator.model.ModelRectangle;
+import cs3500.animator.model.Oval;
+import cs3500.animator.model.Rectangle;
 
 public class ExtendedVisualView extends JFrameView implements AnimatorEditorView {
   private EditorPanel editor;
@@ -83,9 +86,9 @@ public class ExtendedVisualView extends JFrameView implements AnimatorEditorView
   @Override
   public void addShape(String s, String type) {
     if (type.equals("ellipse")) {
-      this.model.addShape(new ModelEllipse(s, new ShapeAttributes()));
+      this.model.addShape(new ModelEllipse(s, new Oval()));
     } else {
-      this.model.addShape(new ModelRectangle(s, new ShapeAttributes()));
+      this.model.addShape(new ModelRectangle(s, new Rectangle()));
     }
   }
 

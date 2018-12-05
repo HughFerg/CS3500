@@ -14,6 +14,7 @@ import cs3500.animator.provider.view.ExtendedVisualView;
 public class ProviderView extends ExtendedVisualView implements AnimatorView {
 
   private AnimatorModel2 model;
+  private int tps;
 
   /**
    * A constructor for the JFrameView that forms a JFrame view based on the given ticks per second.
@@ -23,6 +24,7 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
    */
   public ProviderView(int tps, AnimatorModel2 model) throws IllegalArgumentException {
     super(tps);
+    this.tps = tps;
     this.model = model;
   }
 
@@ -55,7 +57,7 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
   public int getTps() {
     // NEED TO FIGURE OUT TIMER (if its in controller or view because provider has it in view)
     //view should be able to just request from the controller I believe
-    return this.timer.getDelay() / 1000;
+    return this.tps;
   }
 
   @Override

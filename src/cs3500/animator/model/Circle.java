@@ -27,6 +27,11 @@ public class Circle extends AbstractShape {
 
 
   @Override
+  public ModelShape toModelShape(String name) {
+    return new ModelEllipse(name, new Oval(this.color, this.coordinates, this.radius, this.radius));
+  }
+
+  @Override
   public IShape getNextShape(IShape destination, int deltaT) {
     return new Circle(this.getNextColor(destination, deltaT),
             this.getNextPoint(destination, deltaT),

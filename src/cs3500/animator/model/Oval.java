@@ -28,11 +28,23 @@ public class Oval extends AbstractShape {
     this.yRadius = yRadius;
   }
 
+  /**
+   * Creates a default values oval to be edited later.
+   */
+  public Oval() {
+    super();
+  }
+
   @Override
   public IShape getNextShape(IShape destination, int deltaT) {
     return new Oval(getNextColor(destination, deltaT), this.getNextPoint(destination, deltaT),
             (int) ((((destination.getWidth() / 2) - this.xRadius) / deltaT) + this.xRadius),
             (int) ((((destination.getHeight() / 2) - this.yRadius) / deltaT) + this.yRadius));
+  }
+
+  @Override
+  public ModelShape toModelShape(String name) {
+    return new ModelEllipse(name, this);
   }
 
   @Override

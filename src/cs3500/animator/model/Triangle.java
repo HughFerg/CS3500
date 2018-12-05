@@ -26,6 +26,11 @@ public class Triangle extends AbstractShape {
   }
 
   @Override
+  public ModelShape toModelShape(String name) {
+    throw new UnsupportedOperationException("No triangles in provider view.");
+  }
+
+  @Override
   public Triangle getNextShape(IShape destination, int deltaT) {
     return new Triangle(this.getNextColor(destination, deltaT),
             this.getNextPoint(destination, deltaT),

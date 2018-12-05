@@ -142,6 +142,9 @@ public final class Command implements CommandInterface {
     int deltaT = this.end - currentTick;
     IShape newShape = current.getNextShape(destination, deltaT);
     this.current = newShape;
+    if (this.getEnd() <= currentTick) {
+      this.start = currentTick;
+    }
   }
 
   /**

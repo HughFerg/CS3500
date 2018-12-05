@@ -22,13 +22,22 @@ public class AdapterModel implements AnimatorModel2 {
 
   @Override
   public List<ModelShape> getShapeStates() {
-    //need some class for what a ModelShape is
-    return null;
+    List<ModelShape> shapes = new ArrayList<>();
+    for (Command cmd : base.getCommands()) {
+      if (base.getTick() >= cmd.getStart() && base.getTick() < cmd.getEnd()) {
+        shapes.add(cmd.getCurrent().toModelShape(cmd.getName()));
+      }
+    }
+    return shapes;
   }
 
   @Override
   public void addShape(ModelShape shape) {
-
+    base.addKeyFrame(shape.getName(), shape.getName(), 0, shape.getAttributes().getX(),
+            shape.getAttributes().getY(),
+            shape.getAttributes().getWidth(), shape.getAttributes().getHeight(),
+            shape.getAttributes().getColor().getRed(), shape.getAttributes().getColor().getGreen(),
+            shape.getAttributes().getColor().getBlue());
   }
 
   @Override

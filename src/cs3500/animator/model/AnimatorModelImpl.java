@@ -51,11 +51,13 @@ public final class AnimatorModelImpl implements AnimatorModel {
     if (tick == 0) {
       commands.clear();
       for (Command c : immutableCommands) {
-        commands.add(c);
+          commands.add(c);
       }
     } else {
       for (Command c : commands) {
-        c.update(tick);
+        if (c.getEnd() > tick) {
+          c.update(tick);
+        }
       }
     }
   }
@@ -330,5 +332,9 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
   public void reset() {
     tick = 0;
+  }
+
+  public int getTick() {
+    return this.tick;
   }
 }

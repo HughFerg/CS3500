@@ -35,6 +35,16 @@ public abstract class AbstractShape implements IShape {
     }
   }
 
+  /**
+   * Sets default values for a shape to be changed later.
+   */
+  public AbstractShape() {
+    this.color = Color.ORANGE;
+    this.coordinates = new Point(0 , 0);
+    this.width = 0;
+    this.height = 0;
+  }
+
   @Override
   public void replace(int x, int y, int w, int h, int r, int g, int b) {
     this.coordinates = new Point(x, y);
@@ -81,6 +91,7 @@ public abstract class AbstractShape implements IShape {
     return this.color;
   }
 
+
   @Override
   public int getX() {
     return (int) this.getCoordinates().getX();
@@ -102,8 +113,8 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public Attributes copy() {
-    return this.copy();
+  public Attributes copyShape() {
+    return this.copyShape();
   }
 
   /**

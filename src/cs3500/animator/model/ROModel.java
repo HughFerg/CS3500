@@ -26,6 +26,11 @@ public final class ROModel implements AnimatorModel {
   }
 
   @Override
+  public void setBounds(int x, int y, int w, int h) throws IllegalArgumentException {
+    baseModel.setBounds(x, y, w, h);
+  }
+
+  @Override
   public boolean isOver(int time) {
     return baseModel.isOver(time);
   }
@@ -69,5 +74,10 @@ public final class ROModel implements AnimatorModel {
                           int h,
                           int r, int g, int b) {
     baseModel.addKeyFrame(shapename, name, time, x, y, w, h, r, g, b);
+  }
+
+  @Override
+  public int getTick() {
+    return baseModel.getTick();
   }
 }

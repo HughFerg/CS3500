@@ -79,7 +79,7 @@ public final class Excellence {
       try {
         view.writeToFile(outFile);
       } catch (UnsupportedOperationException e) {
-        throw new FileNotFoundException("Output file not found");
+        // Do nothing because non-output controllers will throw errors.
       }
 
     } catch (FileNotFoundException e) {

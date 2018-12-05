@@ -108,5 +108,11 @@ public interface AnimatorModel {
   void addKeyFrame(String shapename, String name, int time, int x, int y, int w,
                    int h,
                    int r, int g, int b);
+
+  /**
+   * Gets the ticking tick.
+   * @return the tick.
+   */
+  int getTick();
 }
 
