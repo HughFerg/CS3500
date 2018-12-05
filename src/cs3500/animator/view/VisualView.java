@@ -37,12 +37,12 @@ public class VisualView extends AbstractView {
    */
   public VisualView(int tps, ArrayList<Command> viewCommands, int w, int h, int x, int y) {
     super(tps, viewCommands, x, y, w, h);
-    this.viewCommands = viewCommands;
     this.tick = 0;
   }
 
   @Override
   public void makeVisible() {
+    makePanel();
     setVisible(true);
   }
 
