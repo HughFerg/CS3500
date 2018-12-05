@@ -164,5 +164,10 @@ public interface AnimatorModel2 {
    * @param index thi index of the keyframe to remove.
    */
   void removeKeyFrame(String name, int index);
+
+  /**
+   * resets the data in the model.
+   */
+  void reset();
 }
 

@@ -42,24 +42,25 @@ public final class AnimatorModelImpl implements AnimatorModel {
   // Creates an Animator Model with the given commands.
   public AnimatorModelImpl(ArrayList<Command> commands) {
     this.commands = commands;
+    this.immutableCommands = commands;
   }
 
   @Override
   public void tick(int tick) {
     this.tick = tick;
 
-    if (tick == 0) {
-      commands.clear();
-      for (Command c : immutableCommands) {
-          commands.add(c);
-      }
-    } else {
+    //if (tick == 0) {
+    //  commands.clear();
+    //  for (Command c : immutableCommands) {
+    //      commands.add(c);
+    //  }
+    //} else {
       for (Command c : commands) {
-        if (c.getEnd() > tick) {
+        if (c.getEnd() > tick && c.getStart() <= tick) {
           c.update(tick);
         }
       }
-    }
+    //}
   }
 
 
@@ -331,7 +332,8 @@ public final class AnimatorModelImpl implements AnimatorModel {
   }
 
   public void reset() {
-    tick = 0;
+    this.tick = 0;
+    this.commands = new ArrayList<>(immutableCommands);
   }
 
   public int getTick() {

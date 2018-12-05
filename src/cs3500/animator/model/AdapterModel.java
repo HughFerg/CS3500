@@ -121,4 +121,9 @@ public class AdapterModel implements AnimatorModel2 {
   public void removeKeyFrame(String name, int index) {
 
   }
+
+  @Override
+  public void reset() {
+    this.base.reset();
+  }
 }

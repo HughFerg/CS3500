@@ -36,6 +36,7 @@ public class ExtendedVisualView extends JFrameView implements AnimatorEditorView
   @Override
   public void restart() {
     this.time = 0;
+    this.model.reset();
     this.resume();
   }
 
