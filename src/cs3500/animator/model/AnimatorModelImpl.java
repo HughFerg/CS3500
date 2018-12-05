@@ -49,18 +49,18 @@ public final class AnimatorModelImpl implements AnimatorModel {
   public void tick(int tick) {
     this.tick = tick;
 
-    //if (tick == 0) {
-    //  commands.clear();
-    //  for (Command c : immutableCommands) {
-    //      commands.add(c);
-    //  }
-    //} else {
+    if (tick == 0) {
+      commands.clear();
+      for (Command c : immutableCommands) {
+          commands.add(c);
+      }
+    } else {
       for (Command c : commands) {
         if (c.getEnd() > tick && c.getStart() <= tick) {
           c.update(tick);
         }
       }
-    //}
+    }
   }
 
   @Override
@@ -77,8 +77,8 @@ public final class AnimatorModelImpl implements AnimatorModel {
   public ArrayList<Command> getCommands() {
 
     ArrayList<Command> next = new ArrayList<>(commands.size());
-    for (Command c : immutableCommands) {
-      next.add(c.clone());
+    for (Command c : commands) {
+      next.add(c);
     }
     return next;
   }

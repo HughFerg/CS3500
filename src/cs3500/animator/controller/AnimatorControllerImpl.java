@@ -36,6 +36,7 @@ public class AnimatorControllerImpl implements AnimatorController {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
       if (view.endTick() && looping) {
         restart();
       } else if (playing) {
@@ -50,7 +51,6 @@ public class AnimatorControllerImpl implements AnimatorController {
 
     view.addListener(this);
     view.makeVisible();
-    this.timer.start();
   }
 
   @Override
@@ -63,11 +63,13 @@ public class AnimatorControllerImpl implements AnimatorController {
 
   @Override
   public void play() {
+    timer.start();
     playing = true;
   }
 
   @Override
   public void pause() {
+    timer.stop();
     playing = false;
   }
 

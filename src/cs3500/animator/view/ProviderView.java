@@ -33,6 +33,13 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
   }
 
   @Override
+  public void restart() {
+    model.reset();
+    this.time = 0;
+    this.resume();
+  }
+
+  @Override
   public void makeVisible() {
     display(model);
   }
@@ -54,8 +61,6 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
 
   @Override
   public int getTps() {
-    // NEED TO FIGURE OUT TIMER (if its in controller or view because provider has it in view)
-    //view should be able to just request from the controller I believe
     return this.tps;
   }
 

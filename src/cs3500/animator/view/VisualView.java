@@ -44,6 +44,7 @@ public class VisualView extends AbstractView {
   public void makeVisible() {
     makePanel();
     setVisible(true);
+    controller.play();
   }
 
   @Override
@@ -61,7 +62,9 @@ public class VisualView extends AbstractView {
           }
         }
       }
+      viewCommands.removeAll(toRemove);
       repaint();
+      System.out.println(tick);
       tick += 1;
     }
   }
