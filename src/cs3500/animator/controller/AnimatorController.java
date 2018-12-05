@@ -31,6 +31,18 @@ public interface AnimatorController {
   void restart();
 
   /**
+   * Changes the ticks/second by the given amount.
+   * @param delta the amount to change the tps by.
+   */
+  void changeSpeed(int delta);
+
+  /**
+   * Returns if the animation is on its last tick.
+   * @return if it is the last tick.
+   */
+  boolean endTick(int t);
+
+  /**
    * Loops the animation.
    */
   void loop();

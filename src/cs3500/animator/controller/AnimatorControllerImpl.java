@@ -50,6 +50,7 @@ public class AnimatorControllerImpl implements AnimatorController {
 
     view.addListener(this);
     view.makeVisible();
+    this.timer.start();
   }
 
   @Override
@@ -72,7 +73,18 @@ public class AnimatorControllerImpl implements AnimatorController {
 
   @Override
   public void restart() {
+    model.reset();
     view.setCommands(model.getCommands());
+  }
+
+  @Override
+  public void changeSpeed(int delta) {
+    this.timer.setDelay(1000 / view.getTps() + delta);
+  }
+
+  @Override
+  public boolean endTick(int t) {
+    return model.isOver(t);
   }
 
   @Override

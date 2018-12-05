@@ -55,14 +55,12 @@ public final class AnimatorModelImpl implements AnimatorModel {
       }
     } else {
       for (Command c : commands) {
-        if (c.getEnd() > tick) {
+        if (c.getEnd() > tick && c.getStart() <= tick) {
           c.update(tick);
         }
       }
     }
   }
-
-
 
   @Override
   public List<String> getShapeNames() {
@@ -78,7 +76,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
   public ArrayList<Command> getCommands() {
 
     ArrayList<Command> next = new ArrayList<>(commands.size());
-    for (Command c : commands) {
+    for (Command c : immutableCommands) {
       next.add(c.clone());
     }
     return next;
@@ -144,6 +142,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
   @Override
   public void deleteCommand(String name) {
+
     String[] data = name.split(" ");
     String shapeName = data[0];
     int start = Integer.parseInt(data[1]);

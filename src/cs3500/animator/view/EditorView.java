@@ -454,7 +454,7 @@ public class EditorView extends AbstractView implements ActionListener {
   @Override
   public void setCommands(ArrayList<Command> commands) {
     viewCommands = commands;
-    visualView.setCommands(viewCommands);
+    visualView.setCommands(commands);
   }
 
   /*
@@ -470,12 +470,13 @@ public class EditorView extends AbstractView implements ActionListener {
    * @param diff the speed by which to change the tps by.
    */
   private void setSpeed(int diff) {
-    tps += diff;
+    controller.changeSpeed(diff);
+    tps = tps + diff;
   }
 
   @Override
   public boolean endTick() {
-    return visualView.endTick();
+    return controller.endTick(visualView.getTick());
   }
 
   @Override
