@@ -155,6 +155,11 @@ public final class AnimatorModelImpl implements AnimatorModel {
   }
 
   @Override
+  public void addCommand(Command command) {
+    commands.add(command);
+  }
+
+  @Override
   public void deleteCommand(String name) {
 
     String[] data = name.split(" ");
