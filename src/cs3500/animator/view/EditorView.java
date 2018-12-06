@@ -182,8 +182,13 @@ public class EditorView extends AbstractView implements ActionListener {
   }
 
   @Override
-  public void refresh(boolean playing) {
-    visualView.refresh(playing);
+  public void refresh(boolean playing, ArrayList<Command> commands) {
+    visualView.refresh(playing, commands);
+  }
+
+  @Override
+  public void reset() {
+    visualView.reset();
   }
 
   @Override
@@ -474,9 +479,14 @@ public class EditorView extends AbstractView implements ActionListener {
     tps = tps + diff;
   }
 
+
+  public ArrayList<Command> getCommands() {
+  return visualView.viewCommands;
+  }
+
   @Override
   public boolean endTick() {
-    return controller.endTick(visualView.getTick());
+    return visualView.endTick();
   }
 
   @Override

@@ -33,6 +33,11 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
   }
 
   @Override
+  public void reset() {
+    restart();
+  }
+
+  @Override
   public void restart() {
     model.reset();
     this.time = 0;
@@ -45,7 +50,7 @@ public class ProviderView extends ExtendedVisualView implements AnimatorView {
   }
 
   @Override
-  public void refresh(boolean playing) {
+  public void refresh(boolean playing, ArrayList<Command> commands) {
 
   }
 

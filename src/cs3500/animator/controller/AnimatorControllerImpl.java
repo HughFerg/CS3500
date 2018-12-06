@@ -29,9 +29,12 @@ public class AnimatorControllerImpl implements AnimatorController {
     this.view = view;
     this.playing = true;
     this.looping = true;
-    this.timer = new Timer(1000 / view.getTps(), new PaintRefresh());
+    this.timer = new Timer(1000 / view.getTps(), null);
   }
 
+  /**
+   * Timer event class used for refreshing the model and view.
+   */
   private class PaintRefresh implements ActionListener {
 
     @Override
@@ -41,7 +44,7 @@ public class AnimatorControllerImpl implements AnimatorController {
         restart();
       } else if (playing) {
         model.tick(view.getTick());
-        view.refresh(playing);
+        view.refresh(playing, model.getCommands());
       }
     }
   }
@@ -51,6 +54,8 @@ public class AnimatorControllerImpl implements AnimatorController {
 
     view.addListener(this);
     view.makeVisible();
+    timer.addActionListener(new PaintRefresh());
+    timer.start();
   }
 
   @Override
@@ -76,7 +81,8 @@ public class AnimatorControllerImpl implements AnimatorController {
   @Override
   public void restart() {
     model.reset();
-    view.setCommands(model.getCommands());
+    view.reset();
+    view.refresh(playing, model.getCommands());
   }
 
   @Override

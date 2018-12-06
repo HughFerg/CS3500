@@ -42,7 +42,9 @@ public final class AnimatorModelImpl implements AnimatorModel {
   // Creates an Animator Model with the given commands.
   public AnimatorModelImpl(ArrayList<Command> commands) {
     this.commands = commands;
-    this.immutableCommands = commands;
+    for (Command c : commands) {
+      this.immutableCommands.add(c.clone());
+    }
   }
 
   @Override
@@ -50,10 +52,12 @@ public final class AnimatorModelImpl implements AnimatorModel {
     this.tick = tick;
 
     if (tick == 0) {
-      commands.clear();
+      ArrayList<Command> toAdd = new ArrayList<>();
       for (Command c : immutableCommands) {
-          commands.add(c);
+        toAdd.add(c.clone());
       }
+      commands.clear();
+      commands.addAll(toAdd);
     } else {
       for (Command c : commands) {
         if (c.getEnd() > tick && c.getStart() <= tick) {
@@ -78,7 +82,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
 
     ArrayList<Command> next = new ArrayList<>(commands.size());
     for (Command c : commands) {
-      next.add(c);
+      next.add(c.clone());
     }
     return next;
   }
@@ -139,6 +143,17 @@ public final class AnimatorModelImpl implements AnimatorModel {
     for (Command aboutToRemove : toRemove) {
       commands.remove(aboutToRemove);
     }
+  }
+
+  @Override
+  public void reset() {
+    tick = 0;
+    tick(0);
+  }
+
+  @Override
+  public int getTick() {
+    return this.tick;
   }
 
   @Override
@@ -263,7 +278,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
     @Override
     public AnimatorModel build() {
 
-      model = new AnimatorModelImpl(width, height, x, y, this.commands);
+      model = new AnimatorModelImpl(x, y, width, height, this.commands);
       return model;
     }
 
@@ -327,15 +342,6 @@ public final class AnimatorModelImpl implements AnimatorModel {
       addMotion(name, t, x, y, w, g, r, g, b, t, x, y, w, g, r, g, b);
       return this;
     }
-
   }
 
-  public void reset() {
-    this.tick = 0;
-    this.commands = new ArrayList<>(immutableCommands);
-  }
-
-  public int getTick() {
-    return this.tick;
-  }
 }

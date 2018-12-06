@@ -54,7 +54,7 @@ public class TextView extends AbstractView {
   }
 
   @Override
-  public void refresh(boolean playing) {
+  public void refresh(boolean playing, ArrayList<Command> commands) {
     throw new UnsupportedOperationException("Text view does not print in real time.");
   }
 }

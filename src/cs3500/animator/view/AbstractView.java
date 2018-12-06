@@ -22,12 +22,12 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
 
 
   // Ticks per second.
-  protected int tps = 1;
+  protected int tps;
   protected ArrayList<Command> viewCommands;
-  protected int startX = 200;
-  protected int startY = 200;
-  protected int width = 700;
-  protected int height = 700;
+  protected int startX = 1000;
+  protected int startY = 1000;
+  protected int width = 800;
+  protected int height = 800;
   protected AnimatorController controller;
 
   /**
@@ -90,6 +90,10 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
     return this.tps;
   }
 
+  public void reset() {
+    // Do nothing cause some views don't have a notion of tick.
+  }
+
   @Override
   public void writeToFile(String fileName) {
 
@@ -114,10 +118,9 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
     JFrame frame = new JFrame();
 
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    frame.setPreferredSize(new Dimension(this.width, this.height));
-    frame.setLocation(this.startX, this.startY);
     frame.getContentPane().add(this);
+
+    frame.setLocation(this.startX, this.startY);
     frame.pack();
     frame.setVisible(true);
   }

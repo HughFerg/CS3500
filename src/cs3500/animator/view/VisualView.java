@@ -4,14 +4,12 @@ import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import java.util.List;
 
 import cs3500.animator.model.Command;
 
 // Represents a Visual view for the Animator, displaying images using a JFrame.
 public class VisualView extends AbstractView {
 
-  private ArrayList<Command> viewCommands;
   private int tick;
 
   /**
@@ -22,18 +20,17 @@ public class VisualView extends AbstractView {
    */
   public VisualView(int tps, ArrayList<Command> viewCommands) {
     super(tps, viewCommands);
-    this.viewCommands = viewCommands;
-    this.tick = 0;
   }
 
   /**
    * Creates a visual view w given speed commands and dimensions.
-   * @param tps ticks/sec
+   *
+   * @param tps          ticks/sec
    * @param viewCommands commands to be rendered.
-   * @param w witdh.
-   * @param h height.
-   * @param x x coord.
-   * @param y y coord.
+   * @param w            witdh.
+   * @param h            height.
+   * @param x            x coord.
+   * @param y            y coord.
    */
   public VisualView(int tps, ArrayList<Command> viewCommands, int w, int h, int x, int y) {
     super(tps, viewCommands, x, y, w, h);
@@ -48,30 +45,20 @@ public class VisualView extends AbstractView {
   }
 
   @Override
-  public void refresh(boolean playing) {
+  public void refresh(boolean playing, ArrayList<Command> commands) {
 
-    if (playing) {
-      List toRemove = new ArrayList();
+    setCommands(commands);
+    repaint();
+    tick += 1;
+  }
 
-      for (Command cmd : viewCommands) {
-        if (cmd.getEnd() <= this.tick) {
-          toRemove.add(cmd);
-        } else {
-          if (cmd.getStart() <= this.tick) {
-            cmd.update(this.tick);
-          }
-        }
-      }
-      viewCommands.removeAll(toRemove);
-      repaint();
-      System.out.println(tick);
-      tick += 1;
-    }
+  @Override
+  public void reset() {
+    tick = 0;
   }
 
   @Override
   public void setCommands(ArrayList<Command> commands) {
-    tick = 0;
     viewCommands = commands;
   }
 
@@ -109,11 +96,12 @@ public class VisualView extends AbstractView {
 
   @Override
   public boolean endTick() {
-    return tick > viewCommands.get(viewCommands.size() - 1).getEnd();
+    return tick >= viewCommands.get(viewCommands.size() - 1).getEnd();
   }
 
   /**
    * Deletes the given shape from this list of commands.
+   *
    * @param name the name of the shape to be deleted.
    */
   public void deleteShape(String name) {
@@ -123,8 +111,6 @@ public class VisualView extends AbstractView {
         toRemove.add(c);
       }
     }
-    for (Command aboutToRemove : toRemove) {
-      viewCommands.remove(aboutToRemove);
-    }
+    viewCommands.removeAll(toRemove);
   }
 }

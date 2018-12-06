@@ -24,7 +24,7 @@ public interface AnimatorView {
    * Updates the frames in an animation. Only used in VisualView.
    * @param playing if the animation is playing or not.
    */
-  void refresh(boolean playing);
+  void refresh(boolean playing, ArrayList<Command> commands);
 
   /**
    * Writes the view's output to the given file.
@@ -35,6 +35,11 @@ public interface AnimatorView {
    * Places the view onto a JPanel for display.
    */
   void makePanel();
+
+  /**
+   * Resets the time back to 0.
+   */
+  void reset();
 
   /**
    * Returns this view's ticks/second.

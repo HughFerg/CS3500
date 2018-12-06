@@ -1,6 +1,5 @@
 package cs3500.animator.provider.view;
 
-
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 

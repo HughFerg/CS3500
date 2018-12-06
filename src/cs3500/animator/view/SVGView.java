@@ -86,7 +86,7 @@ public class SVGView extends AbstractView implements AnimatorView {
   }
 
   @Override
-  public void refresh(boolean playing) {
+  public void refresh(boolean playing, ArrayList<Command> commands) {
     throw new UnsupportedOperationException("SVG does not print in real time.");
   }
 }
