@@ -17,10 +17,10 @@ public class Oval extends AbstractShape {
   /**
    * Constructor for an oval shape.
    *
-   * @param color        The Color of the the oval
-   * @param coordinates  The coordinate of the center of the oval
-   * @param xRadius      The radius in the x direction of the oval
-   * @param yRadius      The radius in the y direction of the oval
+   * @param color       The Color of the the oval
+   * @param coordinates The coordinate of the center of the oval
+   * @param xRadius     The radius in the x direction of the oval
+   * @param yRadius     The radius in the y direction of the oval
    */
   public Oval(Color color, Point coordinates, int xRadius, int yRadius) {
     super(color, coordinates, 2 * xRadius, 2 * yRadius);
@@ -49,8 +49,8 @@ public class Oval extends AbstractShape {
 
   @Override
   public void getDrawing(Graphics2D g) {
-    Shape e = new Ellipse2D.Double(this.coordinates.x, this.coordinates.y, (double)this.width,
-            (double)this.height);
+    Shape e = new Ellipse2D.Double(this.coordinates.x, this.coordinates.y, (double) this.width,
+            (double) this.height);
 
     g.setPaint(this.getColor());
     g.fill(e);

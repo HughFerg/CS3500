@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -38,15 +39,15 @@ public class TestAnimator {
   AbstractShape t2 = new Triangle(new Color(0, 200, 0), new Point(4, 4), 5);
 
   Command triCmd1 = new Command("Triangle1", 0, 4, t1, t2);
-  Command triCmd2 = new Command("Triangle1",4, 8, t2, t2);
+  Command triCmd2 = new Command("Triangle1", 4, 8, t2, t2);
 
   Command rectCmd1 = new Command("Rectangle1", 3, 4, r1, r2);
-  Command rectCmd2 = new Command("Rectangle1",4, 6, r2, r3);
-  Command rectCmd3 = new Command("Rectangle1",6, 10, r3, r3);
+  Command rectCmd2 = new Command("Rectangle1", 4, 6, r2, r3);
+  Command rectCmd3 = new Command("Rectangle1", 6, 10, r3, r3);
 
   Command circleCmd1 = new Command("Circle1", 0, 5, c1, c1);
-  Command circleCmd2 = new Command("Circle1",5, 7, c1, c2);
-  Command circleCmd3 = new Command("Circle1",7, 10, c2, c3);
+  Command circleCmd2 = new Command("Circle1", 5, 7, c1, c2);
+  Command circleCmd3 = new Command("Circle1", 7, 10, c2, c3);
 
   ArrayList<Command> commands = new ArrayList<Command>();
 
@@ -63,7 +64,7 @@ public class TestAnimator {
     commands.add(circleCmd3);
 
     animator = new AnimatorModelImpl(800, 700, 0, 1, commands);
-    textView = new TextView(animator.getCommands(),animator.getCanvasWidth(), animator.getCanvasHeight());
+    textView = new TextView(animator.getCommands(), animator.getCanvasWidth(), animator.getCanvasHeight());
   }
 
   @Test(expected = IllegalArgumentException.class)

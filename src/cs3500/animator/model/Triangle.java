@@ -41,12 +41,12 @@ public class Triangle extends AbstractShape {
   public void getDrawing(Graphics2D g) {
 
     int[] x = {
-        this.getCoordinates().x, this.getCoordinates().x + this.sideLength,
-        (int) (this.getCoordinates().x + (.5 * this.sideLength))
+            this.getCoordinates().x, this.getCoordinates().x + this.sideLength,
+            (int) (this.getCoordinates().x + (.5 * this.sideLength))
     };
     int[] y = {
-        this.getCoordinates().y, this.getCoordinates().y,
-        (int) this.getCoordinates().y + this.getHeight()
+            this.getCoordinates().y, this.getCoordinates().y,
+            (int) this.getCoordinates().y + this.getHeight()
     };
 
     Shape t = new Polygon(x, y, 3);

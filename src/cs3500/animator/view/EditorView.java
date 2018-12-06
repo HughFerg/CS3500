@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import cs3500.animator.model.AnimatorModel;
 import cs3500.animator.model.Command;
 
 /*
@@ -481,7 +480,7 @@ public class EditorView extends AbstractView implements ActionListener {
 
 
   public ArrayList<Command> getCommands() {
-  return visualView.viewCommands;
+    return visualView.viewCommands;
   }
 
   @Override

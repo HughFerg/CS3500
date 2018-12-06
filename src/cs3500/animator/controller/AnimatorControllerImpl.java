@@ -2,6 +2,7 @@ package cs3500.animator.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.Timer;
 
 import cs3500.animator.model.ROModel;
@@ -17,8 +18,9 @@ public class AnimatorControllerImpl implements AnimatorController {
 
   /**
    * Constructs a controller with the given model and view.
+   *
    * @param model the animator model to be controlled.
-   * @param view the view to be controlled.
+   * @param view  the view to be controlled.
    */
   public AnimatorControllerImpl(ROModel model, AnimatorView view) {
 
@@ -88,11 +90,6 @@ public class AnimatorControllerImpl implements AnimatorController {
   @Override
   public void changeSpeed(int delta) {
     timer.setDelay(1000 / view.getTps() + delta);
-  }
-
-  @Override
-  public boolean endTick(int t) {
-    return model.isOver(t);
   }
 
   @Override

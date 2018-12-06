@@ -33,12 +33,12 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
   /**
    * Constructor for an AbstractView which initializes all basic values that the views share.
    *
-   * @param tps     ticks per second
-   * @param viewCommands   the list of commands that represents our animation
-   * @param startX  x coordinate of the top left corner
-   * @param startY  y coordinate of the top left corner
-   * @param w       width of the canvas
-   * @param h       height of the canvas
+   * @param tps          ticks per second
+   * @param viewCommands the list of commands that represents our animation
+   * @param startX       x coordinate of the top left corner
+   * @param startY       y coordinate of the top left corner
+   * @param w            width of the canvas
+   * @param h            height of the canvas
    */
   public AbstractView(int tps, ArrayList<Command> viewCommands, int startX, int startY, int w,
                       int h) throws IllegalArgumentException {
@@ -60,7 +60,8 @@ public abstract class AbstractView extends JPanel implements AnimatorView {
 
   /**
    * Constructor for Abstract view that only takes in a tick/second and a model.
-   * @param tps the ticks/second.
+   *
+   * @param tps          the ticks/second.
    * @param viewCommands the specified list of commands in the animation.
    */
   public AbstractView(int tps, ArrayList<Command> viewCommands) throws IllegalArgumentException {

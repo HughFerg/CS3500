@@ -11,7 +11,7 @@ public interface AnimatorController {
    *
    * @throws IllegalArgumentException if the controller's model or view is null
    * @throws IllegalStateException    if the controller is unable to successfully receive input or
-   *         transmit output
+   *                                  transmit output
    */
   void animate();
 
@@ -32,15 +32,10 @@ public interface AnimatorController {
 
   /**
    * Changes the ticks/second by the given amount.
+   *
    * @param delta the amount to change the tps by.
    */
   void changeSpeed(int delta);
-
-  /**
-   * Returns if the animation is on its last tick.
-   * @return if it is the last tick.
-   */
-  boolean endTick(int t);
 
   /**
    * Loops the animation.
@@ -49,28 +44,31 @@ public interface AnimatorController {
 
   /**
    * Deletes the given shape.
+   *
    * @param name name of shape to be deleted.
    */
   void deleteShape(String name);
 
   /**
    * Deletes the given command.
+   *
    * @param name name of command to be deleted.
    */
   void deleteCommand(String name);
 
   /**
    * Adds the given keyframe to the model.
+   *
    * @param shapename type of the new shape.
-   * @param name name of the shape.
-   * @param time time of Kf.
-   * @param x x location.
-   * @param y y location.
-   * @param w width.
-   * @param h height.
-   * @param r red val.
-   * @param g green val.
-   * @param b blue val.
+   * @param name      name of the shape.
+   * @param time      time of Kf.
+   * @param x         x location.
+   * @param y         y location.
+   * @param w         width.
+   * @param h         height.
+   * @param r         red val.
+   * @param g         green val.
+   * @param b         blue val.
    */
   void addKeyFrame(String shapename, String name, int time, int x, int y, int w,
                    int h,

@@ -1,9 +1,0 @@
-- Create new composite view
-    - start, pause, resume, restart
-    - looping toggle
-    - Increase decrease speed
-- -edit into command options
-- UI (visual queues)
-- make model check for continuity
-- inserting removing keyframes (splicing commands) thus shapes
-- replace calls of model in views with ROModel

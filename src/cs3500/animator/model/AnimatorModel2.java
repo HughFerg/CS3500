@@ -131,6 +131,7 @@ public interface AnimatorModel2 {
 
   /**
    * Returns true if the animation is over at the given time.
+   *
    * @param time a positive int.
    * @return whether or not the animation is over at that time.
    */
@@ -147,20 +148,20 @@ public interface AnimatorModel2 {
   /**
    * Edits a shapes animations to add a new key frame.
    *
-   * @param name name of shape to edit.
-   * @param time time of keyframe.
+   * @param name   name of shape to edit.
+   * @param time   time of keyframe.
    * @param height height of the shape.
-   * @param width width of the shape.
-   * @param color color of shape.
-   * @param x x position of shape.
-   * @param y y position of shape.
+   * @param width  width of the shape.
+   * @param color  color of shape.
+   * @param x      x position of shape.
+   * @param y      y position of shape.
    */
   void addKeyFrame(String name, int time, int height, int width, Color color, int x, int y);
 
   /**
    * Removes a keyframe from a shapes animations.
    *
-   * @param name name of the shape.
+   * @param name  name of the shape.
    * @param index thi index of the keyframe to remove.
    */
   void removeKeyFrame(String name, int index);
