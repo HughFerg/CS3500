@@ -68,9 +68,6 @@ public class TestController {
 
     animator = new AnimatorModelImpl(commandList);
 
-    //animator.addCommand(rectCmd1);
-    //animator.addCommand(rectCmd2);
-
     editor = new EditorView(25, animator.getCommands());
     controller = new AnimatorControllerImpl(new ROModel(animator), editor);
   }
@@ -80,6 +77,8 @@ public class TestController {
     controller.deleteShape("Rectangle1");
     assertEquals(animator.getCommands().size(), 5);
   }
+
+  
 
   @Test
   public void testDeleteShapes() {

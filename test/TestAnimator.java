@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import cs3500.animator.model.AbstractShape;
 import cs3500.animator.model.AnimatorModel;
@@ -11,7 +12,8 @@ import cs3500.animator.model.Command;
 import cs3500.animator.model.Oval;
 import cs3500.animator.model.Rectangle;
 import cs3500.animator.model.Triangle;
-import cs3500.animator.view.*;
+import cs3500.animator.view.AnimatorView;
+import cs3500.animator.view.TextView;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -46,27 +48,23 @@ public class TestAnimator {
   Command circleCmd2 = new Command("Circle1",5, 7, c1, c2);
   Command circleCmd3 = new Command("Circle1",7, 10, c2, c3);
 
+  ArrayList<Command> commands = new ArrayList<Command>();
+
+
   @Before
   public void init() {
-    animator = new AnimatorModelImpl();
-    textView = new TextView(animator.getCommands(),300, 300);
-  }
-  /*
-  @Test(expected = IllegalArgumentException.class)
-  public void testTimeTravellingCommand() {
-    animator.addCommand(new Command("Circle",2, 1, c1, c2));
-  }
+    commands.add(triCmd1);
+    commands.add(triCmd2);
+    commands.add(rectCmd1);
+    commands.add(rectCmd2);
+    commands.add(rectCmd3);
+    commands.add(circleCmd1);
+    commands.add(circleCmd2);
+    commands.add(circleCmd3);
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testNegativeTime() {
-    animator.addCommand(new Command("Circle",-2, 1, c1, c2));
+    animator = new AnimatorModelImpl(800, 700, 0, 1, commands);
+    textView = new TextView(animator.getCommands(),animator.getCanvasWidth(), animator.getCanvasHeight());
   }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testDoubleNegativeTime() {
-    animator.addCommand(new Command("Circle",-2, -1, c1, c2));
-  }
-*/
 
   @Test(expected = IllegalArgumentException.class)
   public void testBadRect() {
@@ -88,33 +86,82 @@ public class TestAnimator {
     new Oval(Color.RED, new Point(3, 5), -1, 4);
   }
 
-//  @Test
-//  public void testGet0Tick() {
-//    assertEquals(0, animator.getTick());
-//  }
-
-//  @Test
-//  public void testIncrementTickEmpty() {
-//    animator.tick(1);
-//    assertEquals(1, animator.t);
-//  }
-  /*
   @Test
-  public void test0TickFull() {
-    animator.addCommand(rectCmd2);
-
+  public void testGet0Tick() {
     assertEquals(0, animator.getTick());
   }
 
   @Test
-  public void testIncrementTickFull() {
-    animator.addCommand(triCmd1);
-    animator.addCommand(circleCmd1);
-    animator.addCommand(rectCmd1);
-    animator.onTick();
+  public void testGetCanvasW() {
+    assertEquals(800, animator.getCanvasWidth());
+  }
 
+  @Test
+  public void testGetCanvasH() {
+    assertEquals(700, animator.getCanvasHeight());
+  }
+
+  @Test
+  public void testGetCanvasX() {
+    assertEquals(0, animator.getCanvasX());
+  }
+
+  @Test
+  public void testGetCanvasY() {
+    assertEquals(1, animator.getCanvasY());
+  }
+
+  @Test
+  public void testDeleteNonexistantShape() {
+    assertEquals(8, animator.getCommands().size());
+    animator.deleteShape("sdaf");
+    assertEquals(8, animator.getCommands().size());
+  }
+
+  @Test
+  public void testDeleteShape() {
+    assertEquals(8, animator.getCommands().size());
+    animator.deleteShape("Circle1");
+    assertEquals(5, animator.getCommands().size());
+  }
+
+  @Test
+  public void testDeleteCommand() {
+    animator.deleteCommand("Circle1 5");
+    assertEquals(7, animator.getCommands().size());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void addInvalidShapeType() {
+    animator.addKeyFrame("fieri", "Circle1 11", 11, 5, 5, 100, 100, 100, 100, 100);
+  }
+
+  @Test
+  public void testAddCommand() {
+    animator.addKeyFrame("oval", "Circle1 11", 11, 5, 5, 100, 100, 100, 100, 100);
+    assertEquals(9, animator.getCommands().size());
+  }
+
+  @Test
+  public void testIsOver() {
+    assertEquals(false, animator.isOver(0));
+    assertEquals(false, animator.isOver(5));
+    assertEquals(true, animator.isOver(11));
+  }
+
+  @Test
+  public void testIncrementTickEmpty() {
+    animator.tick(1);
     assertEquals(1, animator.getTick());
   }
-  */
+
+  @Test
+  public void testReset() {
+    animator.tick(10);
+    assertEquals(10, animator.getTick());
+
+    animator.reset();
+    assertEquals(0, animator.getTick());
+  }
 }
 

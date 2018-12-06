@@ -42,9 +42,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
   // Creates an Animator Model with the given commands.
   public AnimatorModelImpl(ArrayList<Command> commands) {
     this.commands = commands;
-    for (Command c : commands) {
-      this.immutableCommands.add(c.clone());
-    }
+    this.immutableCommands = commands;
   }
 
   @Override
@@ -109,7 +107,7 @@ public final class AnimatorModelImpl implements AnimatorModel {
         lastTime = c.getEnd();
       }
     }
-    return (time == lastTime);
+    return (time >= lastTime);
   }
 
   @Override

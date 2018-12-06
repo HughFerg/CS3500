@@ -87,7 +87,7 @@ public class AnimatorControllerImpl implements AnimatorController {
 
   @Override
   public void changeSpeed(int delta) {
-    this.timer.setDelay(1000 / view.getTps() + delta);
+    timer.setDelay(1000 / view.getTps() + delta);
   }
 
   @Override
