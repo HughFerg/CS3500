@@ -41,4 +41,7 @@ Our Editor view is a panel with editing operations on it (Add/update/delete) and
   and looping out of the model and into the controller, which uses that to render the animations
   correctly. We also created a read=only model so that the controller cannot mutate it incorrectly.
 
-
+At the end of the day, we were not able to get keyframes editing implemented correctly in the their
+views. We also had a peculiar bug where after resetting our animations become very jumpy. As we
+were updating our model to be more flexible and more easily function under both of our sets of
+views, we broke reset and were never able to get it back to its original functionality.
