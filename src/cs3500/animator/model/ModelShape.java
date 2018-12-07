@@ -1,4 +1,5 @@
 package cs3500.animator.model;
+
 import java.util.List;
 
 /**

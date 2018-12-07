@@ -1,6 +1,6 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 

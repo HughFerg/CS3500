@@ -1,12 +1,11 @@
 package cs3500.animator.model;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Point;
 
 /**
- * Represents an abstract shape with all common shape characteristics (coordinates, color, width
- * and height). More specific dimensions are established in subclasses.
+ * Represents an abstract shape with all common shape characteristics (coordinates, color, width and
+ * height). More specific dimensions are established in subclasses.
  */
 public abstract class AbstractShape implements IShape {
 
@@ -40,7 +39,7 @@ public abstract class AbstractShape implements IShape {
    */
   public AbstractShape() {
     this.color = Color.ORANGE;
-    this.coordinates = new Point(0 , 0);
+    this.coordinates = new Point(0, 0);
     this.width = 0;
     this.height = 0;
   }
@@ -56,7 +55,7 @@ public abstract class AbstractShape implements IShape {
   /**
    * Getter method for retrieving a shape's coordinate without allowing for mutation.
    *
-   * @return  The Coordinate of a shape
+   * @return The Coordinate of a shape
    */
   @Override
   public Point getCoordinates() {
@@ -84,7 +83,7 @@ public abstract class AbstractShape implements IShape {
   /**
    * Getter method for retrieving a shape's Color without allowing for mutation.
    *
-   * @return  The Color of a shape
+   * @return The Color of a shape
    */
   @Override
   public Color getColor() {
@@ -105,7 +104,7 @@ public abstract class AbstractShape implements IShape {
   /**
    * Getter method for retrieving a shape's width without allowing for mutation.
    *
-   * @return  The width of a shape
+   * @return The width of a shape
    */
   @Override
   public int getWidth() {
@@ -120,7 +119,7 @@ public abstract class AbstractShape implements IShape {
   /**
    * Getter method for retrieving a shape's height without allowing for mutation.
    *
-   * @return  The height of a shape
+   * @return The height of a shape
    */
   @Override
   public int getHeight() {
@@ -129,9 +128,10 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * Gets the next color for this shape based on the destination shape and the given delta T.
+   *
    * @param destination the shape to eventually be transformed into.
-   * @param deltaT the current tick - the transformation end time.
-   * @return  The color of the shape after a time of deltaT.
+   * @param deltaT      the current tick - the transformation end time.
+   * @return The color of the shape after a time of deltaT.
    */
   @Override
   public Color getNextColor(IShape destination, int deltaT) {
@@ -145,9 +145,10 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * Gets the next point for his shape given the target shape and the deltaT.
+   *
    * @param destination the destination shape to eventually transform into.
-   * @param deltaT the current tick - transformation end time
-   * @return  The point of a shape after a time of deltaT.
+   * @param deltaT      the current tick - transformation end time
+   * @return The point of a shape after a time of deltaT.
    */
   @Override
   public Point getNextPoint(IShape destination, int deltaT) {
@@ -160,8 +161,9 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * Generates the color tag for the given shape.
-   * @param start the start time of the motion.
-   * @param end the end time of the motion.
+   *
+   * @param start  the start time of the motion.
+   * @param end    the end time of the motion.
    * @param source the shape to be generated from/
    * @return string representation of the given shape's color tag.
    */

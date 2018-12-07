@@ -36,8 +36,8 @@ public interface Animation {
   Animation getCopy();
 
   /**
-   * Returns true if the end time of this and start time of that are equal
-   * and if the end state of this and the start state are equal.
+   * Returns true if the end time of this and start time of that are equal and if the end state of
+   * this and the start state are equal.
    *
    * @param that another animation
    * @return whether these animations can go next to each other in a valid animation

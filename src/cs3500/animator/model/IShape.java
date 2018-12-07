@@ -39,6 +39,7 @@ public interface IShape extends Attributes {
 
   /**
    * Converts this shape into a model shape.
+   *
    * @param name the name of the shape.
    * @return the model shape version of this shape.
    */
@@ -108,9 +109,10 @@ public interface IShape extends Attributes {
 
   /**
    * Gets the next point for his shape given the target shape and the deltaT.
+   *
    * @param destination the destination shape to eventually transform into.
-   * @param deltaT the current tick - transformation end time
-   * @return  The point of a shape after a time of deltaT.
+   * @param deltaT      the current tick - transformation end time
+   * @return The point of a shape after a time of deltaT.
    */
   Point getNextPoint(IShape destination, int deltaT);
 

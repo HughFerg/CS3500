@@ -79,7 +79,20 @@ public class TestController {
     assertEquals(animator.getCommands().size(), 5);
   }
 
-  
+  @Test
+  public void testDeleteInvalidShape() {
+    controller.deleteShape("Rectangle1dfsahjklh");
+    assertEquals(8, animator.getCommands().size());
+  }
+
+  @Test
+  public void testRestart() {
+    assertEquals(0, animator.getTick());
+    animator.tick(50);
+    assertEquals(50, animator.getTick());
+    animator.reset();
+    assertEquals(0, animator.getTick());
+  }
 
   @Test
   public void testDeleteShapes() {

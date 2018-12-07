@@ -1,7 +1,6 @@
 package cs3500.animator.model;
 
 import java.awt.Graphics2D;
-import java.util.List;
 
 /**
  * Represents the public facing functionality of a command object.

@@ -12,12 +12,12 @@ public class SVGView extends AbstractView implements AnimatorView {
   /**
    * Constructs an SVGView with the given parameters.
    *
-   * @param tps    ticks per second.
-   * @param viewCommands  the commands of our Animator.
-   * @param startX top left x coordinate of the canvas.
-   * @param startY top left y coordinate of the canvas.
-   * @param w      overall width of the canvas.
-   * @param h      overall height of the canvas.
+   * @param tps          ticks per second.
+   * @param viewCommands the commands of our Animator.
+   * @param startX       top left x coordinate of the canvas.
+   * @param startY       top left y coordinate of the canvas.
+   * @param w            overall width of the canvas.
+   * @param h            overall height of the canvas.
    */
   public SVGView(int tps, ArrayList<Command> viewCommands, int startX, int startY, int w, int h) {
     super(tps, viewCommands, startX, startY, w, h);
@@ -26,7 +26,7 @@ public class SVGView extends AbstractView implements AnimatorView {
   /**
    * Constructs an SVGView with the given model and tps.
    *
-   * @param tps   ticks per second.
+   * @param tps          ticks per second.
    * @param viewCommands the commands of our Animator.
    */
   public SVGView(int tps, ArrayList<Command> viewCommands) {
