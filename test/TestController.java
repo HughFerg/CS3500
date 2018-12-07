@@ -20,6 +20,7 @@ import cs3500.animator.view.EditorView;
 
 import static org.junit.Assert.assertEquals;
 
+
 public class TestController {
   AnimatorModel animator;
 

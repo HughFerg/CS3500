@@ -1,0 +1,20 @@
+Originally when we were given our code from our provider, there was only one change that we needed
+to request from them. One of their interfaces used an instance of a class as a parameter and that
+needed to be converted to an interface type instead.
+
+Despite the interfaces being usable, we ran into a lot of problems with how obscure the interfaces
+were. We could make some educated guesses of how their data was structured, however, it was
+completely different than our own structure which made constructing our adapters very difficult.
+Our design used shapes as the most basic piece of data, however, from what we could gather, their
+shapes were much higher in the hierarchy, since each included their own animations.
+
+Their views were quite relatively easy to get running and had some pretty impressive features.
+One of the biggest issues we had with their views was that their view contained a model which made
+it a very different experience to work around their views compared to our own. Another major problem
+is that their view UI is quite unintuitive. When it comes to their keyframes and creating new shapes
+it is difficult to know which of the drop downs correlate to which function.
+
+The documentation that was provided to use was satisfactory. There were some cases where method
+purpose statements would simply say the same thing as the method title. These descriptions could
+have been more verbose in order to make it easier for us to figure out how best to translate our
+functionality into theirs.

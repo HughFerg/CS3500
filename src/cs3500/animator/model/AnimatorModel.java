@@ -116,5 +116,11 @@ public interface AnimatorModel {
    * @return the tick.
    */
   int getTick();
+
+  /**
+   * Method used only for testing and throws error in ROmodel
+   * @param command The Command to be added
+   */
+  void addCommand(Command command) throws IllegalAccessException;
 }
 

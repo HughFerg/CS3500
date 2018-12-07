@@ -80,4 +80,9 @@ public final class ROModel implements AnimatorModel {
   public int getTick() {
     return baseModel.getTick();
   }
+
+  @Override
+  public void addCommand(Command command) throws IllegalAccessException {
+    throw new IllegalAccessException("A ROModel cannot be modified.");
+  }
 }
