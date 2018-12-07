@@ -21,13 +21,13 @@ to deliver our data to our model in the way we desire, thus our model does not i
 invariants but still maintains them. These invariants being no overlaps and no empty space between
 animations.
 
-Our SVG view is constructed by dispatching as far as we reliably can down to our base shapes. For 
+Our SVG view is constructed by dispatching as far as we reliably can down to our base shapes. For
 color we are able to share implementation via our abstractShape class but most other transformations
 are required to be specified by our individual shapes.
 
 Our textView is build off of the same render method from the previous assignment.
 
-Our VisualView works by alternating between painting components which places the images that are visible 
+Our VisualView works by alternating between painting components which places the images that are visible
 on the canvas and ticking the model which updates all of the commands to the new positions of all
 the
 shapes. These two actions are separated by a thread.sleep which sleeps for 1 / TPS to get the correct
@@ -43,6 +43,4 @@ Our Editor view is a panel with editing operations on it (Add/update/delete) and
 
 -ASSIGNMENT 8-
 At the end of the day, we were not able to get keyframes editing implemented correctly in the their
-views. We also had a peculiar bug where after resetting our animations become very jumpy. As we
-were updating our model to be more flexible and more easily function under both of our sets of
-views, we broke reset and were never able to get it back to its original functionality.
+views. This is due to our time constraints, our imperfect model representations, and the fact that our provider's code had very tight model-view coupling. We also had a peculiar bug where after resetting our animations become very jumpy. Everything else that we had previously implemented worked as it should despite the significant refactoring we did of our design.
