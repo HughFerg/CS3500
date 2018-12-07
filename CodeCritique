@@ -10,8 +10,9 @@ shapes were much higher in the hierarchy, since each included their own animatio
 
 Their views were quite relatively easy to get running and had some pretty impressive features.
 One of the biggest issues we had with their views was that their view contained a model which made
-it a very different experience to work around their views compared to our own. Another major problem
-is that their view UI is quite unintuitive. When it comes to their keyframes and creating new shapes
+it a very different experience to work around their views compared to our own, and we feel that the
+two are definitely too tightly coupled. Another major problem is that their view UI is quite
+unintuitive. When it comes to their keyframes and creating new shapes
 it is difficult to know which of the drop downs correlate to which function.
 
 The documentation that was provided to use was satisfactory. There were some cases where method
